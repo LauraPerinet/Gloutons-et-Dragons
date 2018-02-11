@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 
 /**
  *
@@ -30,11 +32,11 @@ class MapDungeon extends Group{
         parchment.setName("background");
         
         heros=new Image(new Texture("point.png"));
-        heros.setPosition(50-heros.getWidth()*0.5f, 50-heros.getHeight()*0.5f);
+        heros.setPosition(75-heros.getWidth()*0.5f, 75-heros.getHeight()*0.5f);
         heros.setName("heros");
         
         addActor(parchment);
-        createMap();
+        createMap(1);
         addActor(heros);
         tile=findActor("0 0");
         
@@ -46,6 +48,7 @@ class MapDungeon extends Group{
  
         Actor tileTouched= hit(locTmp.x, locTmp.y, false);
         if(!tileTouched.getName().equals("background")){
+            Gdx.app.log("tuile", tileTouched.getName());
             if(canWeGo(tileTouched)){
                 moveHeros(tileTouched);
                 return tileTouched.getName();
@@ -78,12 +81,13 @@ class MapDungeon extends Group{
         tile=(Tile) tileTouched;
     }
 
-    private void createMap() {
-        for(int y=0; y<MAP_HEIGHT; y++){
-            for(int x=0; x<MAP_WIDTH; x++){
-                Tile tile=new Tile(x,y);
-                addActor(tile);
-            }
+    private void createMap(int l) {
+        JsonReader json=new JsonReader();
+        JsonValue level=json.parse(Gdx.files.internal("levels/"+l+".json"));
+        
+        for (JsonValue room : level.get("rooms")){
+            Tile tile=new Tile(room.getInt("x"), room.getInt("y"), room.getString("type"), room.getString("orientation"));
+            addActor(tile);
         }
     }
 }

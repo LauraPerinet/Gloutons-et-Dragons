@@ -17,10 +17,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  * @author Laura
  */
 class Tile extends Image {
-    private int id;       
-    public Tile(int x, int y) {
-            super(new Texture("tile.png"));
+    private int id;
+    private String orientation;
+    private String type;
+    
+    public Tile(int x, int y, String type, String orientation) {
+            super(new Texture("tiles/"+type+orientation+".png"));
             setName(x+" "+y);
+            this.type=type;
+            this.orientation=orientation;
             id=x*10+y;
             setBounds(getWidth()*x, getHeight()*y, getWidth(), getHeight());
             setPosition(getX(), getY());
