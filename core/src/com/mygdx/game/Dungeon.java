@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -26,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Laura
  */
 public class Dungeon extends Stage implements InputProcessor{
+    private Game game;
     private MapDungeon map;
     private RoomGUI room;
     private Group main;
@@ -44,9 +46,10 @@ public class Dungeon extends Stage implements InputProcessor{
             return true;
         }
     };
-    private ColorAction fadeIn;
+
     
-    public Dungeon(Viewport view) {
+    public Dungeon(Viewport view, Game game) {
+        this.game=game;
         menu=new Menu();
         map=new MapDungeon();
         main=map;

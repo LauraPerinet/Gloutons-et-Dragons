@@ -39,6 +39,9 @@ class Tile extends Image {
     public int getId(){
         return id;
     }
+    public String getOrientation(){
+        return orientation;
+    }
     
     
 }

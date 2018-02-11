@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
@@ -20,12 +21,14 @@ import com.badlogic.gdx.utils.JsonValue;
  * @author Laura
  */
 class MapDungeon extends Group{
+
     private Tile tile;
     private Image heros;
     private int MAP_WIDTH=5;
     private int MAP_HEIGHT=5;
     
     public MapDungeon(){
+        
         setName("map");
         
         Image parchment=new Image(new Texture("parchment.jpg"));
@@ -67,10 +70,22 @@ class MapDungeon extends Group{
         int GO_RIGHT = fromId+10;
         int GO_UP = fromId+1;
         int GO_DOWN = fromId-1;
-
-        if(toId == GO_LEFT || toId== GO_RIGHT || toId == GO_UP || toId == GO_DOWN ) return true;
         
-        return false;
+        Gdx.app.log("orientation", tile.getOrientation());
+        if(toId == GO_LEFT){
+            if(!tile.getOrientation().contains("W")) return false;
+        }else if(toId== GO_RIGHT){
+            if(!tile.getOrientation().contains("E")) return false;
+        }else if(toId == GO_UP){
+            if(!tile.getOrientation().contains("N")) return false;
+        }else if(toId == GO_DOWN ){
+            if(!tile.getOrientation().contains("S")) return false;
+        }else{
+            return false;
+        } 
+        return true;
+        
+        
     }
 
     private void moveHeros(Actor tileTouched) {

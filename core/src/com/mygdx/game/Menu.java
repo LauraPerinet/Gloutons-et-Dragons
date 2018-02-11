@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 
 /**
@@ -17,7 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  * @author Laura
  */
 public class Menu extends Group{
-    Image background=new Image(new Texture("backgroundMenu.png"));
+    
+    private Image background=new Image(new Texture("backgroundMenu.png"));
     public Menu() {
         setName("menu");
         setBounds(0, 0, background.getWidth(), background.getHeight());
