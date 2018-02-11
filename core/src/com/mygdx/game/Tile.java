@@ -9,24 +9,27 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  *
  * @author Laura
  */
-class Tile extends Actor {
-    private Sprite tileImg=new Sprite(new Texture("tile.png"));
+class Tile extends Image {
     private int id;       
     public Tile(int x, int y) {
+            super(new Texture("tile.png"));
             setName(x+" "+y);
             id=x*10+y;
-            setBounds(tileImg.getWidth()*x, tileImg.getHeight()*y, tileImg.getWidth(), tileImg.getHeight());
-            tileImg.setPosition(getX(), getY());
+            setBounds(getWidth()*x, getHeight()*y, getWidth(), getHeight());
+            setPosition(getX(), getY());
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        tileImg.draw(batch);
+        batch.setColor(this.getColor());
+        ((TextureRegionDrawable) getDrawable()).draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
     public int getId(){
         return id;
