@@ -22,6 +22,7 @@ import com.mygdx.game.Menu;
  * @author Laura
  */
 public class Dungeon extends Stage implements InputProcessor{
+    public static Dungeon INSTANCE;
     private Game game;
     private MapDungeon map;
     private RoomGUI room;
@@ -43,7 +44,7 @@ public class Dungeon extends Stage implements InputProcessor{
     };
 
     
-    public Dungeon(Viewport view, Game game) {
+    private Dungeon(Viewport view, Game game) {
         this.game=game;
         menu=new Menu();
         map=MapDungeon.getInstance(game.getSkin());
@@ -53,6 +54,16 @@ public class Dungeon extends Stage implements InputProcessor{
         addActor(menu);
         
         Gdx.input.setInputProcessor(this);
+    }
+    public static Dungeon getInstance(Viewport view, Game game){
+        if(INSTANCE==null){
+            INSTANCE=new Dungeon(view,game);
+        }
+        return INSTANCE;
+    }
+    
+    public static Dungeon getInstance(){
+       return INSTANCE; 
     }
 /*
     @Override
@@ -74,7 +85,7 @@ public class Dungeon extends Stage implements InputProcessor{
         return true;        
     }
 */
-    private void goTo() {
+    public void goTo() {
         main.addAction(Actions.sequence(Actions.fadeOut(2), changeScreenAction, Actions.fadeIn(1)));
     }
 

@@ -45,7 +45,7 @@ public class Game extends ApplicationAdapter {
     }
 
     void changeStage() {
-        dungeon=new Dungeon(viewMainWindow, this);
+        dungeon=Dungeon.getInstance(viewMainWindow, this);
         actual=dungeon;
     }
         

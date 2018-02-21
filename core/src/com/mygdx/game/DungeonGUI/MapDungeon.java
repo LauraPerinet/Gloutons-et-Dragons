@@ -114,6 +114,7 @@ class MapDungeon extends Group{
         warrior.moveHerosOnMap(room);
         mage.moveHerosOnMap(room);
         tile= room;
+        Dungeon.getInstance().goTo();
     }
     
     public Tile getTile(){
