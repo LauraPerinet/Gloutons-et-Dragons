@@ -15,7 +15,7 @@ public class MageMapGUI extends HerosMapGUI{
     
     
     
-    public MageMapGUI( int position, String location, float x, float y){
+    public MageMapGUI( int position, float x, float y){
         super(position, -5, 5);
         region=spriteSheet.findRegion("pt");
         super.setSprite(region);

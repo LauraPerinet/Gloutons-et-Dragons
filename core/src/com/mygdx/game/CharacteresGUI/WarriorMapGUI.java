@@ -13,7 +13,7 @@ public class WarriorMapGUI extends HerosMapGUI{
     private TextureAtlas spriteSheet = new TextureAtlas("Characters/warrior/warrior.atlas");
     private TextureRegion region;
 
-    public WarriorMapGUI( int position, String location, float x, float y){
+    public WarriorMapGUI( int position, float x, float y){
         super(position, 10, -5);
         region=spriteSheet.findRegion("pt");
         super.setSprite(region);

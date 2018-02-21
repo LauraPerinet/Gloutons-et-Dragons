@@ -15,7 +15,7 @@ public class ThiefMapGUI extends HerosMapGUI{
     
     
     
-    public ThiefMapGUI( int position, String location, float x, float y){
+    public ThiefMapGUI( int position, float x, float y){
         super(position, -13, -13);
         region=spriteSheet.findRegion("pt");
         super.setSprite(region);

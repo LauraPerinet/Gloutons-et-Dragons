@@ -12,8 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 /**
  *
  * @author Laura
@@ -23,33 +22,80 @@ public class HerosPosition extends Group{
     private Image thief;
     private Image mage;
     private TextureAtlas spriteSheet = new TextureAtlas("Characters/heros.atlas");
+    private int[] position={-480, -160, 160};
+    private float posY;
 
     public HerosPosition( int posWarrior, int posThief, int posMage){
         warrior=createImage(warrior, "warrior"); 
         thief=createImage(thief, "thief"); 
         mage=createImage(mage, "mage"); 
-     
+        posY=warrior.getY();
         addActorAt(posWarrior, warrior);
         addActorAt(posThief, thief);
         addActorAt(posMage, mage);
         
         setHeight(warrior.getHeight());
-        for(int i=0; i<getChildren().size;i++){
-            getChildren().get(i).setX(i*200-200);
-        }
+        
+        setHerosPosition();
+        Gdx.app.log("group", getChildren().size+"");
+        DragAndDrop dnd=new DragAndDrop();
+        dnd.addSource(new DragAndDrop.Source(this){
+            final DragAndDrop.Payload payload=new DragAndDrop.Payload();
+            float originX=0;
+            @Override
+            public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
+                originX=x;
+                Actor dragHeros=hit(x,y,true);
+ 
+                payload.setObject(dragHeros);
+                payload.setDragActor(dragHeros);
+                return payload;
+            }
+
+            @Override
+            public void dragStop(InputEvent event, float x, float y, int pointer, DragAndDrop.Payload payload, DragAndDrop.Target target) {
+                if(target==null) setHerosPosition((Image) payload.getObject(), originX);
+            }
+            
+        });
+        dnd.addTarget(new DragAndDrop.Target(this){
+            @Override
+            public boolean drag(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
+                return true;
+            }
+
+            @Override
+            public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
+                Gdx.app.log("pos", "drop ok");
+                 setHerosPosition((Image)payload.getObject(), x);
+            }
+
+            
+        });
     }
 
     private Image createImage(Image heros, String typeHeros) {
         TextureRegion herosImg=spriteSheet.findRegion(typeHeros);
         heros=new Image(herosImg);
         heros.setName(typeHeros);
-        heros.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("clic", "clicq");
-            }
-            
-        });
         return heros;
+    }
+
+    private void setHerosPosition() {
+        for(int i=0; i<position.length;i++){
+            Gdx.app.log(i+"",getChildren().get(i).getName());
+            getChildren().get(i).setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
+            getChildren().get(i).setY(posY);
+        }
+    }
+    private void setHerosPosition(Image heros, float x) {
+        for(int i=position.length-1; i>=0;i--){
+            if (x > position[i] ){
+                Gdx.app.log("ajoute à l'index", i+"");
+                addActorAt(i, heros);
+                setHerosPosition();
+                break;
+            }
+        }
     }
 }

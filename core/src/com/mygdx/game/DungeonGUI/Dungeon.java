@@ -86,7 +86,7 @@ public class Dungeon extends Stage implements InputProcessor{
     }
 */
     public void goTo() {
-        main.addAction(Actions.sequence(Actions.fadeOut(2), changeScreenAction, Actions.fadeIn(1)));
+        main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
 
    

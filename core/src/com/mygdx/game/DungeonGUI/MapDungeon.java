@@ -91,9 +91,9 @@ class MapDungeon extends Group{
                 map.getChildren().first().getWidth()*MAP_HEIGHT
                 );
         
-        thief=new ThiefMapGUI(0, "map", tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
-        mage=new MageMapGUI(1, "map", tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
-        warrior=new WarriorMapGUI(2, "map", tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
+        thief=new ThiefMapGUI(0,  tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
+        mage=new MageMapGUI(1, tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
+        warrior=new WarriorMapGUI(2, tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
         
         map.addActor(thief);
         map.addActor(mage);

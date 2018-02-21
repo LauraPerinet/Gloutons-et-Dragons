@@ -40,11 +40,6 @@ public class Tile extends Image {
             });
     }
 
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        batch.setColor(this.getColor());
-        ((TextureRegionDrawable) getDrawable()).draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
-    }
     public int getId(){
         return id;
     }
