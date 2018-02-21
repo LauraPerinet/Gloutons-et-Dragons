@@ -5,5 +5,8 @@
     },
     com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle:{
         default:{titleFont:default-font}
+    },
+    com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle:{
+        default:{font:default-font}
     }
 }

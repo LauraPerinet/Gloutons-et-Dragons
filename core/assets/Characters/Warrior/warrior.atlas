@@ -6,88 +6,151 @@ filter: Nearest,Nearest
 repeat: none
 attack
   rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 34
-attack
-  rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 10
-attack
-  rotate: false
-  xy: 504, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 11
-attack
-  rotate: false
-  xy: 1006, 524
+  xy: 2, 1434
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 12
 attack
   rotate: false
-  xy: 1006, 2
+  xy: 2, 912
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 14
-walk
+attack
   rotate: false
-  xy: 2, 1046
+  xy: 504, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 15
+attack
+  rotate: false
+  xy: 2, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 34
+attack
+  rotate: false
+  xy: 504, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 17
+attack
+  rotate: false
+  xy: 1006, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 18
+attack
+  rotate: false
+  xy: 504, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 19
+attack
+  rotate: false
+  xy: 1006, 912
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 35
-walk
+attack
   rotate: false
-  xy: 504, 1046
+  xy: 1508, 1434
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 24
+  index: 25
+attack
+  rotate: false
+  xy: 1006, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 13
+attack
+  rotate: false
+  xy: 1508, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 20
+attack
+  rotate: false
+  xy: 1508, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 21
+pt
+  rotate: false
+  xy: 2010, 1944
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
 walk
   rotate: false
   xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
+  size: 242, 386
+  orig: 242, 386
   offset: 0, 0
-  index: 51
+  index: 47
 walk
   rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 246, 2
+  size: 242, 386
+  orig: 242, 386
   offset: 0, 0
-  index: 59
+  index: 46
 walk
   rotate: false
-  xy: 1508, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 490, 2
+  size: 242, 386
+  orig: 242, 386
   offset: 0, 0
-  index: 56
+  index: 45
 walk
   rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 734, 2
+  size: 241, 386
+  orig: 241, 386
   offset: 0, 0
-  index: 58
+  index: 48
 walk
   rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 977, 3
+  size: 241, 385
+  orig: 241, 385
   offset: 0, 0
-  index: 2
+  index: 43
+walk
+  rotate: false
+  xy: 1220, 3
+  size: 241, 385
+  orig: 241, 385
+  offset: 0, 0
+  index: 44
+walk
+  rotate: false
+  xy: 1463, 3
+  size: 240, 385
+  orig: 240, 385
+  offset: 0, 0
+  index: 42
+walk
+  rotate: false
+  xy: 1705, 3
+  size: 240, 385
+  orig: 240, 385
+  offset: 0, 0
+  index: 49
 
 warrior2.png
 size: 2048,2048
@@ -96,88 +159,165 @@ filter: Nearest,Nearest
 repeat: none
 attack
   rotate: false
-  xy: 2, 1046
+  xy: 2, 1433
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 17
+  index: 22
 attack
   rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 18
-attack
-  rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 25
-attack
-  rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 8
-attack
-  rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 5
-walk
-  rotate: false
-  xy: 504, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 18
-walk
-  rotate: false
-  xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 19
-walk
-  rotate: false
-  xy: 504, 2
+  xy: 2, 911
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 23
-walk
+attack
   rotate: false
-  xy: 1006, 524
+  xy: 504, 1433
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 6
-walk
+  index: 26
+attack
   rotate: false
-  xy: 1508, 1046
+  xy: 2, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 24
+attack
+  rotate: false
+  xy: 504, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 32
+attack
+  rotate: false
+  xy: 1006, 1433
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 16
+attack
+  rotate: false
+  xy: 504, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 1006, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 36
+attack
+  rotate: false
+  xy: 1508, 1433
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 30
+attack
+  rotate: false
+  xy: 1006, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 31
+attack
+  rotate: false
+  xy: 1508, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 0
+attack
+  rotate: false
+  xy: 1508, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 38
+attack
+  rotate: false
+  xy: 1508, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 39
+attack
+  rotate: false
+  xy: 1508, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 37
+attack
+  rotate: false
+  xy: 1508, 389
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 33
 walk
   rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 2, 2
+  size: 240, 385
+  orig: 240, 385
   offset: 0, 0
-  index: 43
+  index: 50
 walk
   rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 244, 2
+  size: 239, 385
+  orig: 239, 385
   offset: 0, 0
-  index: 32
+  index: 51
+walk
+  rotate: false
+  xy: 485, 2
+  size: 239, 385
+  orig: 239, 385
+  offset: 0, 0
+  index: 41
+walk
+  rotate: false
+  xy: 726, 2
+  size: 238, 385
+  orig: 238, 385
+  offset: 0, 0
+  index: 52
+walk
+  rotate: false
+  xy: 966, 3
+  size: 239, 384
+  orig: 239, 384
+  offset: 0, 0
+  index: 40
+walk
+  rotate: false
+  xy: 1207, 3
+  size: 238, 384
+  orig: 238, 384
+  offset: 0, 0
+  index: 53
+walk
+  rotate: false
+  xy: 1447, 3
+  size: 238, 384
+  orig: 238, 384
+  offset: 0, 0
+  index: 39
+walk
+  rotate: false
+  xy: 1687, 3
+  size: 237, 384
+  orig: 237, 384
+  offset: 0, 0
+  index: 54
 
 warrior3.png
 size: 2048,2048
@@ -186,88 +326,151 @@ filter: Nearest,Nearest
 repeat: none
 attack
   rotate: false
-  xy: 2, 524
+  xy: 2, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 504, 1434
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 3
 attack
   rotate: false
-  xy: 504, 1046
+  xy: 1006, 1434
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 20
+  index: 1
 attack
   rotate: false
-  xy: 2, 2
+  xy: 1508, 1434
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 21
+  index: 2
 attack
   rotate: false
-  xy: 504, 524
+  xy: 2, 912
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 22
+  index: 4
 attack
   rotate: false
-  xy: 504, 2
+  xy: 504, 912
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 33
+  index: 5
 attack
   rotate: false
-  xy: 1508, 1046
+  xy: 1006, 912
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
-  index: 26
+  index: 6
 attack
   rotate: false
-  xy: 1508, 524
+  xy: 1508, 912
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 28
 attack
   rotate: false
-  xy: 1508, 2
+  xy: 2, 390
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 29
-walk
+attack
   rotate: false
-  xy: 2, 1046
+  xy: 504, 390
   size: 500, 520
   orig: 500, 520
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 1006, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 27
+attack
+  rotate: false
+  xy: 1508, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 10
+walk
+  rotate: false
+  xy: 2, 2
+  size: 220, 386
+  orig: 220, 386
+  offset: 0, 0
+  index: 13
+walk
+  rotate: false
+  xy: 224, 2
+  size: 220, 386
+  orig: 220, 386
+  offset: 0, 0
+  index: 17
+walk
+  rotate: false
+  xy: 446, 2
+  size: 219, 386
+  orig: 219, 386
+  offset: 0, 0
+  index: 14
+walk
+  rotate: false
+  xy: 667, 2
+  size: 219, 386
+  orig: 219, 386
   offset: 0, 0
   index: 16
 walk
   rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 888, 2
+  size: 218, 386
+  orig: 218, 386
   offset: 0, 0
-  index: 22
+  index: 15
 walk
   rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 1108, 3
+  size: 225, 385
+  orig: 225, 385
   offset: 0, 0
-  index: 48
+  index: 8
 walk
   rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 1335, 3
+  size: 224, 385
+  orig: 224, 385
   offset: 0, 0
-  index: 26
+  index: 21
+walk
+  rotate: false
+  xy: 1561, 3
+  size: 224, 385
+  orig: 224, 385
+  offset: 0, 0
+  index: 9
+walk
+  rotate: false
+  xy: 1787, 4
+  size: 237, 384
+  orig: 237, 384
+  offset: 0, 0
+  index: 38
 
 warrior4.png
 size: 2048,2048
@@ -276,479 +479,259 @@ filter: Nearest,Nearest
 repeat: none
 attack
   rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 27
-attack
-  rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 16
-attack
-  rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 15
-walk
-  rotate: false
-  xy: 2, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 29
-walk
-  rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 52
-walk
-  rotate: false
-  xy: 504, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 15
-walk
-  rotate: false
-  xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 12
-walk
-  rotate: false
-  xy: 504, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 28
-walk
-  rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 3
-walk
-  rotate: false
-  xy: 1508, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 44
-walk
-  rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 27
-walk
-  rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 21
-
-warrior5.png
-size: 2048,2048
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-attack
-  rotate: false
-  xy: 2, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 30
-attack
-  rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 31
-attack
-  rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 35
-attack
-  rotate: false
-  xy: 504, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 36
-attack
-  rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 37
-attack
-  rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 38
-attack
-  rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 0
-attack
-  rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 39
-walk
-  rotate: false
-  xy: 504, 1046
+  xy: 2, 1408
   size: 500, 520
   orig: 500, 520
   offset: 0, 0
   index: 11
 walk
   rotate: false
-  xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 2, 1022
+  size: 236, 384
+  orig: 236, 384
   offset: 0, 0
-  index: 14
+  index: 56
 walk
   rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 504, 1545
+  size: 237, 383
+  orig: 237, 383
   offset: 0, 0
   index: 37
 walk
   rotate: false
-  xy: 1508, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 2, 636
+  size: 236, 384
+  orig: 236, 384
+  offset: 0, 0
+  index: 55
+walk
+  rotate: false
+  xy: 240, 1023
+  size: 236, 383
+  orig: 236, 383
   offset: 0, 0
   index: 36
 walk
   rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 743, 1545
+  size: 235, 383
+  orig: 235, 383
   offset: 0, 0
-  index: 39
+  index: 34
 walk
   rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 2, 251
+  size: 235, 383
+  orig: 235, 383
   offset: 0, 0
-  index: 50
+  index: 35
 walk
   rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 55
-
-warrior6.png
-size: 2048,2048
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-attack
-  rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 9
-attack
-  rotate: false
-  xy: 504, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 32
-attack
-  rotate: false
-  xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 4
-attack
-  rotate: false
-  xy: 1508, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 13
-attack
-  rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 23
-walk
-  rotate: false
-  xy: 2, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 1
-walk
-  rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 13
-walk
-  rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 5
-walk
-  rotate: false
-  xy: 504, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 240, 638
+  size: 235, 383
+  orig: 235, 383
   offset: 0, 0
   index: 57
 walk
   rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 980, 1545
+  size: 234, 383
+  orig: 234, 383
   offset: 0, 0
-  index: 45
+  index: 33
 walk
   rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 1216, 1545
+  size: 234, 383
+  orig: 234, 383
   offset: 0, 0
-  index: 31
+  index: 58
 walk
   rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 1452, 1545
+  size: 233, 383
+  orig: 233, 383
   offset: 0, 0
-  index: 30
-
-warrior7.png
-size: 2048,2048
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-attack
-  rotate: false
-  xy: 2, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 24
-attack
-  rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 7
-attack
-  rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 1
-attack
-  rotate: false
-  xy: 504, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 2
+  index: 59
 walk
   rotate: false
-  xy: 504, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 1687, 1546
+  size: 233, 382
+  orig: 233, 382
   offset: 0, 0
-  index: 40
+  index: 32
 walk
   rotate: false
-  xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 10
-walk
-  rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 42
-walk
-  rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 46
-walk
-  rotate: false
-  xy: 1508, 1046
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 47
-walk
-  rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 4
-walk
-  rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 38
-walk
-  rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 25
-
-warrior8.png
-size: 2048,2048
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-attack
-  rotate: false
-  xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
-  offset: 0, 0
-  index: 6
-attack
-  rotate: false
-  xy: 1508, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 478, 1021
+  size: 222, 385
+  orig: 222, 385
   offset: 0, 0
   index: 19
 walk
   rotate: false
-  xy: 2, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 477, 635
+  size: 228, 384
+  orig: 228, 384
+  offset: 0, 0
+  index: 4
+walk
+  rotate: false
+  xy: 702, 1161
+  size: 232, 382
+  orig: 232, 382
+  offset: 0, 0
+  index: 31
+walk
+  rotate: false
+  xy: 936, 1161
+  size: 231, 382
+  orig: 231, 382
+  offset: 0, 0
+  index: 29
+walk
+  rotate: false
+  xy: 1169, 1161
+  size: 231, 382
+  orig: 231, 382
   offset: 0, 0
   index: 0
 walk
   rotate: false
-  xy: 2, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 1402, 1160
+  size: 231, 383
+  orig: 231, 383
   offset: 0, 0
-  index: 8
+  index: 1
 walk
   rotate: false
-  xy: 504, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 707, 776
+  size: 230, 383
+  orig: 230, 383
   offset: 0, 0
-  index: 9
+  index: 2
 walk
   rotate: false
-  xy: 504, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 939, 777
+  size: 231, 382
+  orig: 231, 382
   offset: 0, 0
-  index: 41
+  index: 30
 walk
   rotate: false
-  xy: 1006, 1046
-  size: 500, 520
-  orig: 500, 520
+  xy: 1172, 776
+  size: 228, 383
+  orig: 228, 383
   offset: 0, 0
-  index: 17
+  index: 26
 walk
   rotate: false
-  xy: 504, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 1402, 776
+  size: 230, 382
+  orig: 230, 382
+  offset: 0, 0
+  index: 28
+walk
+  rotate: false
+  xy: 1635, 1159
+  size: 227, 384
+  orig: 227, 384
+  offset: 0, 0
+  index: 5
+walk
+  rotate: false
+  xy: 1634, 774
+  size: 229, 383
+  orig: 229, 383
+  offset: 0, 0
+  index: 27
+walk
+  rotate: false
+  xy: 239, 250
+  size: 226, 384
+  orig: 226, 384
+  offset: 0, 0
+  index: 23
+walk
+  rotate: false
+  xy: 467, 250
+  size: 229, 383
+  orig: 229, 383
+  offset: 0, 0
+  index: 3
+walk
+  rotate: false
+  xy: 698, 250
+  size: 227, 383
+  orig: 227, 383
+  offset: 0, 0
+  index: 25
+walk
+  rotate: false
+  xy: 927, 389
+  size: 223, 385
+  orig: 223, 385
+  offset: 0, 0
+  index: 20
+walk
+  rotate: false
+  xy: 1152, 390
+  size: 227, 384
+  orig: 227, 384
+  offset: 0, 0
+  index: 6
+walk
+  rotate: false
+  xy: 1381, 390
+  size: 226, 384
+  orig: 226, 384
   offset: 0, 0
   index: 7
 walk
   rotate: false
-  xy: 1006, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 1609, 389
+  size: 226, 383
+  orig: 226, 383
   offset: 0, 0
-  index: 54
+  index: 24
 walk
   rotate: false
-  xy: 1006, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 927, 3
+  size: 225, 384
+  orig: 225, 384
   offset: 0, 0
-  index: 49
+  index: 22
 walk
   rotate: false
-  xy: 1508, 524
-  size: 500, 520
-  orig: 500, 520
+  xy: 1154, 3
+  size: 223, 385
+  orig: 223, 385
   offset: 0, 0
-  index: 53
+  index: 10
 walk
   rotate: false
-  xy: 1508, 2
-  size: 500, 520
-  orig: 500, 520
+  xy: 1379, 3
+  size: 222, 385
+  orig: 222, 385
   offset: 0, 0
-  index: 34
+  index: 11
+walk
+  rotate: false
+  xy: 1603, 2
+  size: 221, 385
+  orig: 221, 385
+  offset: 0, 0
+  index: 18
 
-warrior9.png
-size: 512,1024
+warrior5.png
+size: 256,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 walk
   rotate: false
   xy: 2, 2
-  size: 500, 520
-  orig: 500, 520
+  size: 221, 385
+  orig: 221, 385
   offset: 0, 0
-  index: 20
+  index: 12

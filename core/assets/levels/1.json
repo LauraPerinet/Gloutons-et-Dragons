@@ -4,125 +4,146 @@
         "y":0,
         "type":"castle",
         "orientation":"E"
+        "enter":false
     },
     {
         "x":1,
         "y":0,
         "type":"castle",
         "orientation":"EW"
+        "enter":false
     },
     {
         "x":2,
         "y":0,
         "type":"castle",
         "orientation":"NW"
+        "enter":false
     },
     {
         "x":0,
         "y":1,
         "type":"castle",
         "orientation":"N"
+        "enter":false
     },
     {
         "x":1,
         "y":1,
         "type":"castle",
         "orientation":"E"
+        "enter":false
     },
     {
         "x":2,
         "y":1,
         "type":"castle",
-        "orientation":"NESW"
+        "orientation":"NESW",
+        "enter":false
     },
     {
         "x":3,
         "y":1,
         "type":"castle",
         "orientation":"EW"
+        "enter":false
     },
     {
         "x":4,
         "y":1,
         "type":"castle",
         "orientation":"NW"
+        "enter":false
     },
     {
         "x":0,
         "y":2,
         "type":"castle",
         "orientation":"NES"
+        "enter":false
     },
     {
         "x":1,
         "y":2,
         "type":"castle",
         "orientation":"EW"
+        "enter":false
     },
     {
         "x":2,
         "y":2,
         "type":"castle",
         "orientation":"NSW"
+        "enter":false
     },
     {
         "x":4,
         "y":2,
         "type":"castle",
         "orientation":"NS"
+        "enter":false
     },
     {
         "x":0,
         "y":3,
         "type":"castle",
         "orientation":"NS"
+        "enter":false
     },
     {
         "x":2,
         "y":3,
         "type":"castle",
         "orientation":"NES"
+        "enter":false
     },
     {
         "x":3,
         "y":3,
         "type":"castle",
         "orientation":"NEW"
+        "enter":false
     },
     {
         "x":4,
         "y":3,
         "type":"castle",
         "orientation":"SW"
+        "enter":false
     },
     {
         "x":0,
         "y":4,
         "type":"castle",
         "orientation":"ES"
+        "enter":false
     },
     {
         "x":1,
         "y":4,
         "type":"castle",
         "orientation":"EW"
+        "enter":false
     },
     {
         "x":2,
         "y":4,
         "type":"castle",
         "orientation":"SW"
+        "enter":true
     },
     {
         "x":3,
         "y":4,
         "type":"castle",
         "orientation":"ES"
+        "enter":false
     },
     {
         "x":4,
         "y":4,
         "type":"castle",
         "orientation":"W"
+        "enter":false
     }
 ]}
