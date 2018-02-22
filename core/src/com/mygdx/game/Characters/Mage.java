@@ -13,13 +13,15 @@ import com.mygdx.game.CharactersGUI.HerosMapGUI;
  *
  * @author Laura
  */
-public class Warrior extends Heros{
-    private final TextureAtlas spriteSheet=new TextureAtlas("Characters/warrior/warrior.atlas");
+public class Mage extends Heros{
+    private final TextureAtlas spriteSheet=new TextureAtlas("Characters/mage/mage.atlas");
     
-    public Warrior(){
-        this.name="warrior";
-        this.order=3;
-        this.mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);
+    public Mage(){
+        this.name="mage";
+        this.order=1;
+        this.mapPt=new HerosMapGUI(1, -10, -10, spriteSheet);
         this.img= new CharactersFullGUI(spriteSheet, this);
+        
     }
+
 }

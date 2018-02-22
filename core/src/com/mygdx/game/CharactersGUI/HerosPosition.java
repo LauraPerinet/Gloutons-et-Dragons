@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.game.CharacteresGUI;
+package com.mygdx.game.CharactersGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,28 +13,26 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.mygdx.game.Characters.Heros;
 /**
  *
  * @author Laura
  */
 public class HerosPosition extends Group{
-    private Image warrior;
-    private Image thief;
-    private Image mage;
-    private TextureAtlas spriteSheet = new TextureAtlas("Characters/heros.atlas");
+    private Heros warrior, thief, mage;
     private int[] position={-480, -160, 160};
     private float posY;
 
-    public HerosPosition( int posWarrior, int posThief, int posMage){
-        warrior=createImage(warrior, "warrior"); 
-        thief=createImage(thief, "thief"); 
-        mage=createImage(mage, "mage"); 
-        posY=warrior.getY();
-        addActorAt(posWarrior, warrior);
-        addActorAt(posThief, thief);
-        addActorAt(posMage, mage);
+    public HerosPosition( Heros warrior, Heros thief, Heros mage){
+        this.warrior=warrior; 
+        this.thief=thief;
+        this.mage=mage;
+        posY=warrior.getImg().getY();
+        addActorAt(warrior.getOrder(), warrior.getImg());
+        addActorAt(thief.getOrder(), thief.getImg());
+        addActorAt(mage.getOrder(), mage.getImg());
         
-        setHeight(warrior.getHeight());
+        setHeight(warrior.getImg().getHeight());
         
         setHerosPosition();
         Gdx.app.log("group", getChildren().size+"");
@@ -66,7 +64,6 @@ public class HerosPosition extends Group{
 
             @Override
             public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
-                Gdx.app.log("pos", "drop ok");
                  setHerosPosition((Image)payload.getObject(), x);
             }
 
@@ -74,24 +71,17 @@ public class HerosPosition extends Group{
         });
     }
 
-    private Image createImage(Image heros, String typeHeros) {
-        TextureRegion herosImg=spriteSheet.findRegion(typeHeros);
-        heros=new Image(herosImg);
-        heros.setName(typeHeros);
-        return heros;
-    }
-
     private void setHerosPosition() {
         for(int i=0; i<position.length;i++){
-            Gdx.app.log(i+"",getChildren().get(i).getName());
-            getChildren().get(i).setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
-            getChildren().get(i).setY(posY);
+            CharactersFullGUI h=(CharactersFullGUI) getChildren().get(i);
+            h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
+            h.setY(posY);
+            h.getHeros().setOrder(i);
         }
     }
     private void setHerosPosition(Image heros, float x) {
         for(int i=position.length-1; i>=0;i--){
             if (x > position[i] ){
-                Gdx.app.log("ajoute à l'index", i+"");
                 addActorAt(i, heros);
                 setHerosPosition();
                 break;

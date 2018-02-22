@@ -7,20 +7,27 @@ package com.mygdx.game.DungeonGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.mygdx.game.CharacteresGUI.HerosPosition;
-import com.mygdx.game.CharacteresGUI.MageMapGUI;
-import com.mygdx.game.CharacteresGUI.ThiefMapGUI;
-import com.mygdx.game.CharacteresGUI.WarriorMapGUI;
+import com.mygdx.game.CharactersGUI.HerosMapGUI;
+import com.mygdx.game.CharactersGUI.HerosPosition;
+import com.mygdx.game.Characters.Mage;
+import com.mygdx.game.Characters.Thief;
+import com.mygdx.game.Characters.Warrior;
+import java.util.Iterator;
+
 
 /**
  *
@@ -30,37 +37,31 @@ class MapDungeon extends Group{
     private static MapDungeon INSTANCE;
     final private Skin skin;
     private Table table, leftTable;
-    Image parchment=new Image(new Texture("parchment.jpg"));
-    private Tile tile;
-    private ThiefMapGUI thief;
-    private MageMapGUI mage;
-    private WarriorMapGUI warrior;
+    private Image parchment=new Image(new Texture("parchment.jpg"));
+    private Tile tile, nextTile;
+    private Thief thief;
+    private Mage mage;
+    private Warrior warrior;
+    private Group heroes;
     final private int MAP_WIDTH=5;
     final private int MAP_HEIGHT=5;
     
     private MapDungeon(Skin skin){
         this.skin=skin;
         setName("map");
-        setBounds(parchment.getX(), parchment.getY(), parchment.getWidth(), parchment.getHeight());
-        addActor(parchment);
+        createBackground();
         
         Group map=createMap(1);        
-        
-        Label title=new Label("L'appetit vient en chassant", skin, "default");
-        
-        table = createTable(getWidth());
-        leftTable = createTable(getWidth()/2);
-        leftTable.add(title);
-        leftTable.row();
-        leftTable.add(new HerosPosition(warrior.getPosition(), thief.getPosition(), mage.getPosition()));
 
+        table = createTable(getWidth());
+        createLeftTable();
+        
         table.add(map)
                 .width(getWidth()/2)
                 .height(getHeight()-100) //100 = padding bottom
                 .padLeft((getWidth()/2-map.getWidth())/2);
         table.add(leftTable).width(getWidth()/2).height(getHeight());
         addActor(table);
-        Gdx.app.log("tile", tile.getName());
     }
     
     public static MapDungeon getInstance(){
@@ -73,13 +74,19 @@ class MapDungeon extends Group{
         return INSTANCE;
     }
     
+    private void createBackground() {
+        setBounds(parchment.getX(), parchment.getY(), parchment.getWidth(), parchment.getHeight());
+        addActor(parchment);
+    }
+    
     private Group createMap(int l) {
         Group map = new Group();
         JsonReader json=new JsonReader();
         JsonValue level=json.parse(Gdx.files.internal("levels/"+l+".json"));
+        TextureAtlas spriteSheet=new TextureAtlas("tiles/tiles.atlas");
         
         for (JsonValue room : level.get("rooms")){
-            Tile tile=new Tile(room.getInt("x"), room.getInt("y"), room.getString("type"), room.getString("orientation"));
+            Tile tile=new Tile(room.getInt("x"), room.getInt("y"), room.getString("type"), room.getString("orientation"), spriteSheet);
             map.addActor(tile);
             if(room.getBoolean("enter"))
                 this.tile=tile;
@@ -91,14 +98,8 @@ class MapDungeon extends Group{
                 map.getChildren().first().getWidth()*MAP_HEIGHT
                 );
         
-        thief=new ThiefMapGUI(0,  tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
-        mage=new MageMapGUI(1, tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
-        warrior=new WarriorMapGUI(2, tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
         
-        map.addActor(thief);
-        map.addActor(mage);
-        map.addActor(warrior);
-        
+        map.addActor(createHeros());
         return map;
     }
 
@@ -109,16 +110,51 @@ class MapDungeon extends Group{
         t.setPosition(getX(), getHeight());
         return t;
     }
-    public void goToRoom(Tile room){
-        thief.moveHerosOnMap(room);
-        warrior.moveHerosOnMap(room);
-        mage.moveHerosOnMap(room);
-        tile= room;
-        Dungeon.getInstance().goTo();
-    }
+    public void goToRoom(Tile room){ nextTile= room; }
     
-    public Tile getTile(){
-        return tile;
+    public Tile getTile(){return tile;}
+
+    private Group createHeros() {
+        heroes=new Group();
+        thief=new Thief();
+        thief.getMapActor().setPositionOnMap(tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
+
+        mage=new Mage();
+        mage.getMapActor().setPositionOnMap( tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
+        warrior=new Warrior();
+        warrior.getMapActor().setPositionOnMap( tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
+        
+        heroes.addActor(thief.getMapActor());
+        heroes.addActor(mage.getMapActor());
+        heroes.addActor(warrior.getMapActor());
+        return heroes;
     }
+
+    private void createLeftTable() {
+        Label title=new Label("L'appetit vient en chassant", skin, "default");
+        TextButton nextRoom = new TextButton("Entrer dans la salle dans cet ordre", skin, "default");
+        nextRoom.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Iterator mapHeros=heroes.getChildren().iterator();
+                while(mapHeros.hasNext()){
+                    HerosMapGUI mapH=(HerosMapGUI) mapHeros.next();
+                    mapH.moveHerosOnMap(nextTile);
+                    tile=nextTile;
+                }
+
+                Dungeon.getInstance().goTo();
+            }
+        });
+
+        leftTable = createTable(getWidth()/2);
+        leftTable.add(title);
+        leftTable.row();
+        leftTable.add(new HerosPosition(warrior, thief, mage));
+        leftTable.row();
+        leftTable.add(nextRoom);
+    }
+
+    
 
 }

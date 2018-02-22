@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -23,9 +24,10 @@ public class Tile extends Image {
     private int id;
     private String orientation;
     private String type;
+    private int selected=-1;
     
-    public Tile(int x, int y, String type, String orientation) {
-            super(new Texture("tiles/"+type+orientation+".png"));
+    public Tile(int x, int y, String type, String orientation, TextureAtlas spriteSheet ) {
+            super(spriteSheet.findRegion(type+orientation, -1));
             setName("tile");
             this.type=type;
             this.orientation=orientation;
@@ -67,15 +69,9 @@ public class Tile extends Image {
         }else if(toId == GO_DOWN ){
             if(!heroesOn.getOrientation().contains("S")) return false;
         }else{
-            Gdx.app.log("canweGo", "false");
             return false;
         } 
-        Gdx.app.log("canweGo", "true");
         return true;
-        
-        
     }
-
-    
     
 }

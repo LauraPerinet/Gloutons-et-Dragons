@@ -38,7 +38,7 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void resize(int width, int height) {
-        viewMainWindow.update(width, height);
+        actual.getViewport().update(width, height);
     }
     public Skin getSkin(){
         return skin;
