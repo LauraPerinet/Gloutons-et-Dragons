@@ -28,12 +28,13 @@ public class Dungeon extends Stage implements InputProcessor{
     private RoomGUI room;
     private Group main;
     private Menu menu;
+    private String roomBackground;
     private Action changeScreenAction=new Action(){
         @Override
         public boolean act(float Delta){
             main.remove();
             if(main.getName().equals("map")){
-                main=new RoomGUI();
+                main=new RoomGUI( roomBackground );
             }else{
                 main=map;
             }
@@ -43,48 +44,33 @@ public class Dungeon extends Stage implements InputProcessor{
         }
     };
 
-    
     private Dungeon(Viewport view, Game game) {
         this.game=game;
         menu=new Menu();
         map=MapDungeon.getInstance(game.getSkin());
+        
         main=map;
         main.setY(menu.getHeight());
         addActor(main);
         addActor(menu);
-        
+
         Gdx.input.setInputProcessor(this);
     }
+    
     public static Dungeon getInstance(Viewport view, Game game){
-        if(INSTANCE==null){
-            INSTANCE=new Dungeon(view,game);
-        }
+        if(INSTANCE==null){ INSTANCE=new Dungeon(view,game); }
         return INSTANCE;
     }
     
     public static Dungeon getInstance(){
        return INSTANCE; 
     }
-/*
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Vector2 tmp=screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
-        Actor touched=hit(tmp.x,tmp.y,false);
-        Gdx.app.log("pointer", pointer+"");
-        Gdx.app.log("button", button+"");
-        if(touched.getParent().getName() != null && touched.getParent().getName().equals("menu")){
-            menu.touchDown(screenX, screenY);
-        }else{
-            if(main.getName().equals("map")){
-                String roomId= map.touchDown(screenX, screenY);
-                if(roomId!=null) goTo();
-            }else{
-                goTo();
-            }
-        }
-        return true;        
+
+    public void goTo( String roomBackground ) {
+        this.roomBackground = roomBackground;
+        main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
-*/
+    
     public void goTo() {
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }

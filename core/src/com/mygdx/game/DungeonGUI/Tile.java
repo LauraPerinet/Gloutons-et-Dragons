@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
@@ -25,14 +26,17 @@ public class Tile extends Image {
     private String orientation;
     private String type;
     private int selected=-1;
+    private TextureAtlas sprite;
     
     public Tile(int x, int y, String type, String orientation, TextureAtlas spriteSheet ) {
-            super(spriteSheet.findRegion(type+orientation, -1));
+            sprite=spriteSheet;
+            TextureRegion region = new TextureRegion(sprite.findRegion(type+orientation, -1));
+            setDrawable(new TextureRegionDrawable(region));
             setName("tile");
             this.type=type;
             this.orientation=orientation;
             id=x*10+y;
-            setBounds(getWidth()*x, getHeight()*y, getWidth(), getHeight());
+            setBounds(region.getRegionWidth()*x, region.getRegionHeight()*y, region.getRegionWidth(), region.getRegionHeight());
             setPosition(getX(), getY());
             addListener(new ClickListener(){
                 @Override
@@ -71,7 +75,13 @@ public class Tile extends Image {
         }else{
             return false;
         } 
+        setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, 1)));
         return true;
+    }
+    public void select( int select ){ setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, select )));}
+
+    public String getBackground() {
+        return this.type;
     }
     
 }

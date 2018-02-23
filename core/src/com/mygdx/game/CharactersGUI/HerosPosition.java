@@ -27,15 +27,39 @@ public class HerosPosition extends Group{
         this.warrior=warrior; 
         this.thief=thief;
         this.mage=mage;
-        posY=warrior.getImg().getY();
-        addActorAt(warrior.getOrder(), warrior.getImg());
-        addActorAt(thief.getOrder(), thief.getImg());
-        addActorAt(mage.getOrder(), mage.getImg());
         
-        setHeight(warrior.getImg().getHeight());
+        
+        posY=warrior.getActor().getY();
+        setHeight(warrior.getActor().getHeight());
+        
+        addActorAt(warrior.getOrder(), warrior.getActor());
+        addActorAt(thief.getOrder(), thief.getActor());
+        addActorAt(mage.getOrder(), mage.getActor());
         
         setHerosPosition();
-        Gdx.app.log("group", getChildren().size+"");
+        
+        addDragAndDrop();
+    }
+
+    public void setHerosPosition() {
+        for(int i=0; i<position.length;i++){
+            CharactersFullGUI h=(CharactersFullGUI) getChildren().get(i);
+            h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
+            h.setY(posY);
+            h.getHeros().setOrder(i);
+        }
+    }
+    private void setHerosPosition(Actor heros, float x) {
+        for(int i=position.length-1; i>=0;i--){
+            if (x > position[i] ){
+                addActorAt(i, heros);
+                setHerosPosition();
+                break;
+            }
+        }
+    }
+
+    private void addDragAndDrop() {
         DragAndDrop dnd=new DragAndDrop();
         dnd.addSource(new DragAndDrop.Source(this){
             final DragAndDrop.Payload payload=new DragAndDrop.Payload();
@@ -52,7 +76,7 @@ public class HerosPosition extends Group{
 
             @Override
             public void dragStop(InputEvent event, float x, float y, int pointer, DragAndDrop.Payload payload, DragAndDrop.Target target) {
-                if(target==null) setHerosPosition((Image) payload.getObject(), originX);
+                if(target==null) setHerosPosition((Actor) payload.getObject(), originX);
             }
             
         });
@@ -64,28 +88,10 @@ public class HerosPosition extends Group{
 
             @Override
             public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
-                 setHerosPosition((Image)payload.getObject(), x);
+                 setHerosPosition((Actor)payload.getObject(), x);
             }
 
             
         });
-    }
-
-    private void setHerosPosition() {
-        for(int i=0; i<position.length;i++){
-            CharactersFullGUI h=(CharactersFullGUI) getChildren().get(i);
-            h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
-            h.setY(posY);
-            h.getHeros().setOrder(i);
-        }
-    }
-    private void setHerosPosition(Image heros, float x) {
-        for(int i=position.length-1; i>=0;i--){
-            if (x > position[i] ){
-                addActorAt(i, heros);
-                setHerosPosition();
-                break;
-            }
-        }
     }
 }

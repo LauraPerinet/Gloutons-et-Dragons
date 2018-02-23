@@ -20,6 +20,7 @@ public class Game extends ApplicationAdapter {
              viewMainWindow=new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
              mainMenu = new MainMenu(this);
              actual=mainMenu;
+             // A commenter plus tard
              changeStage();
     }
 

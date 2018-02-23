@@ -14,12 +14,15 @@ import com.mygdx.game.CharactersGUI.HerosMapGUI;
  * @author Laura
  */
 public class Thief extends Heros{
-    private final TextureAtlas spriteSheet=new TextureAtlas("Characters/thief/thief.atlas");
+    
     
     public Thief(){
+        this.spriteSheet=new TextureAtlas("Characters/thief/thief.atlas");
         this.name="thief";
         this.order=0;
         this.mapPt=new HerosMapGUI(1, 15, -10, spriteSheet);
-        this.img= new CharactersFullGUI(spriteSheet, this);
+        this.MAX_WALK=19;
+        this.MAX_ATTACK=10;
+        
     }
 }

@@ -14,12 +14,16 @@ import com.mygdx.game.CharactersGUI.HerosMapGUI;
  * @author Laura
  */
 public class Warrior extends Heros{
-    private final TextureAtlas spriteSheet=new TextureAtlas("Characters/warrior/warrior.atlas");
+    
     
     public Warrior(){
+        this.spriteSheet=new TextureAtlas("Characters/warrior/warrior.atlas");
         this.name="warrior";
         this.order=3;
         this.mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);
-        this.img= new CharactersFullGUI(spriteSheet, this);
+        this.MAX_WALK=59;
+        this.MAX_ATTACK=39;
+        
+
     }
 }
