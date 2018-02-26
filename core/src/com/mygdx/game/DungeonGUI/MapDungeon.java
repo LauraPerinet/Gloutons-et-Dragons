@@ -27,6 +27,7 @@ import com.mygdx.game.CharactersGUI.HerosPosition;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
+import com.mygdx.game.Items.Inventory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -49,6 +50,7 @@ class MapDungeon extends Group{
     final private int MAP_WIDTH=5;
     final private int MAP_HEIGHT=5;
     
+    
     private MapDungeon(Skin skin){
         this.skin=skin;
         setName("map");
@@ -67,6 +69,7 @@ class MapDungeon extends Group{
         table.add(leftTable).width(getWidth()/2).height(getHeight());
         
         addActor(table);
+
     }
     
     public static MapDungeon getInstance(){

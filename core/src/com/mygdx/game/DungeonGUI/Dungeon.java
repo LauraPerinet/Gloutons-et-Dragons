@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Game;
+import com.mygdx.game.Items.Inventory;
 import com.mygdx.game.Menu;
 
 /**
@@ -29,6 +30,7 @@ public class Dungeon extends Stage implements InputProcessor{
     private Group main;
     private Menu menu;
     private String roomBackground;
+    private Inventory inventory;
     private Action changeScreenAction=new Action(){
         @Override
         public boolean act(float Delta){
@@ -46,6 +48,7 @@ public class Dungeon extends Stage implements InputProcessor{
 
     private Dungeon(Viewport view, Game game) {
         this.game=game;
+        inventory=Inventory.getInstance();
         menu=new Menu();
         map=MapDungeon.getInstance(game.getSkin());
         
@@ -53,7 +56,7 @@ public class Dungeon extends Stage implements InputProcessor{
         main.setY(menu.getHeight());
         addActor(main);
         addActor(menu);
-
+        goTo("castle");
         Gdx.input.setInputProcessor(this);
     }
     

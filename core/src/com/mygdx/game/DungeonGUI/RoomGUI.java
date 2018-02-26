@@ -7,17 +7,20 @@ package com.mygdx.game.DungeonGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.Characters.Heros;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
-import com.mygdx.game.CharactersGUI.HerosPosition;
+import com.mygdx.game.Items.Gold;
+import java.util.ArrayList;
+import java.util.Random;
+
 
 /**
  *
@@ -34,14 +37,8 @@ public class RoomGUI extends Group{
         setName("room");
         createBackground(background);
         getHeros();
-        
+        getItems(background);
         setHerosPosition();
-        addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    Dungeon.getInstance().goTo();
-                }
-            });
     }
 
     private void createBackground(String background) {
@@ -68,9 +65,31 @@ public class RoomGUI extends Group{
         for(int i=0; i<heroes.getChildren().size;i++){
             CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(i);
             float from=-600+200*i;
-            heros.setX(200*i+100);
+            heros.setX(from);
             heros.walk(700);
-            //Gdx.app.log("heros "+i,"from "+from+" to "+to);
+        }
+    }
+
+    private void getItems(String background) {
+        JsonReader json=new JsonReader();
+        JsonValue items=json.parse(Gdx.files.internal("room/roomInterior.json")).get(background).get("items");
+        ArrayList<String> tabItems= new ArrayList<String>();
+        for(int i=0; i<items.size; i++){
+            for(int j=0; j<items.get(i).asInt(); j++){
+                tabItems.add(items.get(i).name);
+            }  
+        }
+        //On random sur le nombre d'items à pop
+        int numItems = new Random().nextInt(4);
+        Gdx.app.log("nombre d'items", numItems+"");
+        for(int i=0; i<numItems; i++){
+            int ran =new Random().nextInt( tabItems.size());
+            String item=tabItems.get(ran);
+            Gdx.app.log("ran"+ran, item);
+            tabItems.remove(ran);
+            if(item.equals("gold")){
+                addActor(new Gold());
+            }
         }
     }
     

@@ -6,6 +6,7 @@
 package com.mygdx.game.CharactersGUI;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.mygdx.game.Characters.Heros;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,8 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.utils.Timer;
 
 /**
@@ -30,14 +30,17 @@ public class CharactersFullGUI extends Actor{
     private Heros heros;
     private int currentFrame =0, MAX_ATTACK, MAX_WALK;
     
-    
-    private Action walk=new Action(){
-        final Image img = (Image) getActor();
+    private Action walkAnim=new Action(){
         @Override
         public boolean act(float Delta){
-            currentFrame++;
-            if(currentFrame>MAX_WALK) currentFrame=1;
-            sprite.setRegion(CharactersFullGUI.this.spriteSheet.findRegion( "walk", currentFrame));
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    currentFrame++;
+                    if(currentFrame>MAX_WALK) currentFrame=1;
+                    sprite.setRegion(CharactersFullGUI.this.spriteSheet.findRegion( "walk", currentFrame));
+                }
+            }, 0, 2f, 0);
             return true;
         }
     };
@@ -60,7 +63,9 @@ public class CharactersFullGUI extends Actor{
     public void walk(float x) {
         MoveByAction move=new MoveByAction();
         move.setAmountX(x);
-        move.setDuration(2.3f);
+        move.setDuration(2.8f);
+        
+        ParallelAction walk=new ParallelAction(walkAnim, move);
         addAction(walk);
     }
 

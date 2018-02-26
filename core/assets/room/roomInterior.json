@@ -1,0 +1,13 @@
+{
+    "castle":{
+        "monsters":[],
+        "items":{
+            "gold":3
+        }
+    },
+    "cave":{
+       "monsters":[],
+        "items":"gold"
+    }
+
+}
