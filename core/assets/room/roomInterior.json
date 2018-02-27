@@ -2,7 +2,9 @@
     "castle":{
         "monsters":[],
         "items":{
-            "gold":3
+            "gold":0,
+            "potion":6,
+            "herb":0
         }
     },
     "cave":{

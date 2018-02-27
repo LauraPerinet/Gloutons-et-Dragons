@@ -26,8 +26,18 @@ public class Inventory {
     public void addItem(Items item){
         if(item.getName().equals("gold")){ 
             Gold gold = (Gold) item;
-            addGold(gold.getValue());}
+            addGold(gold.getValue());
+        }else{
+            if(!item.getClass().equals("Food")){
+               if(items.get(item.getName())!=null){
+                    items.replace(item.getName(), items.get(item.getName())+1);
+                }else{
+                    items.put(item.getName(), 1);
+                } 
+            }
+        } 
     }
+    
     public void addGold(int value){
         if(items.get("gold")!=null){
             items.replace("gold", items.get("gold")+value);

@@ -8,6 +8,7 @@ package com.mygdx.game.Items;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -22,11 +23,21 @@ public class Items extends Image{
     
     public Items(Texture texture){
         super(texture);
+        addClic();
+        
+    }
+    public Items(TextureRegion region){
+        super(region);
+        addClic();
+        
+    }
+
+    private void addClic() {
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Inventory.getInstance().addItem(Items.this);
-                Items.this.setVisible(false);
+                Items.this.remove();
             }
         });
     }

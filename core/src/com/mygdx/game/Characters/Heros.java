@@ -23,7 +23,11 @@ public class Heros {
     
     public String getName(){return name;}
     public HerosMapGUI getMapActor(){return mapPt;}
-    public CharactersFullGUI getActor(){ return new CharactersFullGUI(spriteSheet, this); }
+    public CharactersFullGUI getActor(){ 
+        CharactersFullGUI actor = new CharactersFullGUI(spriteSheet, this); 
+        actor.setName(getName());
+        return actor;
+    }
     public int getOrder(){ return order;}
     public int getMaxWalk(){ return MAX_WALK;}
     public int getMaxAttack(){ return MAX_ATTACK;}

@@ -6,12 +6,9 @@
 package com.mygdx.game.CharactersGUI;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.mygdx.game.Characters.Heros;
 /**
@@ -47,6 +44,7 @@ public class HerosPosition extends Group{
             h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
             h.setY(posY);
             h.getHeros().setOrder(i);
+            Gdx.app.log(h.getName(), h.getHeros().getOrder()+" ");
         }
     }
     private void setHerosPosition(Actor heros, float x) {

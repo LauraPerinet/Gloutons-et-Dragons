@@ -7,17 +7,20 @@ package com.mygdx.game.DungeonGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
+import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.Items.Gold;
+import com.mygdx.game.Items.Items;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,24 +30,47 @@ import java.util.Random;
  * @author Laura
  */
 public class RoomGUI extends Group{
-    private Image background;
+    private Image background, out = new Image(new Texture("room/out.png"));;
     private Thief thief;
     private Warrior warrior;
     private Mage mage;
-    private Group heroes;
+    private Group heroes, monsters;
+    private boolean isClear = false;
+    
     
     public RoomGUI(String background){
         setName("room");
         createBackground(background);
-        getHeros();
         getItems(background);
+        getHeros();
+        getMonsters();
         setHerosPosition();
+        
+        if(checkIfClear()){
+            out.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                for(Actor h : heroes.getChildren()){
+                    CharactersFullGUI heros =(CharactersFullGUI) h;
+                    heros.walk(700);
+                }
+                Dungeon.getInstance().goTo();
+                //RoomGUI.this.remove();
+                
+            }
+            
+        });
+        }
+        
     }
 
     private void createBackground(String background) {
         this.background=new Image(new Texture("room/"+background+".jpg"));
         this.background.setName("background");
+        out.setPosition(1820, 70);
         addActor(this.background);
+        addActor(out);
+        
     }
 
     private void getHeros() {
@@ -52,17 +78,25 @@ public class RoomGUI extends Group{
         mage=MapDungeon.getInstance().getMage();
         warrior=MapDungeon.getInstance().getWarrior();
         
-        heroes=new Group();
-        heroes.addActorAt(thief.getOrder(),thief.getActor());
-        heroes.addActorAt(warrior.getOrder(), warrior.getActor());
-        heroes.addActorAt(mage.getOrder(), mage.getActor());
+        Heros[] hPosition;
+        hPosition = new Heros[3];
         
+        hPosition[thief.getOrder()]=thief;
+        hPosition[mage.getOrder()]=mage;
+        hPosition[warrior.getOrder()]=warrior;
+        heroes=new Group();
+        
+        for(Heros h : hPosition){
+            heroes.addActor(h.getActor());
+        }
+                
         addActor(heroes);
         
     }
 
     private void setHerosPosition() {
         for(int i=0; i<heroes.getChildren().size;i++){
+            Gdx.app.log(i+"", heroes.getChildren().get(i).getName());
             CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(i);
             float from=-600+200*i;
             heros.setX(from);
@@ -89,8 +123,20 @@ public class RoomGUI extends Group{
             tabItems.remove(ran);
             if(item.equals("gold")){
                 addActor(new Gold());
+            }else if( item.equals("potion")){
+                addActor(new Potion());
+            }else{
+                addActor(new Items(new Texture("items/"+item+".png")));
             }
         }
+    }
+
+    private void getMonsters() {
+        monsters=new Group();
+    }
+
+    private boolean checkIfClear() {
+        return monsters.getChildren().size>0? false : true;
     }
     
 }
