@@ -6,6 +6,8 @@
 package com.mygdx.game.Items;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import java.util.HashMap;
 
 /**
@@ -15,11 +17,17 @@ import java.util.HashMap;
 public class Inventory {
     private static Inventory INSTANCE;
     private HashMap<String, Integer> items=new HashMap<String, Integer>();
+    private InventoryGUI inventoryGUI;
     
-    private Inventory(){}
+    private Inventory(Skin skin){
+        inventoryGUI = new InventoryGUI(skin);
+    }
     
+    public static Inventory getInstance(Skin skin){
+        if(INSTANCE==null) INSTANCE = new Inventory(skin);
+        return INSTANCE;
+    }
     public static Inventory getInstance(){
-        if(INSTANCE==null) INSTANCE = new Inventory();
         return INSTANCE;
     }
     
@@ -27,6 +35,7 @@ public class Inventory {
         if(item.getName().equals("gold")){ 
             Gold gold = (Gold) item;
             addGold(gold.getValue());
+            inventoryGUI.setGold(items.get("gold"));
         }else{
             if(!item.getClass().equals("Food")){
                if(items.get(item.getName())!=null){
@@ -35,7 +44,9 @@ public class Inventory {
                     items.put(item.getName(), 1);
                 } 
             }
+            inventoryGUI.addItem(item.getName());
         } 
+
     }
     
     public void addGold(int value){
@@ -44,6 +55,8 @@ public class Inventory {
         }else{
             items.put("gold", value);
         }
-        Gdx.app.log("Gold", items.get("gold")+"");
+        
     }
+    
+    public InventoryGUI getImg(){ return inventoryGUI;}
 }

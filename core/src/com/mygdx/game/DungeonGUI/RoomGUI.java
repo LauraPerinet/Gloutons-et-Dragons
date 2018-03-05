@@ -5,6 +5,7 @@
  */
 package com.mygdx.game.DungeonGUI;
 
+import com.mygdx.game.Items.Potion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -19,6 +20,7 @@ import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
+import com.mygdx.game.Fabricator;
 import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;
 import java.util.ArrayList;
@@ -115,19 +117,15 @@ public class RoomGUI extends Group{
         }
         //On random sur le nombre d'items à pop
         int numItems = new Random().nextInt(4);
-        Gdx.app.log("nombre d'items", numItems+"");
         for(int i=0; i<numItems; i++){
             int ran =new Random().nextInt( tabItems.size());
             String item=tabItems.get(ran);
-            Gdx.app.log("ran"+ran, item);
+            
+            Items it=Fabricator.createItem(item, true);
             tabItems.remove(ran);
-            if(item.equals("gold")){
-                addActor(new Gold());
-            }else if( item.equals("potion")){
-                addActor(new Potion());
-            }else{
-                addActor(new Items(new Texture("items/"+item+".png")));
-            }
+            
+            it.setPos();
+            addActor(it);
         }
     }
 

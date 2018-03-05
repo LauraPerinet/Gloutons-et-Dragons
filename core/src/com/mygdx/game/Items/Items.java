@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import java.util.Random;
 
 /**
  *
@@ -20,19 +21,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class Items extends Image{
     protected String name;
     protected int x,y, minX=0, minY=20, maxX=1920-(int) getWidth(), maxY=800- (int) getHeight();
+    protected boolean fromRoom;
     
-    public Items(Texture texture){
-        super(texture);
-        addClic();
+    public Items(String item, Boolean fromRoom){
+        super(new Texture("items/"+item+".png"));
+        setName(item);
+        this.fromRoom=fromRoom;
+        if(fromRoom) addClickToPick();
         
     }
     public Items(TextureRegion region){
         super(region);
-        addClic();
+        if(fromRoom) addClickToPick();
         
     }
 
-    private void addClic() {
+    private void addClickToPick() {
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -40,6 +44,10 @@ public class Items extends Image{
                 Items.this.remove();
             }
         });
+    }
+    public void setPos(){
+        setPosition(new Random().nextInt(maxX-minX)+minX, new Random().nextInt(maxY-minY)+minY);
+        Gdx.app.log(getName(), getX()+"  "+getY()+"  /   "+getWidth()+"    "+getHeight());
     }
     
 }

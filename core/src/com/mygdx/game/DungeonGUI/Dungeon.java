@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Game;
 import com.mygdx.game.Items.Inventory;
@@ -48,7 +49,7 @@ public class Dungeon extends Stage implements InputProcessor{
 
     private Dungeon(Viewport view, Game game) {
         this.game=game;
-        inventory=Inventory.getInstance();
+        inventory=Inventory.getInstance(game.getSkin());
         menu=new Menu();
         map=MapDungeon.getInstance(game.getSkin());
         
@@ -56,7 +57,7 @@ public class Dungeon extends Stage implements InputProcessor{
         main.setY(menu.getHeight());
         addActor(main);
         addActor(menu);
-        goTo("castle");
+
         Gdx.input.setInputProcessor(this);
     }
     
@@ -69,6 +70,7 @@ public class Dungeon extends Stage implements InputProcessor{
        return INSTANCE; 
     }
 
+    public Skin getSkin(){return game.getSkin();}
     public void goTo( String roomBackground ) {
         this.roomBackground = roomBackground;
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));

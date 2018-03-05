@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.game.DungeonGUI;
+package com.mygdx.game.Items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,11 +20,12 @@ import java.util.Random;
  */
 public class Potion extends Items {
     public String type;
-    public Texture sprite = new Texture("items/potions.png");
     public TextureRegion region;
     
-    public Potion() {
-        super(new Texture("items/potions.png"));
+    public Potion(boolean fromRoom) {
+        super("potions", fromRoom);
+        this.fromRoom=fromRoom;
+        
         int type = new Random().nextInt(3)+1;
         
         switch(type){
@@ -32,17 +33,20 @@ public class Potion extends Items {
             case 2:this.type="energy"; break;
             case 3: this.type="strength"; break;
         }
-        
+        setImage();
+        this.minX=800;
+        this.maxX=1920- (int)getWidth() -minX;
+        this.maxY=70;
+    }
+    public Potion(String type, Boolean fromRoom){
+        super("potions", fromRoom);
+        this.type=type;
+        setImage();
+    }
+    private void setImage(){
         setName(this.type);
         region = new TextureRegion(new TextureAtlas("items/potions.atlas").findRegion(this.type));
         setDrawable(new TextureRegionDrawable(region));
         setSize(region.getRegionWidth(), region.getRegionHeight());
-        this.minX=800;
-        this.maxX=1920- (int)getWidth() -minX;
-        this.maxY=70;
-        
-        setPosition(new Random().nextInt(maxX)+minX, new Random().nextInt(maxY)+minY);
-        
     }
-    
 }

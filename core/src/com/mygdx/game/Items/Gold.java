@@ -6,10 +6,6 @@
 package com.mygdx.game.Items;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import java.util.Random;
 
 /**
@@ -20,16 +16,16 @@ public class Gold extends Items{
     private int value;
     
     
-    public Gold(){
-        super(new Texture("items/gold.png"));
+    public Gold(boolean fromRoom){
+        super("gold", fromRoom);
         setName("gold");
-        int ran=new Random().nextInt(4)+1;
-        value=10*ran;
-        this.minX=800;
-        this.maxY=70;
-        
-        setPosition(new Random().nextInt(maxX)+minX, new Random().nextInt(maxY)+minY);
-        Gdx.app.log("create gold", getX()+"    "+getY());
+        if(fromRoom){
+            int ran=new Random().nextInt(5)+1;
+            value=ran;
+            this.minX=800;
+            this.maxY=70;
+        }
     }
+   
     public int getValue(){ return value;}
 }

@@ -1,27 +1,27 @@
 
 potions.png
-size: 256,64
+size: 64,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 energy
   rotate: false
-  xy: 2, 2
-  size: 60, 60
-  orig: 60, 60
+  xy: 2, 52
+  size: 27, 64
+  orig: 27, 64
   offset: 0, 0
   index: -1
 healing
   rotate: false
-  xy: 64, 2
-  size: 60, 60
-  orig: 60, 60
+  xy: 2, 118
+  size: 50, 58
+  orig: 50, 58
   offset: 0, 0
   index: -1
 strength
   rotate: false
-  xy: 126, 2
-  size: 60, 60
-  orig: 60, 60
+  xy: 2, 2
+  size: 34, 48
+  orig: 34, 48
   offset: 0, 0
   index: -1
