@@ -10,17 +10,19 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.mygdx.game.Characters.Heros;
+import com.mygdx.game.Characters.Character;
 /**
  *
  * @author Laura
+ * 
+ * Manage heros's position on map screen, whith drag and drop to decide in wich order heros go on rooms
  */
 public class HerosPosition extends Group{
-    private Heros warrior, thief, mage;
+    private Character warrior, thief, mage;
     private int[] position={-480, -160, 160};
     private float posY;
 
-    public HerosPosition( Heros warrior, Heros thief, Heros mage){
+    public HerosPosition( Character warrior, Character thief, Character mage){
         this.warrior=warrior; 
         this.thief=thief;
         this.mage=mage;
@@ -29,9 +31,9 @@ public class HerosPosition extends Group{
         posY=warrior.getActor().getY();
         setHeight(warrior.getActor().getHeight());
         
-        addActorAt(warrior.getOrder(), warrior.getActor());
-        addActorAt(thief.getOrder(), thief.getActor());
-        addActorAt(mage.getOrder(), mage.getActor());
+        addActorAt(warrior.getOrder(), warrior.getStaticActor());
+        addActorAt(thief.getOrder(), thief.getStaticActor());
+        addActorAt(mage.getOrder(), mage.getStaticActor());
         
         setHerosPosition();
         
@@ -44,7 +46,6 @@ public class HerosPosition extends Group{
             h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
             h.setY(posY);
             h.getHeros().setOrder(i);
-            Gdx.app.log(h.getName(), h.getHeros().getOrder()+" ");
         }
     }
     private void setHerosPosition(Actor heros, float x) {

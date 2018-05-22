@@ -15,12 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.mygdx.game.Characters.Heros;
+import com.mygdx.game.Characters.Character;
 import com.mygdx.game.Characters.Mage;
+import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.Fabricator;
+import com.mygdx.game.Fight;
 import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;
 import java.util.ArrayList;
@@ -36,20 +38,28 @@ public class RoomGUI extends Group{
     private Thief thief;
     private Warrior warrior;
     private Mage mage;
-    private Group heroes, monsters;
+    private Group heroes, monstersGroup=new Group();
+    private ArrayList<Monster> monsters;
+    private JsonValue roomThings;
     private boolean isClear = false;
     
     
     public RoomGUI(String background){
-        setName("room");
-        createBackground(background);
-        getItems(background);
-        getHeros();
-        getMonsters();
-        setHerosPosition();
+        JsonReader json=new JsonReader();
+        roomThings=json.parse(Gdx.files.internal("room/roomInterior.json")).get(background);
+        monsters=new ArrayList();
         
-        if(checkIfClear()){
-            out.addListener(new ClickListener(){
+        setName("room");
+        createBackground(background); 
+        get("monsters", true);
+        get("items", false);
+        
+        getHeros();
+        addActor(monstersGroup);
+        setActorsPosition();
+        
+        //A redescendre
+        out.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 for(Actor h : heroes.getChildren()){
@@ -58,10 +68,14 @@ public class RoomGUI extends Group{
                 }
                 Dungeon.getInstance().goTo();
                 //RoomGUI.this.remove();
-                
             }
             
-        });
+            });
+        
+        if(checkIfClear()){
+            
+        }else{
+            Fight figth=new Fight(monsters);
         }
         
     }
@@ -80,15 +94,15 @@ public class RoomGUI extends Group{
         mage=MapDungeon.getInstance().getMage();
         warrior=MapDungeon.getInstance().getWarrior();
         
-        Heros[] hPosition;
-        hPosition = new Heros[3];
+        Character[] hPosition;
+        hPosition = new Character[3];
         
         hPosition[thief.getOrder()]=thief;
         hPosition[mage.getOrder()]=mage;
         hPosition[warrior.getOrder()]=warrior;
         heroes=new Group();
         
-        for(Heros h : hPosition){
+        for(Character h : hPosition){
             heroes.addActor(h.getActor());
         }
                 
@@ -96,45 +110,58 @@ public class RoomGUI extends Group{
         
     }
 
-    private void setHerosPosition() {
+    private void setActorsPosition() {
         for(int i=0; i<heroes.getChildren().size;i++){
-            Gdx.app.log(i+"", heroes.getChildren().get(i).getName());
             CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(i);
-            float from=-600+200*i;
-            heros.setX(from);
-            heros.walk(700);
+            //float from=-600+200*i;
+            float from=(float) (800-i*200);
+            Gdx.app.log("walk", "from "+from);
+            //heros.setX(from);
+            heros.walk( from );
+        }
+        for(int i=0; i<monsters.size();i++){
+             CharactersFullGUI monster =  monsters.get(i).getActor();
+             monster.setX(1000+200*i);
         }
     }
 
-    private void getItems(String background) {
-        JsonReader json=new JsonReader();
-        JsonValue items=json.parse(Gdx.files.internal("room/roomInterior.json")).get(background).get("items");
-        ArrayList<String> tabItems= new ArrayList<String>();
-        for(int i=0; i<items.size; i++){
-            for(int j=0; j<items.get(i).asInt(); j++){
-                tabItems.add(items.get(i).name);
-            }  
-        }
-        //On random sur le nombre d'items à pop
-        int numItems = new Random().nextInt(4);
-        for(int i=0; i<numItems; i++){
-            int ran =new Random().nextInt( tabItems.size());
-            String item=tabItems.get(ran);
-            
-            Items it=Fabricator.createItem(item, true);
-            tabItems.remove(ran);
-            
-            it.setPos();
-            addActor(it);
-        }
-    }
-
-    private void getMonsters() {
-        monsters=new Group();
+    private void get(String type, Boolean isAMonster) {
+        addThingsToRoom(readJsonFile(type), isAMonster);
     }
 
     private boolean checkIfClear() {
-        return monsters.getChildren().size>0? false : true;
+
+        return monsters.size()>0? false : true;
+    }
+
+    private ArrayList<String> readJsonFile(String thing) {
+        JsonValue things=roomThings.get(thing);
+        ArrayList<String> tabItems= new ArrayList<String>();
+        for(int i=0; i<things.size; i++){
+            for(int j=0; j<things.get(i).asInt(); j++){
+                tabItems.add(things.get(i).name);
+            }  
+        }
+        return tabItems;
+    }
+
+    private void addThingsToRoom(ArrayList<String> thingsToAdd, Boolean isAMonster) {
+        int numItems = new Random().nextInt(thingsToAdd.size());
+        
+        for(int i=0; i<numItems; i++){
+            int ran =new Random().nextInt( thingsToAdd.size());
+            String thing=thingsToAdd.get(ran);
+            if(!isAMonster){
+                Items it=Fabricator.createItem(thing, true);
+                it.setPos();
+                addActor(it);
+            }else{
+                Monster monster=Fabricator.createMonster(thing);
+                monsters.add(monster);
+                monstersGroup.addActor(monster.getActor());
+            }
+            thingsToAdd.remove(ran); 
+        }
     }
     
 }

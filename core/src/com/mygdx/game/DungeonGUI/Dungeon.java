@@ -22,6 +22,8 @@ import com.mygdx.game.Menu;
 /**
  *
  * @author Laura
+ * 
+ * The main stage, where games really happen. Deals with passages between map screen and room's interior screens
  */
 public class Dungeon extends Stage implements InputProcessor{
     public static Dungeon INSTANCE;

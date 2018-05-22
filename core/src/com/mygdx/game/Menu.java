@@ -36,7 +36,4 @@ public class Menu extends Group{
         
     }
 
-    public void touchDown(int screenX, int screenY) {
-        Gdx.app.log("Menu", "touché");
-    }
 }

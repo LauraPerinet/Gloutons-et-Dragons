@@ -35,8 +35,12 @@ import java.util.Iterator;
 /**
  *
  * @author Laura
+ * 
+ * The map. Creation from "assets\levels\[numLevel].json" (for now, numLevel is always 1).
+ * Manage if heroes can or not enter the room
+ * 
  */
-class MapDungeon extends Group{
+public class MapDungeon extends Group{
     private static MapDungeon INSTANCE;
     final private Skin skin;
     private Table table, leftTable;
@@ -129,6 +133,7 @@ class MapDungeon extends Group{
     
     private Group createHeros() {
         heroesMapImg=new Group();
+
         thief=new Thief();
         thief.getMapActor().setPositionOnMap(tile.getX()+tile.getWidth()/2, tile.getY()+tile.getHeight()/2);
 

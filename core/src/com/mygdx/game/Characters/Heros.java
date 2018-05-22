@@ -5,37 +5,19 @@
  */
 package com.mygdx.game.Characters;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
 
 /**
  *
  * @author Laura
  */
-public class Heros {
-    protected String name;
-    protected int order;
+public class Heros extends Character{
     protected HerosMapGUI mapPt;
-    protected TextureAtlas spriteSheet;
-    protected int MAX_WALK;
-    protected int MAX_ATTACK;
     
-    public String getName(){return name;}
     public HerosMapGUI getMapActor(){return mapPt;}
-    public CharactersFullGUI getActor(){ 
-        CharactersFullGUI actor = new CharactersFullGUI(spriteSheet, this); 
-        actor.setName(getName());
-        return actor;
-    }
-    public int getOrder(){ return order;}
-    public int getMaxWalk(){ return MAX_WALK;}
-    public int getMaxAttack(){ return MAX_ATTACK;}
-    
     public void setOrder(int order){
         this.order=order;
         this.mapPt.setOrder(order);
     }
-   
     
 }

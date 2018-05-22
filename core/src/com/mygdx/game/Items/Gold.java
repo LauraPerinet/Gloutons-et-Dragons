@@ -23,7 +23,7 @@ public class Gold extends Items{
             int ran=new Random().nextInt(5)+1;
             value=ran;
             this.minX=800;
-            this.maxY=70;
+            this.maxY=100;
         }
     }
    

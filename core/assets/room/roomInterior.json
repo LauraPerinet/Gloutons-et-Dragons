@@ -1,6 +1,8 @@
 {
     "castle":{
-        "monsters":[],
+        "monsters":{
+            "Lapinator":3
+        },
         "items":{
             "gold":3,
             "potion":1,
@@ -8,7 +10,7 @@
         }
     },
     "cave":{
-       "monsters":[],
+       "monsters":{"Lapinator":1},
         "items":"gold"
     }
 

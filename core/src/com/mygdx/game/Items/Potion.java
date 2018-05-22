@@ -36,7 +36,7 @@ public class Potion extends Items {
         setImage();
         this.minX=800;
         this.maxX=1920- (int)getWidth() -minX;
-        this.maxY=70;
+        this.maxY=100;
     }
     public Potion(String type, Boolean fromRoom){
         super("potions", fromRoom);

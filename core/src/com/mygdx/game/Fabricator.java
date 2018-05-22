@@ -5,6 +5,7 @@
  */
 package com.mygdx.game;
 
+import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;
 import com.mygdx.game.Items.Potion;
@@ -15,7 +16,8 @@ import com.mygdx.game.Items.Potion;
  */
 public abstract class Fabricator {
     public static Items createItem(String name, boolean fromRoom){
-        Items it;
+        Items it=null;
+  
         if(name.equals("gold")){
                 it=new Gold(fromRoom);
         }else if( name.equals("potion")){
@@ -25,7 +27,13 @@ public abstract class Fabricator {
         }else{
                 it=new Items(name, fromRoom);
         }
-        
+  
         return it;
+    }
+
+    public static Monster createMonster(String name) {
+        Monster monster=null;
+        monster=new Monster(name);
+        return monster;
     }
 }

@@ -20,10 +20,11 @@ public class Warrior extends Heros{
         this.spriteSheet=new TextureAtlas("Characters/warrior/warrior.atlas");
         this.name="warrior";
         this.order=2;
+        this.initiative=1;
         this.mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);
         this.MAX_WALK=59;
         this.MAX_ATTACK=39;
-        
+        createActor();
 
     }
 }

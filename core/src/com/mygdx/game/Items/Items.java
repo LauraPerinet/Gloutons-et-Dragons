@@ -20,7 +20,7 @@ import java.util.Random;
  */
 public class Items extends Image{
     protected String name;
-    protected int x,y, minX=0, minY=20, maxX=1920-(int) getWidth(), maxY=800- (int) getHeight();
+    protected int x,y, minX=0, minY=70, maxX=1920-(int) getWidth(), maxY=800-(int) getHeight();
     protected boolean fromRoom;
     
     public Items(String item, Boolean fromRoom){
@@ -46,8 +46,9 @@ public class Items extends Image{
         });
     }
     public void setPos(){
-        setPosition(new Random().nextInt(maxX-minX)+minX, new Random().nextInt(maxY-minY)+minY);
-        Gdx.app.log(getName(), getX()+"  "+getY()+"  /   "+getWidth()+"    "+getHeight());
+        int x=new Random().nextInt(maxX-minX)+minX;
+        int y=new Random().nextInt(maxY-minY)+minY;
+        setPosition(x, y);
     }
     
 }
