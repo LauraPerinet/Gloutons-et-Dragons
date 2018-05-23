@@ -31,9 +31,9 @@ public abstract class Fabricator {
         return it;
     }
 
-    public static Monster createMonster(String name) {
+    public static Monster createMonster(String name, int order) {
         Monster monster=null;
-        monster=new Monster(name);
+        monster=new Monster(name, order);
         return monster;
     }
 }

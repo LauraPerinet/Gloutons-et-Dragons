@@ -64,7 +64,7 @@ public class RoomGUI extends Group{
             public void clicked(InputEvent event, float x, float y) {
                 for(Actor h : heroes.getChildren()){
                     CharactersFullGUI heros =(CharactersFullGUI) h;
-                    heros.walk(700);
+                    heros.walk(heros.getX(), 2000);
                 }
                 Dungeon.getInstance().goTo();
                 //RoomGUI.this.remove();
@@ -113,16 +113,17 @@ public class RoomGUI extends Group{
     private void setActorsPosition() {
         for(int i=0; i<heroes.getChildren().size;i++){
             CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(i);
-            //float from=-600+200*i;
-            float from=(float) (800-i*200);
-            Gdx.app.log("walk", "from "+from);
-            //heros.setX(from);
-            heros.walk( from );
+            float from=-600+200*i;
+            float to=300+i*200;
+            heros.setX(from);
+            heros.walk( from, to );
         }
-        for(int i=0; i<monsters.size();i++){
-             CharactersFullGUI monster =  monsters.get(i).getActor();
-             monster.setX(1000+200*i);
-        }
+        int i=0;
+        for(Actor monster : monstersGroup.getChildren()){
+            monster.moveBy(900+i*200,0);
+            i++;
+        }   
+       
     }
 
     private void get(String type, Boolean isAMonster) {
@@ -156,7 +157,7 @@ public class RoomGUI extends Group{
                 it.setPos();
                 addActor(it);
             }else{
-                Monster monster=Fabricator.createMonster(thing);
+                Monster monster=Fabricator.createMonster(thing, i);
                 monsters.add(monster);
                 monstersGroup.addActor(monster.getActor());
             }

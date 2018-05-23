@@ -29,7 +29,6 @@ public class Dungeon extends Stage implements InputProcessor{
     public static Dungeon INSTANCE;
     private Game game;
     private MapDungeon map;
-    private RoomGUI room;
     private Group main;
     private Menu menu;
     private String roomBackground;
@@ -42,6 +41,7 @@ public class Dungeon extends Stage implements InputProcessor{
                 main=new RoomGUI( roomBackground );
             }else{
                 main=map;
+                
             }
             main.setY(menu.getHeight());
             addActor(main);

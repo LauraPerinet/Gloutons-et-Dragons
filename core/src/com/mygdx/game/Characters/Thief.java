@@ -19,13 +19,15 @@ public class Thief extends Heros{
     
     public Thief(){
         this.spriteSheet=new TextureAtlas("Characters/thief/thief.atlas");
-        
+        hp=8;
+        attack=2;
+        defense=1;
+        xp=1;
         this.name="thief";
         this.order=0;
         this.initiative=3;
         this.mapPt=new HerosMapGUI(1, 15, -10, spriteSheet);
         this.MAX_WALK=19;
         this.MAX_ATTACK=10;
-        createActor();
     }
 }

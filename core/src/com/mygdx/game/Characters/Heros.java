@@ -19,5 +19,7 @@ public class Heros extends Character{
         this.order=order;
         this.mapPt.setOrder(order);
     }
+
+   
     
 }

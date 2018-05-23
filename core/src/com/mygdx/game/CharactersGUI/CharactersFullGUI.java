@@ -13,12 +13,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.DungeonGUI.Dungeon;
+import com.mygdx.game.DungeonGUI.MapDungeon;
+import com.mygdx.game.DungeonGUI.Tile;
 
 /**
  *
@@ -39,7 +42,12 @@ public class CharactersFullGUI extends Actor{
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setY(50);
         setTouchable(Touchable.enabled);
-
+         addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                   Gdx.app.log(getName(), "clic");
+                }
+            });
         this.heros=heros;
         this.MAX_ATTACK=heros.getMaxAttack();
         this.MAX_WALK=heros.getMaxWalk();
@@ -48,13 +56,11 @@ public class CharactersFullGUI extends Actor{
     public Character getHeros(){
         return heros;
     }
-    public void walk(float x) {
+    public void walk(float fromX, float toX) {
         //MoveByAction move=new MoveByAction();
         //move.setAmountX(x);
         //move.setDuration(5f);
-        this.setX(-200);
-        
-        currentFrame=0;
+
         Action walkAnim=new Action(){
             @Override
             public boolean act(float Delta){
@@ -69,11 +75,11 @@ public class CharactersFullGUI extends Actor{
                 return true;
             }
         };
-        ParallelAction walk=new ParallelAction(walkAnim, Actions.moveTo(x, getY(),5f));
+        ParallelAction walk=new ParallelAction(walkAnim, Actions.moveTo(toX, getY(),3f));
         
-        addAction(walk);
+       addAction(walk);
     }
-
+    
     @Override
     public void draw(Batch batch, float parentAlpha) {
         sprite.draw(batch);

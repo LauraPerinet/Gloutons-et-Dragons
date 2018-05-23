@@ -34,7 +34,13 @@ public class Fight {
         Gdx.app.log("Combat", "START");
         if(checkInit()){
              Gdx.app.log("Heroes", "commencent");
+        }else{
+             Gdx.app.log("Monster", "commencent");
+
         }
+           for(Monster monster : monsters){
+                monster.attack();
+            }  
     }
     
     private boolean checkInit(){
@@ -42,6 +48,8 @@ public class Fight {
              initMonsters+=monster.getInit();  
         }
         initHeroes=mage.getInit()+thief.getInit()+warrior.getInit();
+        Gdx.app.log("monstres", initMonsters+"");
+        Gdx.app.log("heros", initHeroes+"");
         if(initHeroes>=initMonsters){ return true; }
         return false;
     }

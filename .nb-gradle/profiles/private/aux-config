@@ -4,13 +4,28 @@
   <auxiliary>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
+      <group>
+        <file>file:/C:/Users/Laura/Documents/fac/java/batailleTest/Gloutons-et-Dragons/core/src/com/mygdx/game/CharactersGUI/CharactersFullGUI.java</file>
+        <file>file:/C:/Users/Laura/Documents/fac/java/batailleTest/Gloutons-et-Dragons/core/src/com/mygdx/game/DungeonGUI/RoomGUI.java</file>
+      </group>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/C:/Users/Laura/Documents/fac/java/batailleTest/Gloutons-et-Dragons/core/src/com/mygdx/game/CharactersGUI/CharactersFullGUI.java</file>
-        <file>file:/C:/Users/Laura/Documents/fac/java/batailleTest/Gloutons-et-Dragons/core/src/com/mygdx/game/DungeonGUI/RoomGUI.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/assets/room/roomInterior.json</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Characters/Mage.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Characters/Warrior.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Characters/Thief.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Characters/Character.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Characters/Heros.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/CharactersGUI/CharactersFullGUI.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/DungeonGUI/MapDungeon.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/DungeonGUI/Tile.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Fabricator.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Game.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Characters/Monster.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/Fight.java</file>
+        <file>file:/D:/p/Glouton%20et%20dragons/Gloutons-et-Dragons/core/src/com/mygdx/game/DungeonGUI/RoomGUI.java</file>
       </group>
     </open-files>
   </auxiliary>

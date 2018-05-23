@@ -1,7 +1,8 @@
 {
     "castle":{
         "monsters":{
-            "Lapinator":3
+            "Lapinator":3,
+            "flyinSnake":3
         },
         "items":{
             "gold":3,

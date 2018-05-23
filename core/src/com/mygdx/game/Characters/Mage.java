@@ -21,10 +21,13 @@ public class Mage extends Heros{
         this.name="mage";
         this.order=1;
         this.initiative=1;
+        hp=5;
+        attack=2;
+        defense=0;
+        xp=1;
         this.mapPt=new HerosMapGUI(1, -10, -10, spriteSheet);
         this.MAX_WALK=29;
         this.MAX_ATTACK=29;
-        createActor();
     }
 
 }

@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
+import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
 import com.mygdx.game.CharactersGUI.HerosPosition;
 import com.mygdx.game.Characters.Mage;
@@ -194,6 +195,22 @@ public class MapDungeon extends Group{
         
         leftTable.getCells().get(leftTable.getCells().size-1).setActor(nextRoomBtn).padTop(30); //Warning unsafe vient de là
     }
+
+    public Heros getHeros(int index){
+        if(mage.getOrder()==index) return mage;
+        if(warrior.getOrder()==index) return warrior;
+        if(thief.getOrder()==index) return thief;
+        throw new UnsupportedOperationException("probleme ordre");
+    }
+
+    public void setHerosPosition(Heros first) {
+        getHeros(1).setOrder(2);
+        getHeros(0).setOrder(1);
+        first.setOrder(0);
+     
+    }
+
+ 
 
     
 

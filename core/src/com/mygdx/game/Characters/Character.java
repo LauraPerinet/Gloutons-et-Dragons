@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
+import com.mygdx.game.DungeonGUI.MapDungeon;
 
 /**
  *
@@ -17,20 +18,18 @@ import com.mygdx.game.CharactersGUI.HerosMapGUI;
  */
 public class Character {
     protected String name;
-    protected int order, initiative;
+    protected int order, initiative, hp, attack, defense, xp;
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
     protected CharactersFullGUI actor, staticActor;
     
-    protected void createActor(){
-        actor = new CharactersFullGUI(spriteSheet, this); 
-        staticActor= new CharactersFullGUI(spriteSheet, this);
-        actor.setName(getName());
-        staticActor.setName(getName());
-    }
     public String getName(){return name;}
-    public CharactersFullGUI getActor(){ return actor;}
-    public CharactersFullGUI getStaticActor(){ return staticActor;}
+    public CharactersFullGUI getActor(){ 
+        CharactersFullGUI actor = new CharactersFullGUI(spriteSheet, this); 
+        actor.setName(getName());
+        return actor;
+    }
+
     public int getOrder(){ return order;}
     public int getMaxWalk(){ return MAX_WALK;}
     public int getMaxAttack(){ return MAX_ATTACK;}
@@ -39,6 +38,15 @@ public class Character {
     public void setOrder(int order){
         this.order=order;
     }
-   
+    
+    public boolean getHurt(int attack) {
+        hp-=attack-defense;
+        Gdx.app.log("Character 43", name+" loose "+(attack-defense)+" hp. Still got "+hp);
+        if(hp<=0){
+           Gdx.app.log("Character 45", name+" is dead");
+           return true;
+        }
+        return false;
+    }
     
 }

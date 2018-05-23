@@ -31,9 +31,9 @@ public class HerosPosition extends Group{
         posY=warrior.getActor().getY();
         setHeight(warrior.getActor().getHeight());
         
-        addActorAt(warrior.getOrder(), warrior.getStaticActor());
-        addActorAt(thief.getOrder(), thief.getStaticActor());
-        addActorAt(mage.getOrder(), mage.getStaticActor());
+        addActorAt(warrior.getOrder(), warrior.getActor());
+        addActorAt(thief.getOrder(), thief.getActor());
+        addActorAt(mage.getOrder(), mage.getActor());
         
         setHerosPosition();
         
