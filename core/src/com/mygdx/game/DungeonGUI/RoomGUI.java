@@ -75,7 +75,7 @@ public class RoomGUI extends Group{
         if(checkIfClear()){
             
         }else{
-            Fight figth=new Fight(monsters);
+            Fight figth=new Fight(monsters, this);
         }
         
     }
@@ -110,22 +110,26 @@ public class RoomGUI extends Group{
         
     }
 
-    private void setActorsPosition() {
-        for(int i=0; i<heroes.getChildren().size;i++){
-            CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(i);
-            float from=-600+200*i;
-            float to=300+i*200;
-            heros.setX(from);
-            heros.walk( from, to );
-        }
+    public void setActorsPosition() {
         int i=0;
         for(Actor monster : monstersGroup.getChildren()){
             monster.moveBy(900+i*200,0);
+            
             i++;
-        }   
-       
+        }  
+        for(int j=0; j<heroes.getChildren().size;j++){
+            CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(j);
+            float from=-600+200*j;
+            float to=300+j*200;
+            heros.setX(from);
+            heros.walk( from, to );
+        }
+        
     }
 
+    public void mooveActors(){
+    
+    }
     private void get(String type, Boolean isAMonster) {
         addThingsToRoom(readJsonFile(type), isAMonster);
     }

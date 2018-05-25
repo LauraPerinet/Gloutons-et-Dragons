@@ -77,9 +77,7 @@ public class MapDungeon extends Group{
 
     }
     
-    public static MapDungeon getInstance(){
-        return INSTANCE;
-    }
+    public static MapDungeon getInstance(){  return INSTANCE; }
     
     public static MapDungeon getInstance(Skin skin){
         if(INSTANCE==null){
@@ -198,17 +196,29 @@ public class MapDungeon extends Group{
 
     public Heros getHeros(int index){
         if(mage.getOrder()==index) return mage;
-        if(warrior.getOrder()==index) return warrior;
-        if(thief.getOrder()==index) return thief;
-        throw new UnsupportedOperationException("probleme ordre");
+        if(warrior.getOrder()==index ) return warrior;
+        if(thief.getOrder()==index ) return thief;
+        return null;
     }
 
-    public void setHerosPosition(Heros first) {
+    public boolean setHerosPosition() {
+        Heros first=getHeros(2);
         getHeros(1).setOrder(2);
         getHeros(0).setOrder(1);
         first.setOrder(0);
-     
+        if(!getHeros(2).isAlive()){ 
+            Gdx.app.log("MapDungeon", "fin");
+            Dungeon.getInstance().gameOver();
+            return false;
+        }else{
+            return true;
+        }
     }
+    @Override
+    public void clear(){
+        INSTANCE=null;
+    }
+
 
  
 

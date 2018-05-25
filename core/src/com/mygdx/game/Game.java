@@ -10,16 +10,18 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Game extends ApplicationAdapter {
-    private Stage dungeon, mainMenu, actual;
+
+    private Stage actual;
     private Viewport viewMainWindow;
     private Skin skin;
+    private boolean gameOn=true;
     
     @Override
     public void create () {
              skin = new Skin(Gdx.files.internal("uiskin.json"));
              viewMainWindow=new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-             mainMenu = new MainMenu(this);
-             actual=mainMenu;
+             actual = new MainMenu(this);
+
              // A commenter plus tard
              changeStage();
     }
@@ -46,8 +48,13 @@ public class Game extends ApplicationAdapter {
     }
 
     void changeStage() {
-        dungeon=Dungeon.getInstance(viewMainWindow, this);
-        actual=dungeon;
+        actual=Dungeon.getInstance(viewMainWindow, this);
+    }
+
+    public void gameOver() {
+        Gdx.app.log("Gzme gameOver", "gameOver");
+        gameOn=false;
+        actual=new MainMenu(this);
     }
         
 }

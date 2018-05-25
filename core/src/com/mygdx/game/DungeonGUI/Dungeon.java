@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.Game;
 import com.mygdx.game.Items.Inventory;
 import com.mygdx.game.Menu;
@@ -30,6 +31,7 @@ public class Dungeon extends Stage implements InputProcessor{
     private Game game;
     private MapDungeon map;
     private Group main;
+    private RoomGUI room;
     private Menu menu;
     private String roomBackground;
     private Inventory inventory;
@@ -38,10 +40,10 @@ public class Dungeon extends Stage implements InputProcessor{
         public boolean act(float Delta){
             main.remove();
             if(main.getName().equals("map")){
-                main=new RoomGUI( roomBackground );
+                room = new RoomGUI( roomBackground );
+                main=room;
             }else{
                 main=map;
-                
             }
             main.setY(menu.getHeight());
             addActor(main);
@@ -50,6 +52,7 @@ public class Dungeon extends Stage implements InputProcessor{
     };
 
     private Dungeon(Viewport view, Game game) {
+       
         this.game=game;
         inventory=Inventory.getInstance(game.getSkin());
         menu=new Menu();
@@ -59,12 +62,11 @@ public class Dungeon extends Stage implements InputProcessor{
         main.setY(menu.getHeight());
         addActor(main);
         addActor(menu);
-
         Gdx.input.setInputProcessor(this);
     }
     
     public static Dungeon getInstance(Viewport view, Game game){
-        if(INSTANCE==null){ INSTANCE=new Dungeon(view,game); }
+        INSTANCE=new Dungeon(view,game); 
         return INSTANCE;
     }
     
@@ -80,6 +82,30 @@ public class Dungeon extends Stage implements InputProcessor{
     
     public void goTo() {
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
+    }
+
+    public void gameOver() {
+        main.clear();
+        map.clear();
+        inventory.clear();
+        game.gameOver();
+    }
+
+    public RoomGUI getRoom() {
+        return room;
+    }
+
+    public Action setReady(boolean b) {
+        final boolean ready=b;
+        Action action=new Action() {
+            @Override
+            public boolean act(float delta) {
+                CharactersFullGUI character=(CharactersFullGUI) this.actor;
+                character.getHeros().setReady(ready);
+                return true;
+            }
+        };
+        return action;
     }
 
    

@@ -22,7 +22,7 @@ public class Warrior extends Heros{
         initiative=1;
         hp=10;
         attack=3;
-        defense=2;
+        defense=1;
         xp=1;
         mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);
         MAX_WALK=59;

@@ -7,7 +7,9 @@ package com.mygdx.game.Characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.DungeonGUI.MapDungeon;
+import com.mygdx.game.Game;
 import java.util.Random;
 
 /**
@@ -15,30 +17,30 @@ import java.util.Random;
  * @author Laura
  */
 public class Monster extends Character{
+    
     public Monster(String name, int order){
         spriteSheet=new TextureAtlas("Characters/monsters/lapinator.atlas");
         this.name=name;
         this.order=order;
         this.initiative=2;
         hp=8;
-        attack=10;
+        attack=3;
         defense=0;
         xp=2;
         this.MAX_WALK=1;
         this.MAX_ATTACK=1;
-        
     }
 
-    public void attack() {
+    public boolean attack() {
         Heros firstHeros=MapDungeon.getInstance().getHeros(2);
-        int attack=this.attack+new Random().nextInt(xp);
-        Gdx.app.log("Monster 35", name+" "+order+" attaque : "+attack );
-        
-        // Return true if heros is killed
-        if(firstHeros.getHurt(attack)){
-            MapDungeon.getInstance().setHerosPosition(firstHeros);
-        }
+        if(firstHeros.isAlive()){
+            int attack=this.attack+new Random().nextInt(xp);
+            Gdx.app.log("Monster 35", name+" "+order+" attaque : "+attack );
 
+            // Return false if heros is killed
+            return firstHeros.getHurt(attack);
+        }
+        return false;
     }
     
 }

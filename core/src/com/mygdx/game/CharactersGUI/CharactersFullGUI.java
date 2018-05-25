@@ -42,7 +42,7 @@ public class CharactersFullGUI extends Actor{
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         setY(50);
         setTouchable(Touchable.enabled);
-         addListener(new ClickListener(){
+        addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                    Gdx.app.log(getName(), "clic");
@@ -76,8 +76,7 @@ public class CharactersFullGUI extends Actor{
             }
         };
         ParallelAction walk=new ParallelAction(walkAnim, Actions.moveTo(toX, getY(),3f));
-        
-       addAction(walk);
+        addAction(Actions.sequence(walk, Dungeon.getInstance().setReady(true)));
     }
     
     @Override
@@ -90,6 +89,8 @@ public class CharactersFullGUI extends Actor{
         sprite.setPosition(getX(), getY()); //To change body of generated methods, choose Tools | Templates.
         super.positionChanged();
     }
+
+
     
     
     

@@ -22,6 +22,7 @@ public class Character {
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
     protected CharactersFullGUI actor, staticActor;
+    protected boolean ready=false;
     
     public String getName(){return name;}
     public CharactersFullGUI getActor(){ 
@@ -44,9 +45,17 @@ public class Character {
         Gdx.app.log("Character 43", name+" loose "+(attack-defense)+" hp. Still got "+hp);
         if(hp<=0){
            Gdx.app.log("Character 45", name+" is dead");
-           return true;
+           return false;
         }
-        return false;
+        return true;
+    }
+    public boolean isAlive(){
+        return hp>0 ? true : false;
+    }
+    public boolean isReady(){ return ready;}
+
+    public void setReady(boolean ready) {
+        this.ready=ready;
     }
     
 }

@@ -59,4 +59,7 @@ public class Inventory {
     }
     
     public InventoryGUI getImg(){ return inventoryGUI;}
+    public void clear(){
+        INSTANCE=null;
+    }
 }
