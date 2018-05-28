@@ -6,10 +6,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.AddListenerAction;
 import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Characters.Thief;
@@ -25,29 +27,29 @@ import java.util.logging.Logger;
  *
  * @author Laura
  */
-public class Fight {
+public class Fight extends Actor{
     private ArrayList<Monster> monsters;
+    private ArrayList<Heros> heroes;
     private Mage mage;
     private Thief thief;
     private Warrior warrior;
     private int initHeroes=0, initMonsters=0;
-    private  boolean gameOn=true;
-   
+    private  boolean gameOn=true, monsterTurn=false;
     private RoomGUI room;
     
     public Fight(ArrayList<Monster> monsters, RoomGUI room){
+        heroes=new ArrayList<Heros>();
         this.room=room;
         this.monsters=monsters;
         this.mage=MapDungeon.getInstance().getMage();
         this.thief=MapDungeon.getInstance().getThief();
         this.warrior=MapDungeon.getInstance().getWarrior();
-       
-        
-        Gdx.app.log("Combat", "START");
-        if(checkInit()){
-        }else{
-        }  
-        
+        heroes.add(mage);
+        heroes.add(thief);
+        heroes.add(warrior);
+
+        for(Monster monster : monsters)  monster.setFight(this);
+        for(Heros heros : heroes)  heros.setFight(this);
     }
     
     private boolean checkInit(){
@@ -59,29 +61,39 @@ public class Fight {
         return false;
     }
     
-    public boolean monsterAttack(){
-        boolean go = false;
-        Monster monster=getMonsterAttacking();
-        if(monster!=null){
-            boolean herosAlive=monster.attack();
-            room.setReady(false);
-            
-            try {
-                monster.getActor().attack(room);
-                wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Fight.class.getName()).log(Level.SEVERE, null, ex);
+    public void actionFinished(String action, String type){
+        Gdx.app.log("Fight", action+" "+type);
+        if(type.equals("heros")){
+            if(action.equals("walk")){
+                if(isMonsterTurn()) monsterAttack();
             }
-            /*
+        }
+    }
+    
+    private boolean isMonsterTurn(){
+        boolean monsterTurn=true;
+        for(Heros heros : heroes){
+            if(!heros.getAction().equals("nothing")) monsterTurn=false;
+        }
+        return monsterTurn;
+    }
+    
+    public boolean monsterAttack(){
+        Monster monster=getMonsterAttacking();
+        monster.setAction("attack");
+        Gdx.app.log("Fight", monster.getName()+" attack");
+        if(monster!=null){
+            // monstre attack. Heros est blessé. Retourne si le heros est vivant
+            boolean herosAlive=monster.attack();
             if(!herosAlive){
+                // si le heros est mort, il passe derrière
                 gameOn=MapDungeon.getInstance().setHerosPosition();
                 if(!gameOn){
                     return false;
                 }else{
-                    room.setReady(false);
                     room.setActorsPosition(true);
                 }
-            }*/
+            }
             return false;
         }else{
             return false;

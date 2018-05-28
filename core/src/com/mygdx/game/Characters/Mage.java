@@ -17,7 +17,6 @@ public class Mage extends Heros{
     
     public Mage(){
         spriteSheet=new TextureAtlas("Characters/mage/mage.atlas");
-        
         this.name="mage";
         this.order=1;
         this.initiative=1;

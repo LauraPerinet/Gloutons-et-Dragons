@@ -24,6 +24,8 @@ import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.DungeonGUI.MapDungeon;
 import com.mygdx.game.DungeonGUI.RoomGUI;
 import com.mygdx.game.DungeonGUI.Tile;
+import com.mygdx.game.Fight;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,42 +34,12 @@ import com.mygdx.game.DungeonGUI.Tile;
 public class CharactersFullGUI extends Actor{
     private Sprite sprite;
     private TextureRegion region;
-    private TextureAtlas spriteSheet;
+    private TextureAtlas spriteSheet=null;
     private Character heros;
-    private int currentFrame =0, MAX_ATTACK, MAX_WALK;
-    private Action walkAnim=new Action(){
-            @Override
-            public boolean act(float Delta){
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        currentFrame++;
-                        if(currentFrame>MAX_WALK) currentFrame=1;
-                        sprite.setRegion(CharactersFullGUI.this.spriteSheet.findRegion( "walk", currentFrame));
-                    }
-                }, 0);
-                return true;
-            }
-        };
-    private Action attackAnim=new Action(){
-            @Override
-            public boolean act(float Delta){
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        currentFrame++;
-                        if(currentFrame>MAX_ATTACK){
-                            Gdx.app.log("CharGUI", getName()+" animation finie");
-                            currentFrame=1;
-                        }else{
-                            Gdx.app.log("CharGUI", getName()+" animation en cours");
-                        }
-                        sprite.setRegion(CharactersFullGUI.this.spriteSheet.findRegion( "attack", currentFrame));
-                    }
-                }, 0);
-                return true;
-            }
-        };
+    private int currentFrame =0, MAX_ATTACK, MAX_WALK, goTo;
+    private boolean goOn=true;
+    
+   
     
     public CharactersFullGUI(TextureAtlas spriteSheet, Character heros){
         this.spriteSheet=spriteSheet;
@@ -90,36 +62,12 @@ public class CharactersFullGUI extends Actor{
     public Character getHeros(){
         return heros;
     }
-    public void walk(float toX, RoomGUI room) {
-        //MoveByAction move=new MoveByAction();
-        //move.setAmountX(x);
-        //move.setDuration(5f);
-        Gdx.app.log("CharGUI", getName()+" entre");
-        ParallelAction walkOn=new ParallelAction(walkAnim, Actions.moveTo(toX, getY(),3f));
-        if(heros.getOrder()==0){
-            addAction(Actions.sequence(walkOn, room.setReady(true)));
-        }else{
-            addAction(walkOn);
-        }
-    }
-    public void walk(float toX ) {
-        //MoveByAction move=new MoveByAction();
-        //move.setAmountX(x);
-        //move.setDuration(5f);
-        Gdx.app.log("CharGUI", getName()+" sort");
-        ParallelAction walk=new ParallelAction(walkAnim, Actions.moveTo(toX, getY(),3f));
-        addAction(walk);
-    }
-    public void attack(RoomGUI room){
-        Gdx.app.log("CharGUI", getName()+" animation");
-        MoveByAction move=new MoveByAction();
-        move.setAmountX(-400);
-        move.setDuration(5f);
-        //ParallelAction attack=new ParallelAction(attackAnim, Actions.moveBy(40, getY(),3f));
-        //addAction(Actions.sequence(attack,room.setReady(true)));
-        addAction(move);
+    public void goTo(int to) {
+        goOn=to>goTo;
+        goTo=to;
     }
     
+ 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         sprite.draw(batch);
@@ -130,6 +78,37 @@ public class CharactersFullGUI extends Actor{
         sprite.setPosition(getX(), getY()); //To change body of generated methods, choose Tools | Templates.
         super.positionChanged();
     }
+    
+    @Override
+    public void act(float delta) {
+        
+        if(heros.getAction().equals("walk") && goTo!=0){
+            currentFrame++;
+            if(currentFrame>=MAX_WALK) currentFrame=0;
+            if(goOn && getX()<goTo){
+                setX(getX()+8);
+            }else if(!goOn && getX()>goTo){
+                setX(getX()-8);
+            }else{
+                Gdx.app.log("CharGUI Acting", heros.getName()+" "+heros.getAction());
+                goTo=0;
+                heros.setAction("nothing");
+                heros.getFight().actionFinished("walk", heros.getType());
+            }
+            sprite.setRegion(spriteSheet.findRegion( "walk", currentFrame));
+            
+        }
+        if(heros.getAction().equals("attack")){
+            currentFrame++;
+            if(currentFrame>=MAX_ATTACK) currentFrame=0;
+            sprite.setRegion(spriteSheet.findRegion( "attack", currentFrame));
+            
+        }
+        
+    }
+
+    
+    
 
 
     

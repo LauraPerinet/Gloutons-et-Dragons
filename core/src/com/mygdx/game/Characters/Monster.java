@@ -23,12 +23,13 @@ public class Monster extends Character{
         this.name=name;
         this.order=order;
         this.initiative=2;
+        this.type="monster";
         hp=8;
         attack=3;
         defense=0;
         xp=2;
         
-        this.MAX_WALK=1;
+        this.MAX_WALK=0;
         this.MAX_ATTACK=23;
     }
 

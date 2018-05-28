@@ -11,18 +11,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
 import com.mygdx.game.DungeonGUI.MapDungeon;
+import com.mygdx.game.Fight;
 
 /**
  *
  * @author Laura
  */
 public class Character {
-    protected String name;
+    protected String name, action="walk", type;
     protected int order, initiative, hp, attack, defense, xp;
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
     protected CharactersFullGUI actor, staticActor;
     protected boolean ready=false, hasAttack=false;
+    protected Fight fight=null;
     
     public String getName(){return name;}
     public CharactersFullGUI getActor(){ 
@@ -57,5 +59,10 @@ public class Character {
     public void setReady(boolean ready) {
         this.ready=ready;
     }
-    
+    public String getAction(){ return action; }
+    public void setAction(String action){ this.action=action; }
+     public void setFight(Fight fight){ this.fight=fight;}
+
+    public Fight getFight() { return fight;}
+    public String getType(){return type;}
 }

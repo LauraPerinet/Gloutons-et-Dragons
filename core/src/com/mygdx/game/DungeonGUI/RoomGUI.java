@@ -28,6 +28,8 @@ import com.mygdx.game.Fight;
 import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -45,12 +47,13 @@ public class RoomGUI extends Group{
     private JsonValue roomThings;
     private boolean ready=false;
     private Fight fight;
-    
+    private HashMap<CharactersFullGUI, Action> actions;
     
     public RoomGUI(String background){
         JsonReader json=new JsonReader();
         roomThings=json.parse(Gdx.files.internal("room/roomInterior.json")).get(background);
         monsters=new ArrayList();
+        actions=new HashMap<CharactersFullGUI, Action>();
         
         setName("room");
         createBackground(background); 
@@ -68,7 +71,7 @@ public class RoomGUI extends Group{
             public void clicked(InputEvent event, float x, float y) {
                 for(Actor h : heroes.getChildren()){
                     CharactersFullGUI heros =(CharactersFullGUI) h;
-                    heros.walk(2000);
+                    heros.goTo(2000);
                 }
                 Dungeon.getInstance().goTo();
                 //RoomGUI.this.remove();
@@ -109,8 +112,9 @@ public class RoomGUI extends Group{
         
         for(Character h : hPosition){
             float from=-600+200*h.getOrder();
-            h.getActor().setX(from);
-            heroes.addActor(h.getActor());
+            CharactersFullGUI actor=h.getActor();
+            actor.setX(from);
+            heroes.addActor(actor);
         }
                 
         addActor(heroes);
@@ -122,10 +126,9 @@ public class RoomGUI extends Group{
             for(int j=0; j<heroes.getChildren().size;j++){
                 CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(j);
                 int order=heros.getHeros().getOrder();
-   
-                float to=300+order*200;
-
-                heros.walk( to, this );
+                int to=300+order*200;
+                heros.goTo(to);
+                heros.getHeros().setAction("walk");
             }
         }else{
             int i=0;
@@ -133,15 +136,9 @@ public class RoomGUI extends Group{
                 monster.moveBy(900+i*200,0);
                 i++;
             } 
-        }
-         
-        
-        
+        } 
     }
-
-    public void mooveActors(){
     
-    }
     private void get(String type, Boolean isAMonster) {
         addThingsToRoom(readJsonFile(type), isAMonster);
     }
@@ -180,42 +177,6 @@ public class RoomGUI extends Group{
             }
             thingsToAdd.remove(ran); 
         }
-    }
-    public Action setReady(boolean b) {
-        final boolean ready=b;
-        final RoomGUI room=this;
-        Action action=new Action() {
-            @Override
-            public boolean act(float delta) {
-                
-                room.ready=room.isReady(ready);
-                /*
-                CharactersFullGUI character=(CharactersFullGUI) this.actor;
-                character.getHeros().setReady(ready);
-                */
-                return true;
-            }
-        };
-        return action;
-    }
-    public boolean isReady(){
-        return ready;
-    }
-    public boolean isReady(boolean ready){
-        this.ready=ready;
-        if(!checkIfClear() && ready){
-            
-            boolean monsterTurn=true;
-            
-            while(monsterTurn){
-               Gdx.app.log("RoomG", "monster turn");
-               monsterTurn= fight.monsterAttack();
-            }
-            Gdx.app.log("RoomG", "Aux héros !");
-            out.setTouchable(Touchable.enabled);
-            
-        } 
-        return ready;
     }
     
 }
