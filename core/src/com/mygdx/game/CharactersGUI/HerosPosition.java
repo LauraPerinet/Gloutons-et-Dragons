@@ -31,28 +31,26 @@ public class HerosPosition extends Group{
         posY=warrior.getActor().getY();
         setHeight(warrior.getActor().getHeight());
         
-        addActorAt(warrior.getOrder(), warrior.getActor());
-        addActorAt(thief.getOrder(), thief.getActor());
-        addActorAt(mage.getOrder(), mage.getActor());
+        getOrder();
         
-        setHerosPosition();
+        setHerosPosition(true);
         
         addDragAndDrop();
     }
 
-    public void setHerosPosition() {
+    public void setHerosPosition(boolean setOrder) {
         for(int i=0; i<position.length;i++){
             CharactersFullGUI h=(CharactersFullGUI) getChildren().get(i);
             h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
             h.setY(posY);
-            h.getHeros().setOrder(i);
+            if(setOrder) h.getHeros().setOrder(i);
         }
     }
     private void setHerosPosition(Actor heros, float x) {
         for(int i=position.length-1; i>=0;i--){
             if (x > position[i] ){
                 addActorAt(i, heros);
-                setHerosPosition();
+                setHerosPosition(true);
                 break;
             }
         }
@@ -92,5 +90,12 @@ public class HerosPosition extends Group{
 
             
         });
+    }
+
+    private void getOrder() {
+        clear();
+        addActorAt(warrior.getOrder(), warrior.getActor());
+        addActorAt(thief.getOrder(), thief.getActor());
+        addActorAt(mage.getOrder(), mage.getActor());
     }
 }

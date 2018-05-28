@@ -33,6 +33,7 @@ public class Dungeon extends Stage implements InputProcessor{
     private Group main;
     private RoomGUI room;
     private Menu menu;
+    private boolean ready=false;
     private String roomBackground;
     private Inventory inventory;
     private Action changeScreenAction=new Action(){
@@ -50,7 +51,7 @@ public class Dungeon extends Stage implements InputProcessor{
             return true;
         }
     };
-
+    
     private Dungeon(Viewport view, Game game) {
        
         this.game=game;
@@ -95,18 +96,9 @@ public class Dungeon extends Stage implements InputProcessor{
         return room;
     }
 
-    public Action setReady(boolean b) {
-        final boolean ready=b;
-        Action action=new Action() {
-            @Override
-            public boolean act(float delta) {
-                CharactersFullGUI character=(CharactersFullGUI) this.actor;
-                character.getHeros().setReady(ready);
-                return true;
-            }
-        };
-        return action;
-    }
+    
+    
+    
 
    
     

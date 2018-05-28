@@ -8,9 +8,11 @@ package com.mygdx.game.DungeonGUI;
 import com.mygdx.game.Items.Potion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.JsonReader;
@@ -41,7 +43,8 @@ public class RoomGUI extends Group{
     private Group heroes, monstersGroup=new Group();
     private ArrayList<Monster> monsters;
     private JsonValue roomThings;
-    private boolean isClear = false;
+    private boolean ready=false;
+    private Fight fight;
     
     
     public RoomGUI(String background){
@@ -56,7 +59,8 @@ public class RoomGUI extends Group{
         
         getHeros();
         addActor(monstersGroup);
-        setActorsPosition();
+        setActorsPosition(false);
+        setActorsPosition(true);
         
         //A redescendre
         out.addListener(new ClickListener(){
@@ -64,18 +68,19 @@ public class RoomGUI extends Group{
             public void clicked(InputEvent event, float x, float y) {
                 for(Actor h : heroes.getChildren()){
                     CharactersFullGUI heros =(CharactersFullGUI) h;
-                    heros.walk(heros.getX(), 2000);
+                    heros.walk(2000);
                 }
                 Dungeon.getInstance().goTo();
                 //RoomGUI.this.remove();
             }
             
             });
-        
+       
         if(checkIfClear()){
-            
+
         }else{
-            Fight figth=new Fight(monsters, this);
+            out.setTouchable(Touchable.disabled);
+            fight=new Fight(monsters, this);
         }
         
     }
@@ -103,6 +108,8 @@ public class RoomGUI extends Group{
         heroes=new Group();
         
         for(Character h : hPosition){
+            float from=-600+200*h.getOrder();
+            h.getActor().setX(from);
             heroes.addActor(h.getActor());
         }
                 
@@ -110,20 +117,25 @@ public class RoomGUI extends Group{
         
     }
 
-    public void setActorsPosition() {
-        int i=0;
-        for(Actor monster : monstersGroup.getChildren()){
-            monster.moveBy(900+i*200,0);
-            
-            i++;
-        }  
-        for(int j=0; j<heroes.getChildren().size;j++){
-            CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(j);
-            float from=-600+200*j;
-            float to=300+j*200;
-            heros.setX(from);
-            heros.walk( from, to );
+    public void setActorsPosition(boolean moveHeros) {
+        if(moveHeros){
+            for(int j=0; j<heroes.getChildren().size;j++){
+                CharactersFullGUI heros = (CharactersFullGUI) heroes.getChildren().get(j);
+                int order=heros.getHeros().getOrder();
+   
+                float to=300+order*200;
+
+                heros.walk( to, this );
+            }
+        }else{
+            int i=0;
+            for(Actor monster : monstersGroup.getChildren()){
+                monster.moveBy(900+i*200,0);
+                i++;
+            } 
         }
+         
+        
         
     }
 
@@ -161,12 +173,49 @@ public class RoomGUI extends Group{
                 it.setPos();
                 addActor(it);
             }else{
+               
                 Monster monster=Fabricator.createMonster(thing, i);
                 monsters.add(monster);
                 monstersGroup.addActor(monster.getActor());
             }
             thingsToAdd.remove(ran); 
         }
+    }
+    public Action setReady(boolean b) {
+        final boolean ready=b;
+        final RoomGUI room=this;
+        Action action=new Action() {
+            @Override
+            public boolean act(float delta) {
+                
+                room.ready=room.isReady(ready);
+                /*
+                CharactersFullGUI character=(CharactersFullGUI) this.actor;
+                character.getHeros().setReady(ready);
+                */
+                return true;
+            }
+        };
+        return action;
+    }
+    public boolean isReady(){
+        return ready;
+    }
+    public boolean isReady(boolean ready){
+        this.ready=ready;
+        if(!checkIfClear() && ready){
+            
+            boolean monsterTurn=true;
+            
+            while(monsterTurn){
+               Gdx.app.log("RoomG", "monster turn");
+               monsterTurn= fight.monsterAttack();
+            }
+            Gdx.app.log("RoomG", "Aux héros !");
+            out.setTouchable(Touchable.enabled);
+            
+        } 
+        return ready;
     }
     
 }

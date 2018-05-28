@@ -22,7 +22,7 @@ public class Character {
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
     protected CharactersFullGUI actor, staticActor;
-    protected boolean ready=false;
+    protected boolean ready=false, hasAttack=false;
     
     public String getName(){return name;}
     public CharactersFullGUI getActor(){ 

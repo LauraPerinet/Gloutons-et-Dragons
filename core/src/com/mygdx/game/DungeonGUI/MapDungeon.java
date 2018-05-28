@@ -54,6 +54,7 @@ public class MapDungeon extends Group{
     private TextButton nextRoomBtn;
     final private int MAP_WIDTH=5;
     final private int MAP_HEIGHT=5;
+    private HerosPosition herosLeftTable;
     
     
     private MapDungeon(Skin skin){
@@ -150,11 +151,11 @@ public class MapDungeon extends Group{
 
     private void createLeftTable() {
         Label title=new Label("L'appetit vient en chassant", skin, "default");
-        
+        herosLeftTable=new HerosPosition(warrior, thief, mage);
         leftTable = createTable(getWidth()/2);
         leftTable.add(title);
         leftTable.row();
-        leftTable.add(new HerosPosition(warrior, thief, mage));
+        leftTable.add(herosLeftTable);
         leftTable.row();
         leftTable.add();
     }
@@ -203,14 +204,18 @@ public class MapDungeon extends Group{
 
     public boolean setHerosPosition() {
         Heros first=getHeros(2);
+ 
         getHeros(1).setOrder(2);
         getHeros(0).setOrder(1);
         first.setOrder(0);
+       
         if(!getHeros(2).isAlive()){ 
+            Gdx.app.log("MapDungeon", "Premier heros : "+getHeros(2).getName()+" is alive = "+getHeros(2).isAlive());
             Gdx.app.log("MapDungeon", "fin");
             Dungeon.getInstance().gameOver();
             return false;
         }else{
+            herosLeftTable.setHerosPosition(false);
             return true;
         }
     }

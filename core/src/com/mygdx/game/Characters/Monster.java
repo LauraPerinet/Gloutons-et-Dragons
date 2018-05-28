@@ -27,20 +27,26 @@ public class Monster extends Character{
         attack=3;
         defense=0;
         xp=2;
+        
         this.MAX_WALK=1;
-        this.MAX_ATTACK=1;
+        this.MAX_ATTACK=23;
     }
 
     public boolean attack() {
+        hasAttack=true;
         Heros firstHeros=MapDungeon.getInstance().getHeros(2);
         if(firstHeros.isAlive()){
             int attack=this.attack+new Random().nextInt(xp);
             Gdx.app.log("Monster 35", name+" "+order+" attaque : "+attack );
-
+          
             // Return false if heros is killed
             return firstHeros.getHurt(attack);
         }
         return false;
+    }
+
+    public boolean hasAttack() {
+        return hasAttack;
     }
     
 }
