@@ -62,9 +62,13 @@ public class Fight extends Actor{
     }
     
     public void actionFinished(String action, String type){
-        Gdx.app.log("Fight", action+" "+type);
+        
         if(type.equals("heros")){
             if(action.equals("walk")){
+                if(isMonsterTurn()) monsterAttack();
+            }
+        }else{
+            if(action.equals("attack")){
                 if(isMonsterTurn()) monsterAttack();
             }
         }
@@ -80,25 +84,12 @@ public class Fight extends Actor{
     
     public boolean monsterAttack(){
         Monster monster=getMonsterAttacking();
-        monster.setAction("attack");
-        Gdx.app.log("Fight", monster.getName()+" attack");
-        if(monster!=null){
-            // monstre attack. Heros est blessé. Retourne si le heros est vivant
-            boolean herosAlive=monster.attack();
-            if(!herosAlive){
-                // si le heros est mort, il passe derrière
-                gameOn=MapDungeon.getInstance().setHerosPosition();
-                if(!gameOn){
-                    return false;
-                }else{
-                    room.setActorsPosition(true);
-                }
-            }
-            return false;
-        }else{
-            return false;
-        }
+        if(monster==null) return false;
         
+        monster.setAction("attack");
+        // monstre attack. Heros est blessé. Retourne si le heros est vivant
+        if(monster.attack()) MapDungeon.getInstance().setHerosPosition();
+        return true;
     }
     Monster getMonsterAttacking(){
         for(Monster monster : monsters){

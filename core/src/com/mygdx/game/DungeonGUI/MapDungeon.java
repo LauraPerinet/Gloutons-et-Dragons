@@ -204,7 +204,7 @@ public class MapDungeon extends Group{
 
     public boolean setHerosPosition() {
         Heros first=getHeros(2);
- 
+        
         getHeros(1).setOrder(2);
         getHeros(0).setOrder(1);
         first.setOrder(0);

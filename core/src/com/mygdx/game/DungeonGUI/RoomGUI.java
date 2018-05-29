@@ -82,7 +82,7 @@ public class RoomGUI extends Group{
         if(checkIfClear()){
 
         }else{
-            out.setTouchable(Touchable.disabled);
+            //out.setTouchable(Touchable.disabled);
             fight=new Fight(monsters, this);
         }
         

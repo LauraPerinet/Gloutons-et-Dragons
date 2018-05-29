@@ -100,8 +100,14 @@ public class CharactersFullGUI extends Actor{
         }
         if(heros.getAction().equals("attack")){
             currentFrame++;
-            if(currentFrame>=MAX_ATTACK) currentFrame=0;
-            sprite.setRegion(spriteSheet.findRegion( "attack", currentFrame));
+            if(currentFrame>=MAX_ATTACK){
+                currentFrame=0;
+                heros.setAction("nothing");
+                heros.getFight().actionFinished("attack", heros.getType());
+                sprite.setRegion(spriteSheet.findRegion( "walk", currentFrame));
+            }else{
+                sprite.setRegion(spriteSheet.findRegion( "attack", currentFrame));
+            }
             
         }
         
