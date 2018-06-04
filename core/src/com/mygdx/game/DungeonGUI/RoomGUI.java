@@ -135,10 +135,8 @@ public class RoomGUI extends Group{
         }else{
             for(Actor m : monstersGroup.getChildren()){
                 CharactersFullGUI monster =(CharactersFullGUI) m;
-                Gdx.app.log("RoomGII setAPos", monster.getName()+" "+monster.getHeros().getOrder());
                 int to=900+monster.getHeros().getOrder()*200;
                 monster.goTo(to);
-                Gdx.app.log("RoomGUI setPos" , monster.getName()+" - ORDRE "+monster.getHeros().getOrder()+ "   - x="+monster.getX()+"  GO TO "+to);
                 monster.getHeros().setAction("walk");
 
             } 

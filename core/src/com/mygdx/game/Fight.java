@@ -82,31 +82,25 @@ public class Fight extends Actor{
 
         if(type.equals("heros")){
             if(action.equals("walk")){
-                Gdx.app.log("actionFini", "walk");
                 if(monsterTurn && isMonsterTurn()) monsterAttack();
             }  
             if(action.equals("dead")){
-                Gdx.app.log("actionFini", "dead");
                 room.setActorsPosition(true);
             }
             if(action.equals("attack")){
-                Gdx.app.log("actionFini", "attack heros, actions restantes="+heroesActions);
                 if(monsterAttacked.isAlive()){
-                    Gdx.app.log("action finie", "monster vivant fin de l'attaque");
                     if(heroesActions==0){
                         monsterTurn=true;
                         herosTurn(false); 
                         monsterAttack();
                     }
                 }else{
-                    Gdx.app.log("action finie", "monster est mort - fin de l'attaque");
                     monsterAttacked.setAction("dead");
                 }
                 
             }
         }else{
             if(action.equals("attack")){ 
-                Gdx.app.log("actionFini", "attack monster");
                 if(!MapDungeon.getInstance().getHeros(0).isAlive()){
                     MapDungeon.getInstance().getHeros(0).setAction("dead");
                 }else{
@@ -118,12 +112,10 @@ public class Fight extends Actor{
                 }
                 
             }if(action.equals("dead")){
-                Gdx.app.log("action finie", "monster meurt");
                 deadMonster(monsterAttacked);
                  room.setActorsPosition(false);
             }
             if(action.equals("walk")){
-                Gdx.app.log("action finie", "monster placé");
                  if(heroesActions==0){
                         monsterTurn=true;
                         herosTurn(false); 

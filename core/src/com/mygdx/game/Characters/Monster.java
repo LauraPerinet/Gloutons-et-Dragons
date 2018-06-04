@@ -52,7 +52,6 @@ public class Monster extends Character{
     public boolean getHurt(int attack){
         hp-=attack-defense;
         statesGUI.setHealth(this);
-        Gdx.app.log("Monster", "hurt");
         if(hp<=0) statesGUI.clear();
         return true;
     }

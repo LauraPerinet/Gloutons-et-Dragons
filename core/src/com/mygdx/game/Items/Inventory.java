@@ -44,6 +44,12 @@ public class Inventory {
                     items.put(item.getName(), 1);
                 } 
             }
+
+            if(item.getDraggable()){
+                
+                Potion p=(Potion) item;
+                p.addDragAndDrop();
+            }
             inventoryGUI.addItem(item.getName());
         } 
 

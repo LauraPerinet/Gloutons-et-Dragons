@@ -28,7 +28,7 @@ public class InventoryGUI extends Group{
      
      public InventoryGUI(Skin skin){
          this.skin=skin;
-         setBounds(660, 0, background.getWidth(), background.getHeight());
+         setBounds(380, 0, background.getWidth(), background.getHeight());
          addActor(background);
 
          Group g=new Group();
@@ -58,13 +58,34 @@ public class InventoryGUI extends Group{
                 
                 y= y==0 ? MAX_CASE_Y:y==MAX_CASE_Y?0:1; 
                 Items it = Fabricator.createItem(item, false);
+                it.setLock(i);
                 addItemOnCase(it, x, y);
                 break;
             }
         }
     }
+    
+    public void addItem(String item, int lock){
+        lockers[lock]=item;
+        lock+=CASE_OUT;
+        int y=lock/9;
+        int x=lock%9;
+
+        y= y==0 ? MAX_CASE_Y:y==MAX_CASE_Y?0:1; 
+        Items it = Fabricator.createItem(item, false);
+        addItemOnCase(it, x, y);
+        
+    }
     private void addItemOnCase(Actor item, int x, int y){
-        item.setPosition(x*CASE_SIZE+10, y*CASE_SIZE+10);
+        float newX=x*CASE_SIZE+10;
+        float newY=y*CASE_SIZE+10;
+        item.setPosition(newX, newY);
+        addActor(item);
+    }
+    private void addItemOnCase(Items item, int x, int y){
+        float newX=x*CASE_SIZE+10;
+        float newY=y*CASE_SIZE+10;
+        item.setPositionOnInventory(newX, newY);
         addActor(item);
     }
     

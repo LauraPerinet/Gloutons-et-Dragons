@@ -220,6 +220,8 @@ public class MapDungeon extends Group{
     public void clear(){
         INSTANCE=null;
     }
+    
+    
 
 
  

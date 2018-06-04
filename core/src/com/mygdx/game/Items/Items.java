@@ -20,8 +20,9 @@ import java.util.Random;
  */
 public class Items extends Image{
     protected String name;
-    protected int x,y, minX=0, minY=70, maxX=1920-(int) getWidth(), maxY=800-(int) getHeight();
-    protected boolean fromRoom;
+    protected int  minX=0, minY=70, maxX=1920-(int) getWidth(), maxY=800-(int) getHeight(), lock;
+    protected float x,y;
+    protected boolean fromRoom, draggable=false;
     
     public Items(String item, Boolean fromRoom){
         super(new Texture("items/"+item+".png"));
@@ -37,9 +38,11 @@ public class Items extends Image{
     }
 
     private void addClickToPick() {
+        
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("items", "click");
                 Inventory.getInstance().addItem(Items.this);
                 Items.this.remove();
             }
@@ -50,5 +53,17 @@ public class Items extends Image{
         int y=new Random().nextInt(maxY-minY)+minY;
         setPosition(x, y);
     }
+    public void setPositionOnInventory(float x, float y){
+        this.x=x;
+        this.y=y;
+        setPosition(x, y);
+    }
+    public boolean getDraggable(){ return draggable;}
+    public void setLock(int lock){ this.lock=lock;}
+    public int getLock(){return lock;}
+    
+
+
+    
     
 }

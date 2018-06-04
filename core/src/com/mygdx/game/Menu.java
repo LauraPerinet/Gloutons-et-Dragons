@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.DungeonGUI.MapDungeon;
@@ -29,7 +30,8 @@ public class Menu extends Group{
     private InventoryGUI inventory;
     private Image background=new Image(new Texture("backgroundMenu.png"));
     private ArrayList<Heros> heroes;
-    private Group states, monsters;
+
+    private Table states,monsters;
     private Skin skin;
     
     public Menu(Skin skin) {
@@ -41,26 +43,36 @@ public class Menu extends Group{
         inventory=Inventory.getInstance().getImg();
         inventory.setY(10);
         heroes=new ArrayList<Heros>();
-        states=new Group();
-        monsters=new Group();
+        states=new Table();
+        monsters=new Table();
         heroes.add(MapDungeon.getInstance().getMage());
         heroes.add(MapDungeon.getInstance().getThief());
         heroes.add(MapDungeon.getInstance().getWarrior());
+        states.left().padLeft(20);
+        states.bottom().padBottom(10);
         
+        monsters.left().padLeft(1000);
+        monsters.bottom().padBottom(180);
+
         for(Heros heros : heroes){
-            states.addActor(new StateHeros(heros, skin));
+            states.add(new StateHeros(heros, skin));
+            states.row();
         }
-        states.addActor(monsters);
+
+        addActor(monsters);
         addActor(states);
-        //addActor(inventory);
+        addActor(inventory);
     }
     
     public void addMonsters(Monster monster){
-        monsters.addActor(new StateHeros(monster, skin));
+        monsters.padBottom(monsters.getPadBottom()-40);
+        monsters.add(new StateHeros(monster, skin));
+        monsters.row();
     }
     
     public void removeMonsters(){
         monsters.clear();
+        monsters.bottom().padBottom(180);
     }
 
 }

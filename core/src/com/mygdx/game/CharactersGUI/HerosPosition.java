@@ -78,7 +78,6 @@ public class HerosPosition extends Group{
             public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
                 originX=x;
                 CharactersFullGUI dragHeros= (CharactersFullGUI) hit(x,y,true);
-
    
                 payload.setObject(dragHeros);
                 payload.setDragActor(dragHeros);

@@ -30,7 +30,6 @@ public class StateHeros extends Table {
     private Heros heros;
     private Monster monster;
     private int width=200, maxHP, maxEnergy;
-    private Skin skin;
     private Rectangle health, energy;
     private Image cadre;
 
@@ -38,7 +37,10 @@ public class StateHeros extends Table {
         this.heros=heros;
         cadre=new Image(new Texture("menu/cadre.png"));
         setBounds(heros.getOrder()*220+20, 0, 220, 260);
-        Label name=new Label(heros.getName(), skin, "default");
+
+        skin.getFont("little").getData().setScale(0.5f,0.5f);
+
+        Label name=new Label(heros.getName(), skin, "little");
         
         heros.setStatesGUI(this);
         maxHP=heros.getHp();
@@ -53,8 +55,7 @@ public class StateHeros extends Table {
     }
     public StateHeros(Monster monster, Skin skin) {
         this.monster=monster;
-        setBounds(monster.getOrder()*220+20+900, 0, 220, 260);
-        Label name=new Label(monster.getName(), skin, "default");
+        Label name=new Label(monster.getName(), skin, "little");
         monster.setStatesGUI(this);
         maxHP=monster.getHp();
         health=new Rectangle(5, 5, width, 10, Color.FOREST);

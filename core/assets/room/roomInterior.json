@@ -5,9 +5,9 @@
             "flyinSnake":3
         },
         "items":{
-            "gold":3,
-            "potion":1,
-            "herb":2
+            "gold":0,
+            "potion":8,
+            "herb":0
         }
     },
     "cave":{

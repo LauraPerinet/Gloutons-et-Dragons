@@ -49,7 +49,6 @@ public class CharactersFullGUI extends Actor{
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
         if(heros.getName().equals("warrior")){ setWidth(230); }
         if(heros.getName().equals("mage")){ setWidth(130); }
-        setY(50);
         setTouchable(Touchable.disabled);
         if(addListener){
             addListener(new ClickListener(){
@@ -130,7 +129,6 @@ public class CharactersFullGUI extends Actor{
             heros.setActionChange(!heros.getActionChange());
         }
         if(heros.getAction().equals("walk") && goTo!=0){
-            Gdx.app.log("CFGUI act walk", heros.getName()+"   - goOn ="+goOn+"   -  x="+getX()+"   - go To="+goTo);
             currentFrame++;
             if(currentFrame>=MAX_WALK) currentFrame=0;
             if(goOn && getX()<goTo){
