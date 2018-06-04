@@ -28,7 +28,7 @@ public class InventoryGUI extends Group{
      
      public InventoryGUI(Skin skin){
          this.skin=skin;
-         setBounds(400, 0, background.getWidth(), background.getHeight());
+         setBounds(660, 0, background.getWidth(), background.getHeight());
          addActor(background);
 
          Group g=new Group();

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Characters.Character;
+import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Characters.Thief;
@@ -60,9 +61,8 @@ public class RoomGUI extends Group{
         get("monsters", true);
         get("items", false);
         
-        getHeros();
+        createActorsHeros();
         addActor(monstersGroup);
-        setActorsPosition(false);
         setActorsPosition(true);
         
         //A redescendre
@@ -71,9 +71,10 @@ public class RoomGUI extends Group{
             public void clicked(InputEvent event, float x, float y) {
                 for(Actor h : heroes.getChildren()){
                     CharactersFullGUI heros =(CharactersFullGUI) h;
-                    heros.goTo(2000);
+                    heros.getHeros().setFight(null);
                 }
-                Dungeon.getInstance().goTo();
+                Dungeon d=Dungeon.getInstance();
+                d.goTo();
                 //RoomGUI.this.remove();
             }
             
@@ -88,6 +89,7 @@ public class RoomGUI extends Group{
         
     }
 
+    public Group getHeros(){ return heroes;}
     private void createBackground(String background) {
         this.background=new Image(new Texture("room/"+background+".jpg"));
         this.background.setName("background");
@@ -97,7 +99,7 @@ public class RoomGUI extends Group{
         
     }
 
-    private void getHeros() {
+    private void createActorsHeros() {
         thief=MapDungeon.getInstance().getThief();
         mage=MapDungeon.getInstance().getMage();
         warrior=MapDungeon.getInstance().getWarrior();
@@ -112,7 +114,7 @@ public class RoomGUI extends Group{
         
         for(Character h : hPosition){
             float from=-600+200*h.getOrder();
-            CharactersFullGUI actor=h.getActor();
+            CharactersFullGUI actor=h.getActor(true);
             actor.setX(from);
             heroes.addActor(actor);
         }
@@ -131,10 +133,14 @@ public class RoomGUI extends Group{
                 heros.getHeros().setAction("walk");
             }
         }else{
-            int i=0;
-            for(Actor monster : monstersGroup.getChildren()){
-                monster.moveBy(900+i*200,0);
-                i++;
+            for(Actor m : monstersGroup.getChildren()){
+                CharactersFullGUI monster =(CharactersFullGUI) m;
+                Gdx.app.log("RoomGII setAPos", monster.getName()+" "+monster.getHeros().getOrder());
+                int to=900+monster.getHeros().getOrder()*200;
+                monster.goTo(to);
+                Gdx.app.log("RoomGUI setPos" , monster.getName()+" - ORDRE "+monster.getHeros().getOrder()+ "   - x="+monster.getX()+"  GO TO "+to);
+                monster.getHeros().setAction("walk");
+
             } 
         } 
     }
@@ -160,7 +166,7 @@ public class RoomGUI extends Group{
     }
 
     private void addThingsToRoom(ArrayList<String> thingsToAdd, Boolean isAMonster) {
-        int numItems = new Random().nextInt(thingsToAdd.size());
+        int numItems = new Random().nextInt(4);
         
         for(int i=0; i<numItems; i++){
             int ran =new Random().nextInt( thingsToAdd.size());
@@ -169,13 +175,53 @@ public class RoomGUI extends Group{
                 Items it=Fabricator.createItem(thing, true);
                 it.setPos();
                 addActor(it);
+                
             }else{
-               
                 Monster monster=Fabricator.createMonster(thing, i);
                 monsters.add(monster);
-                monstersGroup.addActor(monster.getActor());
+                CharactersFullGUI actor=monster.getActor(true);
+                int to=900+monster.getOrder()*200;
+                actor.moveBy(to, 50);
+                actor.goTo(to);
+                monstersGroup.addActor(actor);
             }
             thingsToAdd.remove(ran); 
+        }
+    }
+
+    public Group getMonsters() {
+        return monstersGroup;
+    }
+
+    public void remove(Monster monster) {
+        for(Actor actor:monstersGroup.getChildren()){
+            CharactersFullGUI m=(CharactersFullGUI) actor;
+            if(m.getHeros()==monster) monstersGroup.removeActor(m);
+        }
+    }
+
+    public void setMonstersTouchable(Heros acting) {
+        for(Actor m: monstersGroup.getChildren()){
+            CharactersFullGUI monster=(CharactersFullGUI) m;
+            monster.setTouchable(Touchable.disabled);
+            if(acting!=null){
+                if(acting.getName().equals("mage")){
+                    if(mage.testIfCanActOn(monster.getHeros())) monster.setTouchable(Touchable.enabled);;
+                }
+                if(acting.getName().equals("warrior")){
+                    if(warrior.testIfCanActOn(monster.getHeros())) monster.setTouchable(Touchable.enabled);
+                }
+                if(acting.getName().equals("thief")){
+                    if(thief.testIfCanActOn(monster.getHeros())) monster.setTouchable(Touchable.enabled);
+                }
+            }
+        }
+    }
+
+    public void setHerosCanBePlay(boolean canBePlayed) {
+        for(Actor actor : heroes.getChildren()){
+            CharactersFullGUI heros = (CharactersFullGUI) actor;
+            if(heros.getHeros().isAlive()) heros.canBePlayed(canBePlayed);
         }
     }
     

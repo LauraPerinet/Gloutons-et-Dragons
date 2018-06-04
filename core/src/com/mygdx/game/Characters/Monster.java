@@ -22,7 +22,7 @@ public class Monster extends Character{
         spriteSheet=new TextureAtlas("Characters/monsters/lapinator.atlas");
         this.name=name;
         this.order=order;
-        this.initiative=2;
+        this.initiative=1;
         this.type="monster";
         hp=8;
         attack=3;
@@ -38,16 +38,23 @@ public class Monster extends Character{
         Heros firstHeros=MapDungeon.getInstance().getHeros(2);
         if(firstHeros.isAlive()){
             int attack=this.attack+new Random().nextInt(xp);
-            Gdx.app.log("Monster 35", name+" "+order+" attaque : "+attack );
-          
             // Return false if heros is killed
-            return firstHeros.getHurt(attack);
+            firstHeros.getHurt(attack);
         }
-        return false;
+        return firstHeros.isAlive();
     }
 
     public boolean hasAttack() {
         return hasAttack;
+    }
+    public void setHasAttack(boolean b){ hasAttack=b;}
+    
+    public boolean getHurt(int attack){
+        hp-=attack-defense;
+        statesGUI.setHealth(this);
+        Gdx.app.log("Monster", "hurt");
+        if(hp<=0) statesGUI.clear();
+        return true;
     }
     
 }

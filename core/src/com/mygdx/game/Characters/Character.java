@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
+import com.mygdx.game.CharactersGUI.StateHeros;
 import com.mygdx.game.DungeonGUI.MapDungeon;
 import com.mygdx.game.Fight;
 
@@ -23,12 +24,13 @@ public class Character {
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
     protected CharactersFullGUI actor, staticActor;
-    protected boolean ready=false, hasAttack=false;
+    protected boolean ready=false, hasAttack=false, isHurt=false, isSelected=false, actionChange=true;
     protected Fight fight=null;
+    protected StateHeros statesGUI;
     
     public String getName(){return name;}
-    public CharactersFullGUI getActor(){ 
-        CharactersFullGUI actor = new CharactersFullGUI(spriteSheet, this); 
+    public CharactersFullGUI getActor(boolean addListener){ 
+        CharactersFullGUI actor = new CharactersFullGUI(spriteSheet, this, addListener); 
         actor.setName(getName());
         return actor;
     }
@@ -44,9 +46,8 @@ public class Character {
     
     public boolean getHurt(int attack) {
         hp-=attack-defense;
-        Gdx.app.log("Character 43", name+" loose "+(attack-defense)+" hp. Still got "+hp);
+        statesGUI.setHealth(this);
         if(hp<=0){
-           Gdx.app.log("Character 45", name+" is dead");
            return false;
         }
         return true;
@@ -59,10 +60,28 @@ public class Character {
     public void setReady(boolean ready) {
         this.ready=ready;
     }
+    public void setStatesGUI(StateHeros statesGUI){
+        this.statesGUI=statesGUI;
+    }
     public String getAction(){ return action; }
-    public void setAction(String action){ this.action=action; }
+    public void setAction(String action){ actionChange=true; this.action=action; }
      public void setFight(Fight fight){ this.fight=fight;}
-
+    public int getHp(){return hp;}
     public Fight getFight() { return fight;}
     public String getType(){return type;}
+    
+    public boolean isSelected() {
+        return isSelected;
+    }
+    public void setSelected(boolean b){
+        isSelected=b;
+    }
+
+    public boolean getActionChange() {
+       return actionChange;
+    }
+
+    public void setActionChange(boolean b) {
+        actionChange=b;
+    }
 }

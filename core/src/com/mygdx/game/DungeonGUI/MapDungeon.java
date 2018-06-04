@@ -201,17 +201,14 @@ public class MapDungeon extends Group{
         if(thief.getOrder()==index ) return thief;
         return null;
     }
-
+    
     public boolean setHerosPosition() {
         Heros first=getHeros(2);
-        
         getHeros(1).setOrder(2);
         getHeros(0).setOrder(1);
         first.setOrder(0);
        
         if(!getHeros(2).isAlive()){ 
-            Gdx.app.log("MapDungeon", "Premier heros : "+getHeros(2).getName()+" is alive = "+getHeros(2).isAlive());
-            Gdx.app.log("MapDungeon", "fin");
             Dungeon.getInstance().gameOver();
             return false;
         }else{

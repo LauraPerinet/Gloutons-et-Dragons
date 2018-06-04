@@ -6,22 +6,22 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Action;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.actions.AddListenerAction;
-import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.Characters.Character;
 import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
+import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.DungeonGUI.MapDungeon;
 import com.mygdx.game.DungeonGUI.RoomGUI;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -33,9 +33,11 @@ public class Fight extends Actor{
     private Mage mage;
     private Thief thief;
     private Warrior warrior;
-    private int initHeroes=0, initMonsters=0;
+    private int  heroesActions=0;
     private  boolean gameOn=true, monsterTurn=false;
     private RoomGUI room;
+    private Heros acting=null;
+    private Monster monsterAttacked=null;
     
     public Fight(ArrayList<Monster> monsters, RoomGUI room){
         heroes=new ArrayList<Heros>();
@@ -47,55 +49,177 @@ public class Fight extends Actor{
         heroes.add(mage);
         heroes.add(thief);
         heroes.add(warrior);
+        
+        for(Monster monster : monsters){
+            monster.setFight(this);
+            Dungeon.getInstance().getMenu().addMonsters(monster);
+        }
+        for(Heros heros : heroes){
+            heros.setFight(this);
+        }
 
-        for(Monster monster : monsters)  monster.setFight(this);
-        for(Heros heros : heroes)  heros.setFight(this);
+        herosTurn(checkInit());
+   
     }
     
     private boolean checkInit(){
+        int initMonsters=0;
+        int initHeroes=0;
+        
         for(Monster monster : monsters ){
-             initMonsters+=monster.getInit();  
+             if(monster.isAlive()) initMonsters+=monster.getInit();  
         }
-        initHeroes=mage.getInit()+thief.getInit()+warrior.getInit();
-        if(initHeroes>=initMonsters){ return true; }
+        for(Heros heros : heroes){
+            if(heros.isAlive()) initHeroes+=heros.getInit();
+        }
+        if(initHeroes>=initMonsters){ 
+            heroesActions=initHeroes-initMonsters;
+            return true; }
         return false;
     }
     
     public void actionFinished(String action, String type){
-        
+
         if(type.equals("heros")){
             if(action.equals("walk")){
-                if(isMonsterTurn()) monsterAttack();
+                Gdx.app.log("actionFini", "walk");
+                if(monsterTurn && isMonsterTurn()) monsterAttack();
+            }  
+            if(action.equals("dead")){
+                Gdx.app.log("actionFini", "dead");
+                room.setActorsPosition(true);
+            }
+            if(action.equals("attack")){
+                Gdx.app.log("actionFini", "attack heros, actions restantes="+heroesActions);
+                if(monsterAttacked.isAlive()){
+                    Gdx.app.log("action finie", "monster vivant fin de l'attaque");
+                    if(heroesActions==0){
+                        monsterTurn=true;
+                        herosTurn(false); 
+                        monsterAttack();
+                    }
+                }else{
+                    Gdx.app.log("action finie", "monster est mort - fin de l'attaque");
+                    monsterAttacked.setAction("dead");
+                }
+                
             }
         }else{
-            if(action.equals("attack")){
-                if(isMonsterTurn()) monsterAttack();
+            if(action.equals("attack")){ 
+                Gdx.app.log("actionFini", "attack monster");
+                if(!MapDungeon.getInstance().getHeros(0).isAlive()){
+                    MapDungeon.getInstance().getHeros(0).setAction("dead");
+                }else{
+                    if(isMonsterTurn()){
+                        monsterAttack();
+                    }else{
+                        herosTurn(true);
+                    }
+                }
+                
+            }if(action.equals("dead")){
+                Gdx.app.log("action finie", "monster meurt");
+                deadMonster(monsterAttacked);
+                 room.setActorsPosition(false);
             }
+            if(action.equals("walk")){
+                Gdx.app.log("action finie", "monster placé");
+                 if(heroesActions==0){
+                        monsterTurn=true;
+                        herosTurn(false); 
+                        monsterAttack();
+                    }
+            }
+            
         }
     }
-    
+
     private boolean isMonsterTurn(){
-        boolean monsterTurn=true;
+        boolean lastHerosPlaying=true;
         for(Heros heros : heroes){
-            if(!heros.getAction().equals("nothing")) monsterTurn=false;
+            if(!heros.getAction().equals("nothing")) lastHerosPlaying=false;
         }
-        return monsterTurn;
+        return lastHerosPlaying;
     }
     
     public boolean monsterAttack(){
         Monster monster=getMonsterAttacking();
-        if(monster==null) return false;
-        
+        if(monster==null){
+            monsterTurn=false;
+            herosTurn(true);
+            return false;
+        }
         monster.setAction("attack");
-        // monstre attack. Heros est blessé. Retourne si le heros est vivant
-        if(monster.attack()) MapDungeon.getInstance().setHerosPosition();
+        // monstre attack. Heros est blessé. Retourne true si le heros est vivant
+        if(!monster.attack()) MapDungeon.getInstance().setHerosPosition();
         return true;
     }
     Monster getMonsterAttacking(){
         for(Monster monster : monsters){
-            if(!monster.hasAttack()) return monster;
+            if(!monster.hasAttack() && monster.isAlive()) return monster;
         }
         return null;
     }
+
+    public void selectHeros(Heros heros){
+        for(Heros h:heroes){
+                if(h==heros){
+                    h.setSelected(!h.isSelected()); 
+                }else{
+                    h.setSelected(false); 
+                }}
+            if(acting==heros){
+                for(Actor monster: room.getMonsters().getChildren()){
+                    monster.setTouchable(Touchable.disabled);
+                }
+                acting=null;
+            }else{
+                acting=(Heros) heros;
+                room.setMonstersTouchable(acting);
+            }
+        
+    }
+    public void attackMonster(Monster monster) {
+        if(acting!=null){
+            heroesActions=heroesActions-1;
+             
+            monsterAttacked=monster;
+            if(acting.getName().equals("mage")){
+                if(mage.testIfCanActOn(monster)) mage.attack(monster);
+            }
+            if(acting.getName().equals("warrior")){
+                if(warrior.testIfCanActOn(monster)) warrior.attack(monster);
+            }
+            if(acting.getName().equals("thief")){
+                if(thief.testIfCanActOn(monster)) thief.attack(monster);
+            }
+            
+        }
+        acting=null;
+        room.setMonstersTouchable(null);
+    }
+
+    private void herosTurn(boolean canBePlayed) {
+        monsterTurn=!canBePlayed;
+        checkInit();
+        if(heroesActions<1) heroesActions=1;
+        room.setHerosCanBePlay(canBePlayed);
+        monsterAttacked=null;
+        for(Monster monster:monsters) monster.setHasAttack(false);
+    }
+
+    public Heros getHerosActing() {
+        return acting;
+    }
+
+    public void deadMonster(Monster monster) {
+        for(Monster m:monsters){
+            if(monster!=m && m.getOrder()>monster.getOrder()) m.setOrder(m.getOrder()-1);
+        }
+        room.remove(monster);
+        monsters.remove(monster);
+    }
+
+
     
 }

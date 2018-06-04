@@ -1,0 +1,758 @@
+
+warrior.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 26
+attack
+  rotate: false
+  xy: 2, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 24
+attack
+  rotate: false
+  xy: 504, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 38
+attack
+  rotate: false
+  xy: 504, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 39
+attack
+  rotate: false
+  xy: 504, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 37
+attack
+  rotate: false
+  xy: 504, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 0
+attack
+  rotate: false
+  xy: 2, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 11
+attack
+  rotate: false
+  xy: 504, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 23
+attack
+  rotate: false
+  xy: 1006, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 18
+attack
+  rotate: false
+  xy: 504, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 1006, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 6
+attack
+  rotate: false
+  xy: 1508, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 1006, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 1508, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 1508, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 10
+ptWarrior
+  rotate: false
+  xy: 2010, 1944
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 2, 2
+  size: 242, 386
+  orig: 242, 386
+  offset: 0, 0
+  index: 46
+walk
+  rotate: false
+  xy: 246, 2
+  size: 242, 386
+  orig: 242, 386
+  offset: 0, 0
+  index: 45
+walk
+  rotate: false
+  xy: 490, 2
+  size: 242, 386
+  orig: 242, 386
+  offset: 0, 0
+  index: 47
+walk
+  rotate: false
+  xy: 734, 2
+  size: 241, 386
+  orig: 241, 386
+  offset: 0, 0
+  index: 48
+walk
+  rotate: false
+  xy: 977, 3
+  size: 241, 385
+  orig: 241, 385
+  offset: 0, 0
+  index: 43
+walk
+  rotate: false
+  xy: 1220, 3
+  size: 241, 385
+  orig: 241, 385
+  offset: 0, 0
+  index: 44
+walk
+  rotate: false
+  xy: 1463, 3
+  size: 240, 385
+  orig: 240, 385
+  offset: 0, 0
+  index: 49
+walk
+  rotate: false
+  xy: 1705, 3
+  size: 240, 385
+  orig: 240, 385
+  offset: 0, 0
+  index: 50
+
+warrior2.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1433
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 12
+attack
+  rotate: false
+  xy: 504, 1433
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 14
+attack
+  rotate: false
+  xy: 2, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 15
+attack
+  rotate: false
+  xy: 504, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 17
+attack
+  rotate: false
+  xy: 1006, 1433
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 19
+attack
+  rotate: false
+  xy: 504, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 27
+attack
+  rotate: false
+  xy: 1006, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 20
+attack
+  rotate: false
+  xy: 1508, 1433
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 21
+attack
+  rotate: false
+  xy: 1006, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 22
+attack
+  rotate: false
+  xy: 1508, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 25
+attack
+  rotate: false
+  xy: 1508, 389
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 28
+selected
+  rotate: false
+  xy: 2, 911
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 2, 2
+  size: 240, 385
+  orig: 240, 385
+  offset: 0, 0
+  index: 42
+walk
+  rotate: false
+  xy: 244, 2
+  size: 239, 385
+  orig: 239, 385
+  offset: 0, 0
+  index: 51
+walk
+  rotate: false
+  xy: 485, 2
+  size: 239, 385
+  orig: 239, 385
+  offset: 0, 0
+  index: 41
+walk
+  rotate: false
+  xy: 726, 2
+  size: 238, 385
+  orig: 238, 385
+  offset: 0, 0
+  index: 52
+walk
+  rotate: false
+  xy: 966, 3
+  size: 239, 384
+  orig: 239, 384
+  offset: 0, 0
+  index: 40
+walk
+  rotate: false
+  xy: 1207, 3
+  size: 238, 384
+  orig: 238, 384
+  offset: 0, 0
+  index: 53
+walk
+  rotate: false
+  xy: 1447, 3
+  size: 238, 384
+  orig: 238, 384
+  offset: 0, 0
+  index: 39
+walk
+  rotate: false
+  xy: 1687, 3
+  size: 237, 384
+  orig: 237, 384
+  offset: 0, 0
+  index: 38
+
+warrior3.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 29
+attack
+  rotate: false
+  xy: 504, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 1006, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 36
+attack
+  rotate: false
+  xy: 1508, 1434
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 2, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 504, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 30
+attack
+  rotate: false
+  xy: 1006, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 31
+attack
+  rotate: false
+  xy: 1508, 912
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 32
+attack
+  rotate: false
+  xy: 2, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 33
+attack
+  rotate: false
+  xy: 504, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 34
+attack
+  rotate: false
+  xy: 1006, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 35
+attack
+  rotate: false
+  xy: 1508, 390
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 4
+walk
+  rotate: false
+  xy: 2, 2
+  size: 220, 386
+  orig: 220, 386
+  offset: 0, 0
+  index: 13
+walk
+  rotate: false
+  xy: 224, 2
+  size: 220, 386
+  orig: 220, 386
+  offset: 0, 0
+  index: 17
+walk
+  rotate: false
+  xy: 446, 2
+  size: 219, 386
+  orig: 219, 386
+  offset: 0, 0
+  index: 14
+walk
+  rotate: false
+  xy: 667, 2
+  size: 219, 386
+  orig: 219, 386
+  offset: 0, 0
+  index: 16
+walk
+  rotate: false
+  xy: 888, 2
+  size: 218, 386
+  orig: 218, 386
+  offset: 0, 0
+  index: 15
+walk
+  rotate: false
+  xy: 1108, 3
+  size: 225, 385
+  orig: 225, 385
+  offset: 0, 0
+  index: 8
+walk
+  rotate: false
+  xy: 1335, 3
+  size: 224, 385
+  orig: 224, 385
+  offset: 0, 0
+  index: 9
+walk
+  rotate: false
+  xy: 1561, 3
+  size: 224, 385
+  orig: 224, 385
+  offset: 0, 0
+  index: 21
+walk
+  rotate: false
+  xy: 1787, 4
+  size: 237, 384
+  orig: 237, 384
+  offset: 0, 0
+  index: 54
+
+warrior4.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1410
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 16
+attack
+  rotate: false
+  xy: 2, 888
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 13
+guerrierMort
+  rotate: false
+  xy: 979, 1162
+  size: 233, 383
+  orig: 233, 383
+  offset: 0, 0
+  index: -1
+dead
+  rotate: false
+  xy: 979, 1162
+  size: 233, 383
+  orig: 233, 383
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 504, 1546
+  size: 236, 384
+  orig: 236, 384
+  offset: 0, 0
+  index: 55
+walk
+  rotate: false
+  xy: 2, 503
+  size: 237, 383
+  orig: 237, 383
+  offset: 0, 0
+  index: 37
+walk
+  rotate: false
+  xy: 504, 1160
+  size: 236, 384
+  orig: 236, 384
+  offset: 0, 0
+  index: 56
+walk
+  rotate: false
+  xy: 742, 1547
+  size: 236, 383
+  orig: 236, 383
+  offset: 0, 0
+  index: 36
+walk
+  rotate: false
+  xy: 2, 118
+  size: 235, 383
+  orig: 235, 383
+  offset: 0, 0
+  index: 35
+walk
+  rotate: false
+  xy: 241, 503
+  size: 235, 383
+  orig: 235, 383
+  offset: 0, 0
+  index: 34
+walk
+  rotate: false
+  xy: 742, 1162
+  size: 235, 383
+  orig: 235, 383
+  offset: 0, 0
+  index: 57
+walk
+  rotate: false
+  xy: 980, 1547
+  size: 234, 383
+  orig: 234, 383
+  offset: 0, 0
+  index: 58
+walk
+  rotate: false
+  xy: 239, 118
+  size: 234, 383
+  orig: 234, 383
+  offset: 0, 0
+  index: 33
+walk
+  rotate: false
+  xy: 1216, 1547
+  size: 233, 383
+  orig: 233, 383
+  offset: 0, 0
+  index: 59
+walk
+  rotate: false
+  xy: 1214, 1163
+  size: 233, 382
+  orig: 233, 382
+  offset: 0, 0
+  index: 32
+walk
+  rotate: false
+  xy: 1451, 1548
+  size: 232, 382
+  orig: 232, 382
+  offset: 0, 0
+  index: 31
+walk
+  rotate: false
+  xy: 1685, 1547
+  size: 231, 383
+  orig: 231, 383
+  offset: 0, 0
+  index: 1
+walk
+  rotate: false
+  xy: 504, 776
+  size: 231, 382
+  orig: 231, 382
+  offset: 0, 0
+  index: 29
+walk
+  rotate: false
+  xy: 478, 392
+  size: 231, 382
+  orig: 231, 382
+  offset: 0, 0
+  index: 30
+walk
+  rotate: false
+  xy: 475, 8
+  size: 231, 382
+  orig: 231, 382
+  offset: 0, 0
+  index: 0
+walk
+  rotate: false
+  xy: 711, 390
+  size: 226, 384
+  orig: 226, 384
+  offset: 0, 0
+  index: 23
+walk
+  rotate: false
+  xy: 708, 5
+  size: 230, 383
+  orig: 230, 383
+  offset: 0, 0
+  index: 2
+walk
+  rotate: false
+  xy: 737, 776
+  size: 230, 382
+  orig: 230, 382
+  offset: 0, 0
+  index: 28
+walk
+  rotate: false
+  xy: 969, 777
+  size: 229, 383
+  orig: 229, 383
+  offset: 0, 0
+  index: 3
+walk
+  rotate: false
+  xy: 939, 390
+  size: 228, 384
+  orig: 228, 384
+  offset: 0, 0
+  index: 4
+walk
+  rotate: false
+  xy: 940, 5
+  size: 228, 383
+  orig: 228, 383
+  offset: 0, 0
+  index: 26
+walk
+  rotate: false
+  xy: 1169, 390
+  size: 223, 385
+  orig: 223, 385
+  offset: 0, 0
+  index: 10
+walk
+  rotate: false
+  xy: 1170, 4
+  size: 227, 384
+  orig: 227, 384
+  offset: 0, 0
+  index: 5
+walk
+  rotate: false
+  xy: 1200, 777
+  size: 226, 383
+  orig: 226, 383
+  offset: 0, 0
+  index: 24
+walk
+  rotate: false
+  xy: 1394, 390
+  size: 222, 385
+  orig: 222, 385
+  offset: 0, 0
+  index: 11
+walk
+  rotate: false
+  xy: 1399, 4
+  size: 227, 384
+  orig: 227, 384
+  offset: 0, 0
+  index: 6
+walk
+  rotate: false
+  xy: 1428, 777
+  size: 226, 384
+  orig: 226, 384
+  offset: 0, 0
+  index: 7
+walk
+  rotate: false
+  xy: 1451, 1163
+  size: 229, 383
+  orig: 229, 383
+  offset: 0, 0
+  index: 27
+walk
+  rotate: false
+  xy: 1682, 1162
+  size: 227, 383
+  orig: 227, 383
+  offset: 0, 0
+  index: 25
+walk
+  rotate: false
+  xy: 1656, 776
+  size: 225, 384
+  orig: 225, 384
+  offset: 0, 0
+  index: 22
+walk
+  rotate: false
+  xy: 1628, 389
+  size: 223, 385
+  orig: 223, 385
+  offset: 0, 0
+  index: 20
+walk
+  rotate: false
+  xy: 1628, 2
+  size: 222, 385
+  orig: 222, 385
+  offset: 0, 0
+  index: 19
+
+warrior5.png
+size: 256,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+walk
+  rotate: false
+  xy: 2, 389
+  size: 221, 385
+  orig: 221, 385
+  offset: 0, 0
+  index: 12
+walk
+  rotate: false
+  xy: 2, 2
+  size: 221, 385
+  orig: 221, 385
+  offset: 0, 0
+  index: 18

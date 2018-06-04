@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.mygdx.game.Characters.Character;
 /**
@@ -28,8 +29,8 @@ public class HerosPosition extends Group{
         this.mage=mage;
         
         
-        posY=warrior.getActor().getY();
-        setHeight(warrior.getActor().getHeight());
+        posY=warrior.getActor(false).getY();
+        setHeight(warrior.getActor(false).getHeight());
         
         getOrder();
         
@@ -39,11 +40,23 @@ public class HerosPosition extends Group{
     }
 
     public void setHerosPosition(boolean setOrder) {
+        
         for(int i=0; i<position.length;i++){
             CharactersFullGUI h=(CharactersFullGUI) getChildren().get(i);
-            h.setX(position[i]+ (320-getChildren().get(i).getWidth())/2);
+            if(setOrder){
+                h.getHeros().setOrder(i);
+            }
+            
+            int order=h.getHeros().getOrder();
+            if(h.getHeros().isAlive()){
+                h.setTouchable(Touchable.enabled);
+            }else{
+                 h.setTouchable(Touchable.disabled);
+            }
+            h.setX(position[order]+ (320-getChildren().get(order).getWidth())/2);
             h.setY(posY);
-            if(setOrder) h.getHeros().setOrder(i);
+            if(!h.getHeros().isAlive()) h.getHeros().setAction("dead");
+            
         }
     }
     private void setHerosPosition(Actor heros, float x) {
@@ -64,10 +77,13 @@ public class HerosPosition extends Group{
             @Override
             public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
                 originX=x;
-                Actor dragHeros=hit(x,y,true);
- 
+                CharactersFullGUI dragHeros= (CharactersFullGUI) hit(x,y,true);
+
+   
                 payload.setObject(dragHeros);
                 payload.setDragActor(dragHeros);
+                    
+
                 return payload;
             }
 
@@ -94,8 +110,8 @@ public class HerosPosition extends Group{
 
     private void getOrder() {
         clear();
-        addActorAt(warrior.getOrder(), warrior.getActor());
-        addActorAt(thief.getOrder(), thief.getActor());
-        addActorAt(mage.getOrder(), mage.getActor());
+        addActorAt(warrior.getOrder(), warrior.getActor(false));
+        addActorAt(thief.getOrder(), thief.getActor(false));
+        addActorAt(mage.getOrder(), mage.getActor(false));
     }
 }

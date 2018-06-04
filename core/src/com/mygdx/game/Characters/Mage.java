@@ -5,6 +5,7 @@
  */
 package com.mygdx.game.Characters;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
 
@@ -24,9 +25,14 @@ public class Mage extends Heros{
         attack=2;
         defense=0;
         xp=1;
+        energy=5;
+        maxEnergy=5;
+        attackType="AD";
         this.mapPt=new HerosMapGUI(1, -10, -10, spriteSheet);
-        this.MAX_WALK=29;
+        this.MAX_WALK=15;
         this.MAX_ATTACK=29;
     }
-
+    public boolean testIfCanActOn(Character character){ 
+        return true;
+    }
 }

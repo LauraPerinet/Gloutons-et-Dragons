@@ -5,6 +5,7 @@
  */
 package com.mygdx.game.Characters;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.CharactersGUI.HerosMapGUI;
@@ -24,10 +25,16 @@ public class Warrior extends Heros{
         attack=3;
         defense=1;
         xp=1;
+        energy=3;
+        maxEnergy=3;
+        attackType="AC";
         mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);
-        MAX_WALK=59;
-        MAX_ATTACK=39;
-        
-
+        MAX_WALK=20;
+        MAX_ATTACK=14;
+    }
+    public boolean testIfCanActOn(Character character){ 
+        boolean test=false;
+        if(order==2 && character.getOrder()==0) test=true;
+        return test;
     }
 }

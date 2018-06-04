@@ -7,15 +7,15 @@ package com.mygdx.game.DungeonGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Cursor;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.Game;
 import com.mygdx.game.Items.Inventory;
 import com.mygdx.game.Menu;
@@ -36,6 +36,7 @@ public class Dungeon extends Stage implements InputProcessor{
     private boolean ready=false;
     private String roomBackground;
     private Inventory inventory;
+    private Cursor AD, AC, arrow;
     private Action changeScreenAction=new Action(){
         @Override
         public boolean act(float Delta){
@@ -56,9 +57,9 @@ public class Dungeon extends Stage implements InputProcessor{
        
         this.game=game;
         inventory=Inventory.getInstance(game.getSkin());
-        menu=new Menu();
+        createCursors();
         map=MapDungeon.getInstance(game.getSkin());
-        
+        menu=new Menu(game.getSkin());
         main=map;
         main.setY(menu.getHeight());
         addActor(main);
@@ -74,7 +75,7 @@ public class Dungeon extends Stage implements InputProcessor{
     public static Dungeon getInstance(){
        return INSTANCE; 
     }
-
+    public Menu getMenu(){return menu;}
     public Skin getSkin(){return game.getSkin();}
     public void goTo( String roomBackground ) {
         this.roomBackground = roomBackground;
@@ -82,6 +83,7 @@ public class Dungeon extends Stage implements InputProcessor{
     }
     
     public void goTo() {
+        menu.removeMonsters();;
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
 
@@ -94,6 +96,22 @@ public class Dungeon extends Stage implements InputProcessor{
 
     public RoomGUI getRoom() {
         return room;
+    }
+
+    private void createCursors() {
+        arrow=Gdx.graphics.newCursor(new Pixmap(new FileHandle("arrow.png")), 0, 0);
+        AD=Gdx.graphics.newCursor(new Pixmap(new FileHandle("AD.png")), 0, 0);
+        AC=Gdx.graphics.newCursor(new Pixmap(new FileHandle("AC.png")), 0, 0);
+        Gdx.graphics.setCursor(arrow);
+    }
+    public void setCursor(String cursor){
+        if(cursor.equals("AC")){
+            Gdx.graphics.setCursor(AC);
+        }else if(cursor.equals("AD")){
+            Gdx.graphics.setCursor(AD);
+        }else{
+            Gdx.graphics.setCursor(arrow);
+        }
     }
 
     
