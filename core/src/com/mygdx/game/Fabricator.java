@@ -5,6 +5,8 @@
  */
 package com.mygdx.game;
 
+import com.mygdx.game.Characters.Lapinator;
+import com.mygdx.game.Characters.FlyinSnake;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;

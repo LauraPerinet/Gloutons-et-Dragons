@@ -6,6 +6,7 @@
 package com.mygdx.game.Characters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
@@ -28,6 +29,7 @@ public class Character {
     protected boolean ready=false, hasAttack=false, isHurt=false, isSelected=false, actionChange=true;
     protected Fight fight=null;
     protected StateHeros statesGUI;
+    protected Sound attackSound, deadSound;
     
     public String getName(){return name;}
     public CharactersFullGUI getActor(boolean addListener){ 
@@ -67,7 +69,15 @@ public class Character {
         this.statesGUI=statesGUI;
     }
     public String getAction(){ return action; }
-    public void setAction(String action){ actionChange=true; this.action=action; }
+    public void setAction(String action){ 
+        actionChange=true; 
+        this.action=action; 
+        Gdx.app.log("setAction", action);
+        if(action.equals("attack")){
+            Gdx.app.log("attack sound", attackSound.toString());
+            attackSound.play();
+        }
+    }
      public void setFight(Fight fight){ this.fight=fight;}
     public int getHp(){return hp;}
     public Fight getFight() { return fight;}

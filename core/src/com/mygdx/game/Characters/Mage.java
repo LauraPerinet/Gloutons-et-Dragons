@@ -18,6 +18,8 @@ public class Mage extends Heros{
     
     public Mage(){
         spriteSheet=new TextureAtlas("Characters/mage/mage.atlas");
+        attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/mageAttack.mp3"));
+        deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/mageDead.mp3"));
         this.name="mage";
         this.order=1;
         this.initiative=1;

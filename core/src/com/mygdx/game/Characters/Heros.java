@@ -53,7 +53,7 @@ public class Heros extends Character{
         bonusAttack=0;
         label="-1";
         monster.getHurt(a);
-        action="attack";
+        setAction("attack");
         isSelected=false;
     }
 

@@ -95,7 +95,8 @@ public class RoomGUI extends Group{
 
     public Group getHeros(){ return heroes;}
     private void createBackground(String background) {
-        this.background=new Image(new Texture("room/"+background+".jpg"));
+        String time="Day";
+        this.background=new Image(new Texture("room/"+background+time+".jpg"));
         this.background.setName("background");
         out.setPosition(1820, 70);
         addActor(this.background);

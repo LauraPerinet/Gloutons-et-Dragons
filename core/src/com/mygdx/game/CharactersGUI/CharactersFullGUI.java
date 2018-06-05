@@ -50,6 +50,7 @@ public class CharactersFullGUI extends Actor{
         if(heros.getName().equals("warrior")){ setWidth(230); }
         if(heros.getName().equals("mage")){ setWidth(130); }
         setTouchable(Touchable.disabled);
+        setY(50);
         if(addListener){
             addListener(new ClickListener(){
                    @Override

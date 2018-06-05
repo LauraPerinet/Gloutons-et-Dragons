@@ -18,6 +18,8 @@ public class Warrior extends Heros{
 
     public Warrior(){
         spriteSheet=new TextureAtlas("Characters/warrior/warrior.atlas");
+        attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/warriorAttack.mp3"));
+        deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/warriorDead.mp3"));
         name="warrior";
         order=2;
         initiative=1;

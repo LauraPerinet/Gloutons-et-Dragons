@@ -6,6 +6,7 @@
 package com.mygdx.game.Items;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -23,9 +24,12 @@ public class Items extends Image{
     protected int  minX=0, minY=70, maxX=1920-(int) getWidth(), maxY=800-(int) getHeight(), lock;
     protected float x,y;
     protected boolean fromRoom, draggable=false;
+    protected Sound addItemSound;
     
     public Items(String item, Boolean fromRoom){
+        
         super(new Texture("items/"+item+".png"));
+        addItemSound=Gdx.audio.newSound(Gdx.files.internal("sounds/addItem.mp3"));
         setName(item);
         this.fromRoom=fromRoom;
         if(fromRoom) addClickToPick();
@@ -43,7 +47,9 @@ public class Items extends Image{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Inventory.getInstance().addItem(Items.this);
+                addItemSound.play();
                 Items.this.remove();
+                
             }
         });
     }

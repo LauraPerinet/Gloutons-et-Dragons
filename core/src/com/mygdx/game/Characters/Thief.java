@@ -19,6 +19,8 @@ public class Thief extends Heros{
     
     public Thief(){
         spriteSheet=new TextureAtlas("Characters/thief/thief.atlas");
+        attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/thiefAttack.mp3"));
+        deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/thiefDead.mp3"));
         hp=8;
         attack=2;
         defense=1;

@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.mygdx.game.DungeonGUI.Dungeon;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -15,6 +16,7 @@ public class Game extends ApplicationAdapter {
     private Viewport viewMainWindow;
     private Skin skin;
     private boolean gameOn=true;
+    private Music music;
     
     @Override
     public void create () {
@@ -23,10 +25,13 @@ public class Game extends ApplicationAdapter {
              skin.getFont("verylittle").getData().setScale(0.35f,0.35f);
              skin.getFont("superlittle").getData().setScale(0.25f,0.25f);
              viewMainWindow=new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+             music= Gdx.audio.newMusic(Gdx.files.internal("sounds/luppo.mp3"));
+             music.setLooping(true);
+             music.play();
              actual = new MainMenu(this);
-
+             
              // A commenter plus tard
-             changeStage();
+             //changeStage();
     }
 
     @Override
