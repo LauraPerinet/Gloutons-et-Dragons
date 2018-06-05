@@ -13,13 +13,14 @@ import com.mygdx.game.CharactersGUI.HerosMapGUI;
 import com.mygdx.game.CharactersGUI.StateHeros;
 import com.mygdx.game.DungeonGUI.MapDungeon;
 import com.mygdx.game.Fight;
+import com.mygdx.game.Items.Potion;
 
 /**
  *
  * @author Laura
  */
 public class Character {
-    protected String name, action="walk", type;
+    protected String name, action="walk", type, attackType;
     protected int order, initiative, hp, attack, defense, xp;
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
@@ -69,7 +70,7 @@ public class Character {
     public int getHp(){return hp;}
     public Fight getFight() { return fight;}
     public String getType(){return type;}
-    
+    public String getAttackType() { return attackType; }
     public boolean isSelected() {
         return isSelected;
     }
@@ -84,4 +85,6 @@ public class Character {
     public void setActionChange(boolean b) {
         actionChange=b;
     }
+
+    
 }

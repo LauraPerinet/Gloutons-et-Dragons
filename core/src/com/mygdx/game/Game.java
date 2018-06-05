@@ -19,6 +19,9 @@ public class Game extends ApplicationAdapter {
     @Override
     public void create () {
              skin = new Skin(Gdx.files.internal("uiskin.json"));
+             skin.getFont("little").getData().setScale(0.5f,0.5f);
+             skin.getFont("verylittle").getData().setScale(0.35f,0.35f);
+             skin.getFont("superlittle").getData().setScale(0.25f,0.25f);
              viewMainWindow=new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
              actual = new MainMenu(this);
 

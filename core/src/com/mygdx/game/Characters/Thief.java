@@ -28,6 +28,7 @@ public class Thief extends Heros{
         initiative=3;
         energy=4;
         maxEnergy=4;
+        maxHp=8;
         attackType="AC";
         mapPt=new HerosMapGUI(1, 15, -10, spriteSheet);
         MAX_WALK=19;

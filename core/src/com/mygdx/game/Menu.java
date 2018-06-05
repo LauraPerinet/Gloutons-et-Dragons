@@ -51,12 +51,12 @@ public class Menu extends Group{
         states.left().padLeft(20);
         states.bottom().padBottom(10);
         
-        monsters.left().padLeft(1000);
+        monsters.left().padLeft(1550);
         monsters.bottom().padBottom(180);
 
         for(Heros heros : heroes){
             states.add(new StateHeros(heros, skin));
-            states.row();
+            //states.row();
         }
 
         addActor(monsters);

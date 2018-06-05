@@ -27,6 +27,7 @@ public class Mage extends Heros{
         xp=1;
         energy=5;
         maxEnergy=5;
+        maxHp=5;
         attackType="AD";
         this.mapPt=new HerosMapGUI(1, -10, -10, spriteSheet);
         this.MAX_WALK=15;

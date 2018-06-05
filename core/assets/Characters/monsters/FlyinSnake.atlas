@@ -1,0 +1,174 @@
+
+flyinSnake.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 2, 906
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 204, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 2, 454
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 18
+attack
+  rotate: false
+  xy: 204, 906
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 10
+attack
+  rotate: false
+  xy: 406, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 11
+attack
+  rotate: false
+  xy: 2, 2
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 12
+attack
+  rotate: false
+  xy: 204, 454
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 13
+attack
+  rotate: false
+  xy: 406, 906
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 14
+attack
+  rotate: false
+  xy: 608, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 15
+attack
+  rotate: false
+  xy: 204, 2
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 16
+attack
+  rotate: false
+  xy: 406, 454
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 17
+attack
+  rotate: false
+  xy: 810, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 19
+attack
+  rotate: false
+  xy: 406, 2
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 23
+attack
+  rotate: false
+  xy: 608, 454
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 20
+attack
+  rotate: false
+  xy: 810, 906
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 21
+attack
+  rotate: false
+  xy: 1012, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 22
+attack
+  rotate: false
+  xy: 608, 2
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 810, 454
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 1012, 906
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 1214, 1358
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 4
+attack
+  rotate: false
+  xy: 810, 2
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 1012, 454
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 6
+walk
+  rotate: false
+  xy: 608, 906
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 0

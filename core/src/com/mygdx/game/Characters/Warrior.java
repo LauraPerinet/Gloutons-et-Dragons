@@ -22,6 +22,7 @@ public class Warrior extends Heros{
         order=2;
         initiative=1;
         hp=10;
+        maxHp=10;
         attack=3;
         defense=1;
         xp=1;

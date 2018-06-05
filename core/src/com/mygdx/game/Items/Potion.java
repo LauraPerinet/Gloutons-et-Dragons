@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.DungeonGUI.MapDungeon;
@@ -48,9 +49,8 @@ public class Potion extends Items {
         super("potions", fromRoom);
         this.type=type;
         setImage();
-        Gdx.app.log("Potion", "touchable="+getTouchable());
+
         if(!fromRoom){
-            Gdx.app.log("Potion", "touchable="+getTouchable());
             addDragAndDrop();
         }
     }
@@ -73,15 +73,19 @@ public class Potion extends Items {
                 originY=potion.getY();
                 payload.setObject(potion);
                 payload.setDragActor(potion);
-                
+                Inventory.getInstance().getImg().remove(potion.getLock());
                 
                 return payload;
             }
 
             @Override
             public void dragStop(InputEvent event, float x, float y, int pointer, DragAndDrop.Payload payload, DragAndDrop.Target target) {
-                Items potion=(Items) payload.getDragActor();
-                Inventory.getInstance().getImg().addItem(potion.getName(), potion.getLock());
+                Gdx.app.log("potion", "dragStop");
+               if(target==null){
+                   Items potion=(Items) payload.getDragActor();
+                    Inventory.getInstance().getImg().addItem(potion.getName());
+               }
+                
             }
             
         });
@@ -94,7 +98,15 @@ public class Potion extends Items {
 
                 @Override
                 public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
-                     Gdx.app.log("Potion ", "Lachée sur "+heros.getName());
+                    Gdx.app.log("potion", "drop");
+                    CharactersFullGUI herosActor=(CharactersFullGUI) heros; 
+                    Heros h=(Heros) herosActor.getHeros();
+                    if(h.isAlive()){
+                        h.drinkPotion(payload.getDragActor());
+                    }else{
+                        Items potion=(Items) payload.getDragActor();
+                        Inventory.getInstance().getImg().addItem(potion.getName());
+                    }
                 }
 
 

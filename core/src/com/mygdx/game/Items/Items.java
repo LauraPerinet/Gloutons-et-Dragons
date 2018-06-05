@@ -42,7 +42,6 @@ public class Items extends Image{
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("items", "click");
                 Inventory.getInstance().addItem(Items.this);
                 Items.this.remove();
             }

@@ -220,6 +220,12 @@ public class MapDungeon extends Group{
     public void clear(){
         INSTANCE=null;
     }
+
+    public Heros getLastHeros() {
+        int i=0;
+        while(!getHeros(i).isAlive()){ i++; }
+        return getHeros(i);
+    }
     
     
 

@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Character;
 import com.mygdx.game.Characters.Monster;
@@ -32,6 +33,7 @@ public class StateHeros extends Table {
     private int width=200, maxHP, maxEnergy;
     private Rectangle health, energy;
     private Image cadre;
+    private Label healthL, energyL;
 
     public StateHeros(Heros heros, Skin skin) {
         this.heros=heros;
@@ -41,25 +43,33 @@ public class StateHeros extends Table {
         skin.getFont("little").getData().setScale(0.5f,0.5f);
 
         Label name=new Label(heros.getName(), skin, "little");
-        
+        Label level=new Label("Init "+heros.getInit(), skin, "verylittle");
         heros.setStatesGUI(this);
         maxHP=heros.getHp();
         health=new Rectangle(5, 5, width, 10, Color.FOREST);
         energy=new Rectangle(5, 5, width, 10, Color.BLUE);
         maxEnergy=heros.getEnergy();
-        add(name);
+        healthL=new Label(heros.getHp()+"/"+maxHP, skin, "verylittle");
+        energyL=new Label(heros.getEnergy()+"/"+maxEnergy, skin, "verylittle");
+        add(name).align(Align.left);
+        add(level).align(Align.right);
         row();
         add(health);
+        add(healthL).align(Align.right);
         row();
         add(energy).padTop(10);
+        add(energyL).align(Align.right);
+        
     }
     public StateHeros(Monster monster, Skin skin) {
         this.monster=monster;
         Label name=new Label(monster.getName(), skin, "little");
+        Label level=new Label("Init "+monster.getInit(), skin, "verylittle");
         monster.setStatesGUI(this);
         maxHP=monster.getHp();
         health=new Rectangle(5, 5, width, 10, Color.FOREST);
-        add(name);
+        add(name).align(Align.left);
+        add(level).align(Align.right);
         row();
         add(health);
     }
@@ -67,6 +77,7 @@ public class StateHeros extends Table {
     public void setHealth(Character heros){
         int hpGUI=width/maxHP*heros.getHp();
         if(hpGUI<0) hpGUI=0;
+        healthL.setText(heros.getHp()+"/"+maxHP);
         health.setWidth(hpGUI);
     }
     private Group getGroup(Rectangle rect){
@@ -79,6 +90,7 @@ public class StateHeros extends Table {
     public void setEnergy(Heros aThis) {
         int energ=width/maxEnergy*heros.getEnergy();
         if(energ<0) energ=0;
+        energyL.setText(heros.getEnergy()+"/"+maxEnergy);
         energy.setWidth(energ);
     }
     

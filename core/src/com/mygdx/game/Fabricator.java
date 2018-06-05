@@ -31,9 +31,15 @@ public abstract class Fabricator {
         return it;
     }
 
-    public static Monster createMonster(String name, int order) {
+    public static Monster createMonster(String name) {
         Monster monster=null;
-        monster=new Monster(name, order);
+        if(name.equals("FlyinSnake")){
+            monster=new FlyinSnake(name);
+        }else if(name.equals("Lapinator")){
+            monster=new Lapinator(name);
+        }
+        
+        
         return monster;
     }
 }

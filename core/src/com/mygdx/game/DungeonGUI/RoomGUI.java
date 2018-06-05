@@ -165,7 +165,7 @@ public class RoomGUI extends Group{
 
     private void addThingsToRoom(ArrayList<String> thingsToAdd, Boolean isAMonster) {
         int numItems = new Random().nextInt(4);
-        
+        ArrayList<Monster> monstersAD=new ArrayList<Monster>();
         for(int i=0; i<numItems; i++){
             int ran =new Random().nextInt( thingsToAdd.size());
             String thing=thingsToAdd.get(ran);
@@ -175,15 +175,27 @@ public class RoomGUI extends Group{
                 addActor(it);
                 
             }else{
-                Monster monster=Fabricator.createMonster(thing, i);
-                monsters.add(monster);
-                CharactersFullGUI actor=monster.getActor(true);
-                int to=900+monster.getOrder()*200;
-                actor.moveBy(to, 50);
-                actor.goTo(to);
-                monstersGroup.addActor(actor);
+                Monster monster=Fabricator.createMonster(thing);
+                if(monster.getAttackType().equals("AD")){
+                    monstersAD.add(monster);
+                }else{
+                    monsters.add(monster);
+                }
             }
             thingsToAdd.remove(ran); 
+        }
+        for(Monster m:monstersAD){
+            monsters.add(m);
+        }
+        int i=0;
+        for(Monster monster: monsters){
+            monster.setOrder(i);
+            CharactersFullGUI actor=monster.getActor(true);
+            int to=900+monster.getOrder()*200;
+            actor.moveBy(to, 50);
+            actor.goTo(to);
+            monstersGroup.addActor(actor);
+            i++;
         }
     }
 

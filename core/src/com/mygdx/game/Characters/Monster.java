@@ -18,30 +18,32 @@ import java.util.Random;
  */
 public class Monster extends Character{
     
-    public Monster(String name, int order){
-        spriteSheet=new TextureAtlas("Characters/monsters/lapinator.atlas");
+    public Monster(String name){
         this.name=name;
-        this.order=order;
-        this.initiative=1;
-        this.type="monster";
-        hp=8;
-        attack=3;
-        defense=0;
-        xp=2;
-        
-        this.MAX_WALK=0;
-        this.MAX_ATTACK=23;
+        type="monster";
     }
 
+    public boolean canAttack(){
+        Gdx.app.log(name, "canAttack : attackType "+attackType+"   ordre "+order);
+        if(attackType.equals("AC") && order>0) return false;
+        Gdx.app.log(name, "canAttack");
+        return true;
+    }
     public boolean attack() {
         hasAttack=true;
-        Heros firstHeros=MapDungeon.getInstance().getHeros(2);
-        if(firstHeros.isAlive()){
+        Heros heros;
+        if(attackType.equals("AC")){
+            heros=MapDungeon.getInstance().getHeros(2);
+        }
+        else{
+            heros=MapDungeon.getInstance().getLastHeros();
+        }
+        if(heros.isAlive()){
             int attack=this.attack+new Random().nextInt(xp);
             // Return false if heros is killed
-            firstHeros.getHurt(attack);
+            heros.getHurt(attack);
         }
-        return firstHeros.isAlive();
+        return heros.isAlive();
     }
 
     public boolean hasAttack() {

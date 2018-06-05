@@ -1,5 +1,5 @@
 {
-    com.badlogic.gdx.graphics.g2d.BitmapFont:{ font: { file:fonts/GandD.fnt}, little:{ file:fonts/GandD.fnt}},
+    com.badlogic.gdx.graphics.g2d.BitmapFont:{ font: { file:fonts/GandD.fnt}, little:{ file:fonts/GandDWhite.fnt}, verylittle:{ file:fonts/GandDWhite.fnt}, superlittle:{ file:fonts/GandDWhite.fnt}},
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle:{
         default:{ down:default-round-down, up:default-round, font:font}
     },
@@ -10,6 +10,8 @@
         default:{font:font},
         little:{
             font:little
-        }
+        },
+        verylittle:{font:verylittle},
+        superlittle:{font:superlittle}
     }
 }

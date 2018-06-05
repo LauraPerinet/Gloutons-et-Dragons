@@ -148,7 +148,7 @@ public class Fight extends Actor{
     }
     Monster getMonsterAttacking(){
         for(Monster monster : monsters){
-            if(!monster.hasAttack() && monster.isAlive()) return monster;
+            if(!monster.hasAttack() && monster.isAlive() && monster.canAttack()) return monster;
         }
         return null;
     }
