@@ -51,6 +51,7 @@ public class Heros extends Character{
         }
         a+=bonusAttack;
         bonusAttack=0;
+        label="-1";
         monster.getHurt(a);
         action="attack";
         isSelected=false;
@@ -64,18 +65,21 @@ public class Heros extends Character{
     public void drinkPotion(Actor p) {
         Potion potion = (Potion) p;
         if(potion.getName().equals("healing")){
+            int dif=maxHp-hp;
+            label="+"+dif;
             hp=maxHp;
             statesGUI.setHealth(this);
         }
         if(potion.getName().equals("strength")){
             bonusAttack=5;
-            hp-=1;
+            label="+5";
         }
         if(potion.getName().equals("energy")){
-            energy+=3;
+            int dif=maxEnergy-energy;
+            if(dif>3) dif=3;
+            energy+=dif;
+            label="+"+dif;
             statesGUI.setEnergy(this);
-            hp-=1;
-            statesGUI.setHealth(this);
         }
     }
 }

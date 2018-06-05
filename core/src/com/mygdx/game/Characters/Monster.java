@@ -24,12 +24,10 @@ public class Monster extends Character{
     }
 
     public boolean canAttack(){
-        Gdx.app.log(name, "canAttack : attackType "+attackType+"   ordre "+order);
         if(attackType.equals("AC") && order>0) return false;
-        Gdx.app.log(name, "canAttack");
         return true;
     }
-    public boolean attack() {
+    public Heros attack() {
         hasAttack=true;
         Heros heros;
         if(attackType.equals("AC")){
@@ -43,7 +41,7 @@ public class Monster extends Character{
             // Return false if heros is killed
             heros.getHurt(attack);
         }
-        return heros.isAlive();
+        return heros;
     }
 
     public boolean hasAttack() {
@@ -52,7 +50,9 @@ public class Monster extends Character{
     public void setHasAttack(boolean b){ hasAttack=b;}
     
     public boolean getHurt(int attack){
-        hp-=attack-defense;
+        int lost=attack-defense;
+        hp-=lost;
+        label="-"+lost;
         statesGUI.setHealth(this);
         if(hp<=0) statesGUI.clear();
         return true;

@@ -36,7 +36,7 @@ public class Fight extends Actor{
     private int  heroesActions=0;
     private  boolean gameOn=true, monsterTurn=false;
     private RoomGUI room;
-    private Heros acting=null;
+    private Heros acting=null, herosAttacked=null;
     private Monster monsterAttacked=null;
     
     public Fight(ArrayList<Monster> monsters, RoomGUI room){
@@ -88,6 +88,13 @@ public class Fight extends Actor{
                 room.setActorsPosition(true);
             }
             if(action.equals("attack")){
+                room.notif(monsterAttacked, "healing");
+                if(!room.checkIfClear()){
+                    room.setTitle("Tour des héros : "+heroesActions+" actions");
+                }else{
+                    room.setTitle("Le combat est gagné !");
+                }
+     
                 if(monsterAttacked.isAlive()){
                     if(heroesActions==0){
                         monsterTurn=true;
@@ -97,21 +104,22 @@ public class Fight extends Actor{
                 }else{
                     monsterAttacked.setAction("dead");
                 }
-                
             }
         }else{
             if(action.equals("attack")){ 
-                if(!MapDungeon.getInstance().getHeros(0).isAlive()){
-                    MapDungeon.getInstance().getHeros(0).setAction("dead");
+                room.notif(herosAttacked, "healing");  
+                if(!herosAttacked.isAlive()){
+                    herosAttacked.setAction("dead");
                 }else{
                     if(isMonsterTurn()){
                         monsterAttack();
                     }else{
+                        herosAttacked=null;
                         herosTurn(true);
                     }
                 }
-                
-            }if(action.equals("dead")){
+            }
+            if(action.equals("dead")){
                 deadMonster(monsterAttacked);
                  room.setActorsPosition(false);
             }
@@ -122,6 +130,8 @@ public class Fight extends Actor{
                         monsterAttack();
                     }
             }
+
+            
             
         }
     }
@@ -143,7 +153,8 @@ public class Fight extends Actor{
         }
         monster.setAction("attack");
         // monstre attack. Heros est blessé. Retourne true si le heros est vivant
-        if(!monster.attack()) MapDungeon.getInstance().setHerosPosition();
+        herosAttacked=monster.attack();
+        if(!herosAttacked.isAlive()) MapDungeon.getInstance().setHerosPosition();
         return true;
     }
     Monster getMonsterAttacking(){
@@ -173,6 +184,7 @@ public class Fight extends Actor{
     }
     public void attackMonster(Monster monster) {
         if(acting!=null){
+            room.notif(acting, "energy");
             heroesActions=heroesActions-1;
              
             monsterAttacked=monster;
@@ -192,9 +204,15 @@ public class Fight extends Actor{
     }
 
     private void herosTurn(boolean canBePlayed) {
+        
         monsterTurn=!canBePlayed;
         checkInit();
         if(heroesActions<1) heroesActions=1;
+        if(canBePlayed){
+             room.setTitle("Tour des héros : "+heroesActions+" actions");
+        }else{
+            room.setTitle("Tour des monstres");
+        }
         room.setHerosCanBePlay(canBePlayed);
         monsterAttacked=null;
         for(Monster monster:monsters) monster.setHasAttack(false);
@@ -208,6 +226,7 @@ public class Fight extends Actor{
         for(Monster m:monsters){
             if(monster!=m && m.getOrder()>monster.getOrder()) m.setOrder(m.getOrder()-1);
         }
+        Gdx.app.log("deadMonster fight", "dead "+monster.getName());
         room.remove(monster);
         monsters.remove(monster);
     }

@@ -103,6 +103,7 @@ public class Potion extends Items {
                     Heros h=(Heros) herosActor.getHeros();
                     if(h.isAlive()){
                         h.drinkPotion(payload.getDragActor());
+                        Dungeon.getInstance().getRoom().notif(h, payload.getDragActor().getName());
                     }else{
                         Items potion=(Items) payload.getDragActor();
                         Inventory.getInstance().getImg().addItem(potion.getName());

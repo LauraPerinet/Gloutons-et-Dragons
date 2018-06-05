@@ -55,7 +55,7 @@ public class Menu extends Group{
         monsters.bottom().padBottom(180);
 
         for(Heros heros : heroes){
-            states.add(new StateHeros(heros, skin));
+            states.add(new StateHeros(heros, skin)).width(240).padRight(30);
             //states.row();
         }
 
@@ -65,7 +65,7 @@ public class Menu extends Group{
     }
     
     public void addMonsters(Monster monster){
-        monsters.padBottom(monsters.getPadBottom()-40);
+        monsters.padBottom(monsters.getPadBottom()-55);
         monsters.add(new StateHeros(monster, skin));
         monsters.row();
     }

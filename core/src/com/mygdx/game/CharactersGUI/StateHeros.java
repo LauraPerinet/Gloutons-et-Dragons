@@ -54,7 +54,7 @@ public class StateHeros extends Table {
         add(name).align(Align.left);
         add(level).align(Align.right);
         row();
-        add(health);
+        add(health).align(Align.left);
         add(healthL).align(Align.right);
         row();
         add(energy).padTop(10);
@@ -68,10 +68,12 @@ public class StateHeros extends Table {
         monster.setStatesGUI(this);
         maxHP=monster.getHp();
         health=new Rectangle(5, 5, width, 10, Color.FOREST);
+        healthL=new Label(monster.getHp()+"/"+maxHP, skin, "verylittle");
         add(name).align(Align.left);
         add(level).align(Align.right);
         row();
-        add(health);
+        add(health).align(Align.left);
+        add(healthL).align(Align.right);
     }
     
     public void setHealth(Character heros){

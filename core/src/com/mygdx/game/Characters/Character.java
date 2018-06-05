@@ -20,7 +20,7 @@ import com.mygdx.game.Items.Potion;
  * @author Laura
  */
 public class Character {
-    protected String name, action="walk", type, attackType;
+    protected String name, action="walk", type, attackType, label;
     protected int order, initiative, hp, attack, defense, xp;
     protected TextureAtlas spriteSheet;
     protected int MAX_WALK, MAX_ATTACK;
@@ -46,7 +46,9 @@ public class Character {
     }
     
     public boolean getHurt(int attack) {
-        hp-=attack-defense;
+        int lost=attack-defense;
+        hp-=lost;
+        label="-"+lost;
         statesGUI.setHealth(this);
         if(hp<=0){
            return false;
@@ -77,7 +79,7 @@ public class Character {
     public void setSelected(boolean b){
         isSelected=b;
     }
-
+    public String getLabel(){return label;}
     public boolean getActionChange() {
        return actionChange;
     }

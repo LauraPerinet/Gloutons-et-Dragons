@@ -1,5 +1,13 @@
 {
-    com.badlogic.gdx.graphics.g2d.BitmapFont:{ font: { file:fonts/GandD.fnt}, little:{ file:fonts/GandDWhite.fnt}, verylittle:{ file:fonts/GandDWhite.fnt}, superlittle:{ file:fonts/GandDWhite.fnt}},
+    com.badlogic.gdx.graphics.g2d.BitmapFont:{ font: { 
+        file:fonts/GandD.fnt}, 
+        little:{ file:fonts/GandDWhite.fnt}, 
+        verylittle:{ file:fonts/GandDWhite.fnt}, 
+        superlittle:{ file:fonts/GandDWhite.fnt},
+        energy:{ file:fonts/GandDBlue.fnt},
+        strength:{ file:fonts/GandDRed.fnt},
+        health:{ file:fonts/GandDGreen.fnt},
+ },
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle:{
         default:{ down:default-round-down, up:default-round, font:font}
     },
@@ -12,6 +20,10 @@
             font:little
         },
         verylittle:{font:verylittle},
-        superlittle:{font:superlittle}
+        superlittle:{font:superlittle},
+        energy:{font:energy},
+        strength:{font:strength},
+        healing:{font:health},
+        
     }
 }

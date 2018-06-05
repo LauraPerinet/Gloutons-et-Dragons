@@ -14,7 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Characters.Character;
@@ -24,6 +26,7 @@ import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
+import com.mygdx.game.CharactersGUI.Notification;
 import com.mygdx.game.Fabricator;
 import com.mygdx.game.Fight;
 import com.mygdx.game.Items.Gold;
@@ -49,6 +52,7 @@ public class RoomGUI extends Group{
     private boolean ready=false;
     private Fight fight;
     private HashMap<CharactersFullGUI, Action> actions;
+    private Label turn;
     
     public RoomGUI(String background){
         JsonReader json=new JsonReader();
@@ -80,12 +84,12 @@ public class RoomGUI extends Group{
             
             });
        
-        if(checkIfClear()){
-
-        }else{
+    
             //out.setTouchable(Touchable.disabled);
+            turn=new Label("", Dungeon.getInstance().getSkin(), "little");
+            addActor(turn);
+
             fight=new Fight(monsters, this);
-        }
         
     }
 
@@ -147,9 +151,8 @@ public class RoomGUI extends Group{
         addThingsToRoom(readJsonFile(type), isAMonster);
     }
 
-    private boolean checkIfClear() {
-
-        return monsters.size()>0? false : true;
+    public boolean checkIfClear() {
+        return monstersGroup.getChildren().size>0? false : true;
     }
 
     private ArrayList<String> readJsonFile(String thing) {
@@ -184,18 +187,21 @@ public class RoomGUI extends Group{
             }
             thingsToAdd.remove(ran); 
         }
-        for(Monster m:monstersAD){
-            monsters.add(m);
-        }
-        int i=0;
-        for(Monster monster: monsters){
-            monster.setOrder(i);
-            CharactersFullGUI actor=monster.getActor(true);
-            int to=900+monster.getOrder()*200;
-            actor.moveBy(to, 50);
-            actor.goTo(to);
-            monstersGroup.addActor(actor);
-            i++;
+        if(isAMonster){
+            for(Monster m:monstersAD){
+                monsters.add(m);
+            }
+            int i=0;
+            for(Monster monster: monsters){
+                monster.setOrder(i);
+                CharactersFullGUI actor=monster.getActor(true);
+                int to=900+monster.getOrder()*200;
+                actor.moveBy(to, 50);
+                actor.goTo(to);
+                monstersGroup.addActor(actor);
+                i++;
+            }
+            Gdx.app.log("Room ", monstersGroup.getChildren().size+" monstres");
         }
     }
 
@@ -204,9 +210,13 @@ public class RoomGUI extends Group{
     }
 
     public void remove(Monster monster) {
+        
         for(Actor actor:monstersGroup.getChildren()){
             CharactersFullGUI m=(CharactersFullGUI) actor;
-            if(m.getHeros()==monster) monstersGroup.removeActor(m);
+            
+            if(m.getHeros()==monster){
+                monstersGroup.removeActor(m);
+            }
         }
     }
 
@@ -234,5 +244,28 @@ public class RoomGUI extends Group{
             if(heros.getHeros().isAlive()) heros.canBePlayed(canBePlayed);
         }
     }
+
+    public void notif(Character character, String type) {
+        Group group;
+        CharactersFullGUI hurted;
+        if(character.getType().equals("monster")){
+            group=monstersGroup;
+        }else{
+            group=heroes;
+        }
+        for(Actor a:group.getChildren()){
+            CharactersFullGUI actor=(CharactersFullGUI) a;
+            if(actor.getHeros()==character){
+                Notification notif=new Notification(actor, Dungeon.getInstance().getSkin(), type);
+                addActor(notif);
+                break;
+            }
+        }
+        
+    }
     
+    public void setTitle(String text){
+        turn.setText(text);
+    }
+
 }
