@@ -72,9 +72,7 @@ public class Character {
     public void setAction(String action){ 
         actionChange=true; 
         this.action=action; 
-        Gdx.app.log("setAction", action);
         if(action.equals("attack")){
-            Gdx.app.log("attack sound", attackSound.toString());
             attackSound.play();
         }
     }

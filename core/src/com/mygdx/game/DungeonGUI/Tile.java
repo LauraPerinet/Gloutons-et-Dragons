@@ -22,11 +22,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  * @author Laura
  */
 public class Tile extends Image {
-    private int id;
+    private int id, x, y, state=0;
     private String orientation;
     private String type;
-    private int selected=-1;
+    //private int selected=-1;
     private TextureAtlas sprite;
+    private RoomGUI roomGUI=null;
+    public static int hide=0, nextHide=1, next=2, selected=3, visited=4, visitedSelected=5;
     
     public Tile(int x, int y, String type, String orientation, TextureAtlas spriteSheet ) {
             sprite=spriteSheet;
@@ -35,13 +37,18 @@ public class Tile extends Image {
             setName("tile");
             this.type=type;
             this.orientation=orientation;
+            this.x=x;
+            this.y=y;
             id=x*10+y;
             setBounds(region.getRegionWidth()*x, region.getRegionHeight()*y, region.getRegionWidth(), region.getRegionHeight());
             setPosition(getX(), getY());
             addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if(canWeGo((Tile) hit(x, y, true))) MapDungeon.getInstance().goToRoom((Tile) hit(x, y, true));
+                    Gdx.app.log("Tile click", id+" "+state);
+                    MapDungeon map=MapDungeon.getInstance();
+                     Tile heroesOn = map.getTile();
+                    if(canWeGo(heroesOn)) MapDungeon.getInstance().goToRoom((Tile) hit(x, y, true));
                 }
             });
     }
@@ -52,12 +59,10 @@ public class Tile extends Image {
     public String getOrientation(){
         return orientation;
     }
-    private boolean canWeGo(Tile tileTouched) {
-        MapDungeon map=MapDungeon.getInstance();
-        Tile heroesOn = map.getTile();
+    public boolean canWeGo(Tile heroesOn) {
         
         int fromId=heroesOn.getId();
-        int toId=tileTouched.getId();
+        int toId=getId();
         
         int GO_LEFT = fromId-10;
         int GO_RIGHT = fromId+10;
@@ -78,10 +83,29 @@ public class Tile extends Image {
         setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, 1)));
         return true;
     }
-    public void select( int select ){ setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, select )));}
+    //public void select( int select ){ setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, select )));}
+    public void setState(int state){
+        this.state=state;
+    }
 
     public String getBackground() {
         return this.type;
+    }
+    public RoomGUI getRoomGUI(boolean isEmpty){
+        if(roomGUI==null){
+            if(isEmpty){
+                roomGUI=new RoomGUI(type, true);
+            }else{
+                roomGUI=new RoomGUI(type, false);
+            }
+        }
+        return roomGUI;
+    }
+    public int getMapX(){ return x;}
+    public int getMapY(){ return y;}
+
+    public int getState() {
+       return state;
     }
     
 }

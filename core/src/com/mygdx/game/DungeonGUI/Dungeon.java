@@ -42,13 +42,14 @@ public class Dungeon extends Stage implements InputProcessor{
         public boolean act(float Delta){
             main.remove();
             if(main.getName().equals("map")){
-                room = new RoomGUI( roomBackground );
+                //room = new RoomGUI( roomBackground );
                 main=room;
             }else{
                 main=map;
             }
             main.setY(menu.getHeight());
             addActor(main);
+            room.enter();
             return true;
         }
     };
@@ -82,7 +83,14 @@ public class Dungeon extends Stage implements InputProcessor{
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
     
+    public void goTo(RoomGUI room) {
+        this.room=room;
+        menu.removeMonsters();;
+        main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
+    }
     public void goTo() {
+        this.room=room;
+        
         menu.removeMonsters();;
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }

@@ -25,7 +25,6 @@ public class Notification extends Group{
         this.type=type;
         addActor(new Label(actor.getHeros().getLabel(), skin, type));
         setBounds(actor.getX()+actor.getWidth()/2, actor.getY()+200, 0, 0);
-        Gdx.app.log("Notif", getY()+"");
     }
 
     @Override

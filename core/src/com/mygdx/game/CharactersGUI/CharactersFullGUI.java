@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.DungeonGUI.Dungeon;
+import com.mygdx.game.Fight;
 
 /**
  *
@@ -56,7 +57,8 @@ public class CharactersFullGUI extends Actor{
                    @Override
                    public void clicked(InputEvent event, float x, float y) {
                       if(heros.getType()=="heros"){
-                          heros.getFight().selectHeros((Heros) getHeros());
+                          Fight f=heros.getFight();
+                          f.selectHeros((Heros) getHeros());
                       }else{
                           heros.getFight().attackMonster((Monster) getHeros());
                       }

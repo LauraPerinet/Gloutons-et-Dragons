@@ -226,7 +226,6 @@ public class Fight extends Actor{
         for(Monster m:monsters){
             if(monster!=m && m.getOrder()>monster.getOrder()) m.setOrder(m.getOrder()-1);
         }
-        Gdx.app.log("deadMonster fight", "dead "+monster.getName());
         room.remove(monster);
         monsters.remove(monster);
     }

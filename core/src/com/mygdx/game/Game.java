@@ -31,7 +31,7 @@ public class Game extends ApplicationAdapter {
              actual = new MainMenu(this);
              
              // A commenter plus tard
-             //changeStage();
+             changeStage();
     }
 
     @Override
@@ -60,7 +60,6 @@ public class Game extends ApplicationAdapter {
     }
 
     public void gameOver() {
-        Gdx.app.log("Gzme gameOver", "gameOver");
         gameOn=false;
         actual=new MainMenu(this);
     }

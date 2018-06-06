@@ -54,7 +54,7 @@ public class RoomGUI extends Group{
     private HashMap<CharactersFullGUI, Action> actions;
     private Label turn;
     
-    public RoomGUI(String background){
+    public RoomGUI(String background, boolean isEmpty){
         JsonReader json=new JsonReader();
         roomThings=json.parse(Gdx.files.internal("room/roomInterior.json")).get(background);
         monsters=new ArrayList();
@@ -62,12 +62,10 @@ public class RoomGUI extends Group{
         
         setName("room");
         createBackground(background); 
-        get("monsters", true);
-        get("items", false);
+        get("monsters", true, isEmpty);
+        get("items", false, isEmpty);
         
-        createActorsHeros();
-        addActor(monstersGroup);
-        setActorsPosition(true);
+        
         
         //A redescendre
         out.addListener(new ClickListener(){
@@ -84,15 +82,20 @@ public class RoomGUI extends Group{
             
             });
        
-    
-            //out.setTouchable(Touchable.disabled);
-            turn=new Label("", Dungeon.getInstance().getSkin(), "little");
-            addActor(turn);
-
-            fight=new Fight(monsters, this);
         
     }
+    public void enter(){
+        removeActor(monstersGroup);
+        removeActor(heroes);
 
+        createActorsHeros();
+        addActor(monstersGroup);
+        setActorsPosition(true);
+        //out.setTouchable(Touchable.disabled);
+        turn=new Label("", Dungeon.getInstance().getSkin(), "little");
+        addActor(turn);
+        fight=new Fight(monsters, this);
+    }
     public Group getHeros(){ return heroes;}
     private void createBackground(String background) {
         String time="Day";
@@ -148,8 +151,8 @@ public class RoomGUI extends Group{
         } 
     }
     
-    private void get(String type, Boolean isAMonster) {
-        addThingsToRoom(readJsonFile(type), isAMonster);
+    private void get(String type, Boolean isAMonster, boolean isEmpty) {
+        addThingsToRoom(readJsonFile(type), isAMonster, isEmpty);
     }
 
     public boolean checkIfClear() {
@@ -167,8 +170,15 @@ public class RoomGUI extends Group{
         return tabItems;
     }
 
-    private void addThingsToRoom(ArrayList<String> thingsToAdd, Boolean isAMonster) {
-        int numItems = new Random().nextInt(4);
+    private void addThingsToRoom(ArrayList<String> thingsToAdd, boolean isAMonster, boolean isEmpty) {
+        
+        int numItems;
+        if(isEmpty){
+            numItems= 0;
+        }else{
+            numItems= new Random().nextInt(4);
+        }
+        
         ArrayList<Monster> monstersAD=new ArrayList<Monster>();
         for(int i=0; i<numItems; i++){
             int ran =new Random().nextInt( thingsToAdd.size());
@@ -202,7 +212,6 @@ public class RoomGUI extends Group{
                 monstersGroup.addActor(actor);
                 i++;
             }
-            Gdx.app.log("Room ", monstersGroup.getChildren().size+" monstres");
         }
     }
 

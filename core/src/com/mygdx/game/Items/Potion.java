@@ -80,7 +80,6 @@ public class Potion extends Items {
 
             @Override
             public void dragStop(InputEvent event, float x, float y, int pointer, DragAndDrop.Payload payload, DragAndDrop.Target target) {
-                Gdx.app.log("potion", "dragStop");
                if(target==null){
                    Items potion=(Items) payload.getDragActor();
                     Inventory.getInstance().getImg().addItem(potion.getName());
@@ -98,7 +97,6 @@ public class Potion extends Items {
 
                 @Override
                 public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
-                    Gdx.app.log("potion", "drop");
                     CharactersFullGUI herosActor=(CharactersFullGUI) heros; 
                     Heros h=(Heros) herosActor.getHeros();
                     if(h.isAlive()){

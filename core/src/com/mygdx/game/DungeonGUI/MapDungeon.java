@@ -8,13 +8,11 @@ package com.mygdx.game.DungeonGUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -28,7 +26,6 @@ import com.mygdx.game.CharactersGUI.HerosPosition;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
-import com.mygdx.game.Items.Inventory;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -75,7 +72,7 @@ public class MapDungeon extends Group{
         table.add(leftTable).width(getWidth()/2).height(getHeight());
         
         addActor(table);
-
+        
     }
     
     public static MapDungeon getInstance(){  return INSTANCE; }
@@ -110,9 +107,20 @@ public class MapDungeon extends Group{
         for (JsonValue room : level.get("rooms")){
             Tile tile=new Tile(room.getInt("x"), room.getInt("y"), room.getString("type"), room.getString("orientation"), spriteSheet);
             map.addActor(tile);
-            if(room.getBoolean("enter"))
+           
+            if(room.getBoolean("enter")){
                 this.tile=tile;
+                this.tile.getRoomGUI(true);
+                this.tile.setState(Tile.visited);
+            }else{
+                tile.setState(Tile.hide);
+            }
         }
+        ArrayList<Tile> nextHideTiles=setTilesStates(tile, Tile.next);
+        for(Tile t:nextHideTiles){
+            setTilesStates(t, Tile.nextHide);
+        }
+        
         map.setBounds(map.getChildren().first().getX(), 
                 map.getChildren().first().getY(), 
                 map.getChildren().first().getWidth()*MAP_WIDTH, 
@@ -120,6 +128,7 @@ public class MapDungeon extends Group{
                 );
         
         map.addActor(createHeros());
+        
         return map;
     }
 
@@ -174,9 +183,17 @@ public class MapDungeon extends Group{
                     mapH.moveHerosOnMap(nextTile);
                 }
                 leftTable.getCell(nextRoomBtn).clearActor();
+                tile.setState(Tile.visited);
+                nextTile.setState(Tile.selected);
                 tile=nextTile;
                 nextTile=null;
-                Dungeon.getInstance().goTo( tile.getBackground());
+                
+                ArrayList<Tile> nextHideTiles=setTilesStates(tile, Tile.next);
+                for(Tile t:nextHideTiles){
+                    setTilesStates(t, Tile.nextHide);
+                }
+                //Dungeon.getInstance().goTo( tile.getRoomGUI(false));
+                //Dungeon.getInstance().goTo( tile.getBackground());
             }
         });
         return btn;
@@ -186,13 +203,19 @@ public class MapDungeon extends Group{
         for(Actor actor : map.getChildren()){
             if(actor.getName()!=null && actor.getName().equals("tile")){
                  Tile tile = (Tile) actor;
-                 tile.select(-1);
+                 //tile.setState(Tile.selected);
+                 //Gdx.app.log("Tile goToRoom", tile.getId()+"");
+                 //tile.select(-1);
             } 
         }
-        nextTile= room; 
-        nextTile.select(1);
+        nextTile= room;
+        if(room.getState()==Tile.visited)   room.setState(Tile.visitedSelected);
+        if(room.getState()==Tile.next) room.setState(Tile.selected);
         
-        leftTable.getCells().get(leftTable.getCells().size-1).setActor(nextRoomBtn).padTop(30); //Warning unsafe vient de là
+        Gdx.app.log("nextTile goToRoom", nextTile.getId()+"");
+        //nextTile.select(1);
+        
+        leftTable.getCells().get(leftTable.getCells().size-1).setActor(nextRoomBtn).padTop(30);
     }
 
     public Heros getHeros(int index){
@@ -225,6 +248,35 @@ public class MapDungeon extends Group{
         int i=0;
         while(!getHeros(i).isAlive()){ i++; }
         return getHeros(i);
+    }
+
+    private ArrayList<Integer> tilesAround(Tile tile) {
+        ArrayList<Integer> tiles =new ArrayList<Integer>();
+        if(tile.getMapY()>0) tiles.add(new Integer((int) (tile.getMapX()*10+tile.getMapY()-1)));   
+        if(tile.getMapY()<MAP_HEIGHT-1) tiles.add(new Integer((int) (tile.getMapX()*10+tile.getMapY()+1)));   
+        if(tile.getMapX()>0) tiles.add(new Integer ((int) ((tile.getMapX()-1)*10+tile.getMapY())));   
+        if(tile.getMapX()<MAP_WIDTH-1) tiles.add(new Integer((int) ((tile.getMapX()+1)*10+tile.getMapY())));  
+        
+        return tiles;
+    }
+
+    private ArrayList<Tile> setTilesStates(Tile tile, int state) {
+        ArrayList<Integer> idTileNear = tilesAround(tile); 
+        ArrayList<Tile> nextHideTiles=new ArrayList<Tile>();
+        for (Actor tileActor : map.getChildren()) {
+            if(tileActor.getName()!=null && tileActor.getName().equals("tile")){
+                Tile t = (Tile) tileActor;
+                for(Integer id : idTileNear){
+                    if(t.getId()== id && tile.canWeGo(t) && (t!=this.tile) && t.getState()!=Tile.visited){
+                        t.setState(state);
+                        if(state==Tile.next) nextHideTiles.add(t);
+                    }
+
+                }
+            }
+            
+        }
+        return nextHideTiles;
     }
     
     
