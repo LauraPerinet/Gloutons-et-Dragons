@@ -32,7 +32,7 @@ public class Notification extends Group{
         if(getY()<500){
             setY(getY()+5);
         }else{
-            actor.getHeros().getFight().actionFinished(type, actor.getHeros().getType());
+            if(actor.getHeros().getFight()!=null) actor.getHeros().getFight().actionFinished(type, actor.getHeros().getType());
             remove();
         }
     }

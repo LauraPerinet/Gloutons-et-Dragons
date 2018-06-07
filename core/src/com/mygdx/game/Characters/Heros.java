@@ -43,7 +43,7 @@ public class Heros extends Character{
     public void attack(Monster monster){
         int a;
         if(energy>0){
-            energy--;
+            setEnergy(-1);
             statesGUI.setEnergy(this);
             a=attack;
         }else{
@@ -62,6 +62,10 @@ public class Heros extends Character{
     public int getEnergy() {
         return energy;
     }
+    public void setEnergy(int dif){
+        energy+=dif;
+        statesGUI.setEnergy(this);
+    }
     public void drinkPotion(Actor p) {
         Potion potion = (Potion) p;
         if(potion.getName().equals("healing")){
@@ -77,9 +81,9 @@ public class Heros extends Character{
         if(potion.getName().equals("energy")){
             int dif=maxEnergy-energy;
             if(dif>3) dif=3;
-            energy+=dif;
+            setEnergy(dif);
             label="+"+dif;
-            statesGUI.setEnergy(this);
+            
         }
     }
 }

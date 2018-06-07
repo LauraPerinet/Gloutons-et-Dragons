@@ -108,7 +108,7 @@ public class Fight extends Actor{
         }else{
             if(action.equals("attack")){ 
                 room.notif(herosAttacked, "healing");  
-                if(!herosAttacked.isAlive()){
+                if(herosAttacked!=null && herosAttacked.isAlive()){
                     herosAttacked.setAction("dead");
                 }else{
                     if(isMonsterTurn()){

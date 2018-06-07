@@ -32,12 +32,13 @@ public class StateHeros extends Table {
     private Monster monster;
     private int width=200, maxHP, maxEnergy;
     private Rectangle health, energy;
-    private Image cadre;
+    private Image cadre, cadreBis;
     private Label healthL, energyL;
 
     public StateHeros(Heros heros, Skin skin) {
         this.heros=heros;
         cadre=new Image(new Texture("menu/cadre.png"));
+        cadreBis=new Image(new Texture("menu/cadre.png"));
         setBounds(heros.getOrder()*220+20, 0, 220, 260);
 
         skin.getFont("little").getData().setScale(0.5f,0.5f);
@@ -46,18 +47,28 @@ public class StateHeros extends Table {
         Label level=new Label("Init "+heros.getInit(), skin, "verylittle");
         heros.setStatesGUI(this);
         maxHP=heros.getHp();
-        health=new Rectangle(5, 5, width, 10, Color.FOREST);
-        energy=new Rectangle(5, 5, width, 10, Color.BLUE);
+        health=new Rectangle(5, 5, width, 15, Color.FOREST);
+        energy=new Rectangle(5, 5, width, 15, Color.BLUE);
         maxEnergy=heros.getEnergy();
         healthL=new Label(heros.getHp()+"/"+maxHP, skin, "verylittle");
         energyL=new Label(heros.getEnergy()+"/"+maxEnergy, skin, "verylittle");
         add(name).align(Align.left);
         add(level).align(Align.right);
         row();
-        add(health).align(Align.left);
+        Group h=new Group();
+        h.addActor(health);
+        h.addActor(cadre);
+        h.setBounds(0, 0, cadre.getWidth(), cadre.getHeight());
+        
+        Group e=new Group();
+        e.addActor(energy);
+        e.addActor(cadreBis);
+        e.setBounds(0, 0, cadre.getWidth(), cadre.getHeight());
+        
+        add(h).align(Align.left);
         add(healthL).align(Align.right);
         row();
-        add(energy).padTop(10);
+        add(e).padTop(10).align(Align.left);
         add(energyL).align(Align.right);
         
     }
@@ -65,14 +76,22 @@ public class StateHeros extends Table {
         this.monster=monster;
         Label name=new Label(monster.getName(), skin, "little");
         Label level=new Label("Init "+monster.getInit(), skin, "verylittle");
+        cadre=new Image(new Texture("menu/cadre.png"));
+        cadreBis=new Image(new Texture("menu/cadre.png"));
+        
         monster.setStatesGUI(this);
         maxHP=monster.getHp();
-        health=new Rectangle(5, 5, width, 10, Color.FOREST);
+        health=new Rectangle(5, 5, width, 15, Color.FOREST);
         healthL=new Label(monster.getHp()+"/"+maxHP, skin, "verylittle");
+        Group h=new Group();
+        h.addActor(health);
+        h.addActor(cadre);
+        h.setBounds(0, 0, cadre.getWidth(), cadre.getHeight());
+        
         add(name).align(Align.left);
         add(level).align(Align.right);
         row();
-        add(health).align(Align.left);
+        add(h).align(Align.left);
         add(healthL).align(Align.right);
     }
     

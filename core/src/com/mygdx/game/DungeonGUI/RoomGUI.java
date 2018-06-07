@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
@@ -27,6 +28,7 @@ import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
 import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.CharactersGUI.Notification;
+import com.mygdx.game.Daytime;
 import com.mygdx.game.Fabricator;
 import com.mygdx.game.Fight;
 import com.mygdx.game.Items.Gold;
@@ -71,6 +73,12 @@ public class RoomGUI extends Group{
         out.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if(!checkIfClear()){
+                    for(Monster m:monsters){
+                        m.setAction("attack");
+                        m.attack();
+                    }
+                }
                 for(Actor h : heroes.getChildren()){
                     CharactersFullGUI heros =(CharactersFullGUI) h;
                     heros.getHeros().setFight(null);
@@ -95,10 +103,11 @@ public class RoomGUI extends Group{
         turn=new Label("", Dungeon.getInstance().getSkin(), "little");
         addActor(turn);
         fight=new Fight(monsters, this);
+        addActor(Daytime.getInstance());
     }
     public Group getHeros(){ return heroes;}
     private void createBackground(String background) {
-        String time="Day";
+        String time=Daytime.getInstance().getMoment();
         this.background=new Image(new Texture("room/"+background+time+".jpg"));
         this.background.setName("background");
         out.setPosition(1820, 70);
@@ -106,6 +115,7 @@ public class RoomGUI extends Group{
         addActor(out);
         
     }
+
 
     private void createActorsHeros() {
         thief=MapDungeon.getInstance().getThief();
@@ -258,17 +268,19 @@ public class RoomGUI extends Group{
     public void notif(Character character, String type) {
         Group group;
         CharactersFullGUI hurted;
-        if(character.getType().equals("monster")){
-            group=monstersGroup;
-        }else{
-            group=heroes;
-        }
-        for(Actor a:group.getChildren()){
-            CharactersFullGUI actor=(CharactersFullGUI) a;
-            if(actor.getHeros()==character){
-                Notification notif=new Notification(actor, Dungeon.getInstance().getSkin(), type);
-                addActor(notif);
-                break;
+        if(character!=null){
+            if(character.getType().equals("monster")){
+                group=monstersGroup;
+            }else{
+                group=heroes;
+            }
+            for(Actor a:group.getChildren()){
+                CharactersFullGUI actor=(CharactersFullGUI) a;
+                if(actor.getHeros()==character){
+                    Notification notif=new Notification(actor, Dungeon.getInstance().getSkin(), type);
+                    addActor(notif);
+                    break;
+                }
             }
         }
         

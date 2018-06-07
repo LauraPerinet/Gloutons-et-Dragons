@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Daytime;
 import com.mygdx.game.Game;
 import com.mygdx.game.Items.Inventory;
 import com.mygdx.game.Menu;
@@ -45,7 +46,12 @@ public class Dungeon extends Stage implements InputProcessor{
                 //room = new RoomGUI( roomBackground );
                 main=room;
             }else{
-                main=map;
+                if(Daytime.getInstance().getMoment().equals("Lunch")){
+                    main=new Lunch();
+                }else{
+                   main=map; 
+                }
+                
             }
             main.setY(menu.getHeight());
             addActor(main);
@@ -89,8 +95,6 @@ public class Dungeon extends Stage implements InputProcessor{
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
     public void goTo() {
-        this.room=room;
-        
         menu.removeMonsters();;
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
@@ -121,6 +125,7 @@ public class Dungeon extends Stage implements InputProcessor{
             Gdx.graphics.setCursor(arrow);
         }
     }
+
 
     
     
