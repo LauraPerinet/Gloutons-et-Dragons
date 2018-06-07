@@ -102,10 +102,10 @@ public class MapDungeon extends Group{
         map = new Group();
         JsonReader json=new JsonReader();
         JsonValue level=json.parse(Gdx.files.internal("levels/"+l+".json"));
-        TextureAtlas spriteSheet=new TextureAtlas("room/tiles.atlas");
+        
         
         for (JsonValue room : level.get("rooms")){
-            Tile tile=new Tile(room.getInt("x"), room.getInt("y"), room.getString("type"), room.getString("orientation"), spriteSheet);
+            Tile tile=new Tile(room.getInt("x"), room.getInt("y"), room.getString("type"), room.getString("orientation"));
             map.addActor(tile);
            
             if(room.getBoolean("enter")){
@@ -268,7 +268,11 @@ public class MapDungeon extends Group{
                 Tile t = (Tile) tileActor;
                 for(Integer id : idTileNear){
                     if(t.getId()== id && tile.canWeGo(t) && (t!=this.tile) && t.getState()!=Tile.visited){
-                        t.setState(state);
+                        if(state==Tile.nextHide){
+                             t.setState(state, tile);
+                        }else{
+                            t.setState(state);
+                        }
                         if(state==Tile.next) nextHideTiles.add(t);
                     }
 

@@ -30,9 +30,9 @@ public class Tile extends Image {
     private RoomGUI roomGUI=null;
     public static int hide=0, nextHide=1, next=2, selected=3, visited=4, visitedSelected=5;
     
-    public Tile(int x, int y, String type, String orientation, TextureAtlas spriteSheet ) {
-            sprite=spriteSheet;
-            TextureRegion region = new TextureRegion(sprite.findRegion(type+orientation, -1));
+    public Tile(int x, int y, String type, String orientation ) {
+            sprite=new TextureAtlas("room/"+type+".atlas");;
+            TextureRegion region = new TextureRegion(sprite.findRegion(type, 0));
             setDrawable(new TextureRegionDrawable(region));
             setName("tile");
             this.type=type;
@@ -80,12 +80,43 @@ public class Tile extends Image {
         }else{
             return false;
         } 
-        setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, 1)));
+        
         return true;
     }
     //public void select( int select ){ setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, select )));}
     public void setState(int state){
         this.state=state;
+        if(state==hide){
+            setDrawable(new TextureRegionDrawable(sprite.findRegion(type, 0)));
+        }else{
+            setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, state)));
+        }
+        
+    }
+     public void setState(int state, Tile from){
+        int fromId=from.getId();
+        int toId=id;
+        
+        int GO_LEFT = fromId-10;
+        int GO_RIGHT = fromId+10;
+        int GO_UP = fromId+1;
+        int GO_DOWN = fromId-1;
+        String orientation="";
+        Gdx.app.log("from", fromId+"");
+        Gdx.app.log("to", toId+"");
+        Gdx.app.log("go left", GO_LEFT+"");
+        
+        if(toId == GO_LEFT){
+            orientation="E";
+        }else if(toId== GO_RIGHT){
+             orientation="W";
+        }else if(toId == GO_UP){
+             orientation="S";
+        }else if(toId == GO_DOWN ){
+             orientation="N";
+        }
+         Gdx.app.log("orientation", orientation+"");
+        if(!orientation.equals("")) setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, 1)));
     }
 
     public String getBackground() {
