@@ -28,7 +28,7 @@ public class Warrior extends Heros{
         attack=3;
         defense=1;
         xp=1;
-        energy=3;
+        energy=8;
         maxEnergy=3;
         attackType="AC";
         mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);

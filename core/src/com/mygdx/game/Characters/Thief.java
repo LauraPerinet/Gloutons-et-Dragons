@@ -28,7 +28,7 @@ public class Thief extends Heros{
         name="thief";
         order=0;
         initiative=3;
-        energy=4;
+        energy=10;
         maxEnergy=4;
         maxHp=8;
         attackType="AC";

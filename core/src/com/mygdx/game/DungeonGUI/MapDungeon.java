@@ -192,7 +192,10 @@ public class MapDungeon extends Group{
                 for(Tile t:nextHideTiles){
                     setTilesStates(t, Tile.nextHide);
                 }
-                //Dungeon.getInstance().goTo( tile.getRoomGUI(false));
+                mage.setEnergy(-1);
+                thief.setEnergy(-1);
+                warrior.setEnergy(-1);
+                Dungeon.getInstance().goTo( tile.getRoomGUI(false));
                 //Dungeon.getInstance().goTo( tile.getBackground());
             }
         });
@@ -200,6 +203,7 @@ public class MapDungeon extends Group{
     }
     
     public void goToRoom(Tile room){ 
+        /*
         for(Actor actor : map.getChildren()){
             if(actor.getName()!=null && actor.getName().equals("tile")){
                  Tile tile = (Tile) actor;
@@ -207,12 +211,12 @@ public class MapDungeon extends Group{
                  //Gdx.app.log("Tile goToRoom", tile.getId()+"");
                  //tile.select(-1);
             } 
-        }
+        }*/
         nextTile= room;
         if(room.getState()==Tile.visited)   room.setState(Tile.visitedSelected);
         if(room.getState()==Tile.next) room.setState(Tile.selected);
         
-        Gdx.app.log("nextTile goToRoom", nextTile.getId()+"");
+        //Gdx.app.log("nextTile goToRoom", nextTile.getId()+"");
         //nextTile.select(1);
         
         leftTable.getCells().get(leftTable.getCells().size-1).setActor(nextRoomBtn).padTop(30);

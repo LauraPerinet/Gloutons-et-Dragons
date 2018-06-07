@@ -27,7 +27,7 @@ public class Mage extends Heros{
         attack=2;
         defense=0;
         xp=1;
-        energy=5;
+        energy=15;
         maxEnergy=5;
         maxHp=5;
         attackType="AD";
