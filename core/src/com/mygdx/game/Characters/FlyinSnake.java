@@ -17,7 +17,7 @@ public class FlyinSnake extends Monster {
     
     public FlyinSnake(String name) {
         super(name);
-        spriteSheet=new TextureAtlas("Characters/monsters/flyinSnake.atlas");
+        spriteSheet=new TextureAtlas(Gdx.files.internal("Characters/monsters/flyinSnake.atlas"));
         attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/FlyinSnakeAttack.mp3"));
         deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/FlyinSnakeDead.mp3"));
         initiative=2;

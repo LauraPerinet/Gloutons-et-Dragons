@@ -7,7 +7,6 @@ package com.mygdx.game.DungeonGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -42,7 +41,9 @@ public class MapDungeon extends Group{
     private static MapDungeon INSTANCE;
     final private Skin skin;
     private Table table, leftTable;
-    private final Image parchment=new Image(new Texture("parchment.jpg")), arrow=new Image(new Texture("arrowDragAndDrop.png")), arrow2=new Image(new Texture("arrowDragAndDrop.png"));
+    private final Image parchment=new Image(new Texture(Gdx.files.internal("parchment.jpg"))), 
+            arrow=new Image(new Texture(Gdx.files.internal("arrowDragAndDrop.png"))),
+            arrow2=new Image(new Texture(Gdx.files.internal("arrowDragAndDrop.png")));
     private Tile tile, nextTile;
     private Thief thief;
     private Mage mage;
@@ -203,21 +204,10 @@ public class MapDungeon extends Group{
     }
     
     public void goToRoom(Tile room){ 
-        /*
-        for(Actor actor : map.getChildren()){
-            if(actor.getName()!=null && actor.getName().equals("tile")){
-                 Tile tile = (Tile) actor;
-                 //tile.setState(Tile.selected);
-                 //Gdx.app.log("Tile goToRoom", tile.getId()+"");
-                 //tile.select(-1);
-            } 
-        }*/
+
         nextTile= room;
         if(room.getState()==Tile.visited)   room.setState(Tile.visitedSelected);
         if(room.getState()==Tile.next) room.setState(Tile.selected);
-        
-        //Gdx.app.log("nextTile goToRoom", nextTile.getId()+"");
-        //nextTile.select(1);
         
         leftTable.getCells().get(leftTable.getCells().size-1).setActor(nextRoomBtn).padTop(30);
     }
@@ -229,7 +219,28 @@ public class MapDungeon extends Group{
         return null;
     }
     
-    public boolean setHerosPosition() {
+    public void setHerosPosition() {
+        ArrayList<Heros> deads=new ArrayList<Heros>();
+        ArrayList<Heros> alive=new ArrayList<Heros>();
+        for(int i=2; i>=0; i--){
+            if(!getHeros(i).isAlive()){
+                deads.add(getHeros(i));
+            }else{
+                alive.add(getHeros(i));
+            }
+        }
+        
+        if(alive.size()>0){
+            for(int i=alive.size()-1; i>=0; i--){
+                deads.add(alive.get(i));
+            }
+            for(int i=0; i<3; i++){
+                deads.get(i).setOrder(i);
+            }
+        }else{
+            Dungeon.getInstance().gameOver();
+        }
+        /*
         Heros first=getHeros(2);
         getHeros(1).setOrder(2);
         getHeros(0).setOrder(1);
@@ -241,7 +252,7 @@ public class MapDungeon extends Group{
         }else{
             herosLeftTable.setHerosPosition(false);
             return true;
-        }
+        }*/
     }
     @Override
     public void clear(){
@@ -249,17 +260,19 @@ public class MapDungeon extends Group{
     }
 
     public Heros getLastHeros() {
-        int i=0;
-        while(!getHeros(i).isAlive()){ i++; }
-        return getHeros(i);
+        for(int i=0; i<3; i++){
+            if(getHeros(i).isAlive()) return getHeros(i);
+        }
+        Dungeon.getInstance().gameOver();
+        return null;
     }
 
     private ArrayList<Integer> tilesAround(Tile tile) {
         ArrayList<Integer> tiles =new ArrayList<Integer>();
-        if(tile.getMapY()>0) tiles.add(new Integer((int) (tile.getMapX()*10+tile.getMapY()-1)));   
-        if(tile.getMapY()<MAP_HEIGHT-1) tiles.add(new Integer((int) (tile.getMapX()*10+tile.getMapY()+1)));   
-        if(tile.getMapX()>0) tiles.add(new Integer ((int) ((tile.getMapX()-1)*10+tile.getMapY())));   
-        if(tile.getMapX()<MAP_WIDTH-1) tiles.add(new Integer((int) ((tile.getMapX()+1)*10+tile.getMapY())));  
+        if(tile.getMapY()>0) tiles.add((int) (tile.getMapX()*10+tile.getMapY()-1));   
+        if(tile.getMapY()<MAP_HEIGHT-1) tiles.add((int) (tile.getMapX()*10+tile.getMapY()+1));   
+        if(tile.getMapX()>0) tiles.add((int) ((tile.getMapX()-1)*10+tile.getMapY()));   
+        if(tile.getMapX()<MAP_WIDTH-1) tiles.add((int) ((tile.getMapX()+1)*10+tile.getMapY()));  
         
         return tiles;
     }

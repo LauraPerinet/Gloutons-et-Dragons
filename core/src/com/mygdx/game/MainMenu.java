@@ -24,8 +24,8 @@ public class MainMenu extends Stage {
     
     public MainMenu(Game game) {
         this.game=game;
-        Image background=new Image(new Texture("parchment2.jpg"));
-        Image title=new Image(new Texture("title.png"));
+        Image background=new Image(new Texture(Gdx.files.internal("parchment2.jpg")));
+        Image title=new Image(new Texture(Gdx.files.internal("title.png")));
         final TextButton playButton = new TextButton("Entrez dans le dongeon", game.getSkin(), "default");
         playButton.setWidth(400);
         playButton.setHeight(80);

@@ -17,7 +17,7 @@ import com.mygdx.game.CharactersGUI.HerosMapGUI;
 public class Warrior extends Heros{
 
     public Warrior(){
-        spriteSheet=new TextureAtlas("Characters/warrior/warrior.atlas");
+        spriteSheet=new TextureAtlas(Gdx.files.internal("Characters/warrior/warrior.atlas"));
         attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/warriorAttack.mp3"));
         deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/warriorDead.mp3"));
         name="warrior";
@@ -29,7 +29,7 @@ public class Warrior extends Heros{
         defense=1;
         xp=1;
         energy=8;
-        maxEnergy=3;
+        maxEnergy=8;
         attackType="AC";
         mapPt=new HerosMapGUI(1, 10, -20, spriteSheet);
         MAX_WALK=20;

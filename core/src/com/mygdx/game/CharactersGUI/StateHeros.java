@@ -7,11 +7,8 @@ package com.mygdx.game.CharactersGUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -20,7 +17,6 @@ import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Character;
 import com.mygdx.game.Characters.Monster;
-import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.Rectangle;
 
 /**
@@ -37,8 +33,8 @@ public class StateHeros extends Table {
 
     public StateHeros(Heros heros, Skin skin) {
         this.heros=heros;
-        cadre=new Image(new Texture("menu/cadre.png"));
-        cadreBis=new Image(new Texture("menu/cadre.png"));
+        cadre=new Image(new Texture(Gdx.files.internal("menu/cadre.png")));
+        cadreBis=new Image(new Texture(Gdx.files.internal("menu/cadre.png")));
         setBounds(heros.getOrder()*220+20, 0, 220, 260);
 
         skin.getFont("little").getData().setScale(0.5f,0.5f);
@@ -76,8 +72,8 @@ public class StateHeros extends Table {
         this.monster=monster;
         Label name=new Label(monster.getName(), skin, "little");
         Label level=new Label("Init "+monster.getInit(), skin, "verylittle");
-        cadre=new Image(new Texture("menu/cadre.png"));
-        cadreBis=new Image(new Texture("menu/cadre.png"));
+        cadre=new Image(new Texture(Gdx.files.internal("menu/cadre.png")));
+        cadreBis=new Image(new Texture(Gdx.files.internal("menu/cadre.png")));
         
         monster.setStatesGUI(this);
         maxHP=monster.getHp();
@@ -109,6 +105,7 @@ public class StateHeros extends Table {
     }
 
     public void setEnergy(Heros aThis) {
+        Gdx.app.log("Energy "+aThis.getName()+" "+energy+"", "");
         int energ=width/maxEnergy*heros.getEnergy();
         if(energ<0) energ=0;
         energyL.setText(heros.getEnergy()+"/"+maxEnergy);

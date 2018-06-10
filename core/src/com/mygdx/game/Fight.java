@@ -5,18 +5,14 @@
  */
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.Characters.Character;
 import com.mygdx.game.Characters.Heros;
 import com.mygdx.game.Characters.Mage;
 import com.mygdx.game.Characters.Monster;
 import com.mygdx.game.Characters.Thief;
 import com.mygdx.game.Characters.Warrior;
-import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.DungeonGUI.MapDungeon;
 import com.mygdx.game.DungeonGUI.RoomGUI;
@@ -105,10 +101,11 @@ public class Fight extends Actor{
                     monsterAttacked.setAction("dead");
                 }
             }
-        }else{
-            if(action.equals("attack")){ 
+        }else{ //Actions des monstres
+            if(action.equals("attack") && herosAttacked!=null){ 
                 room.notif(herosAttacked, "healing");  
-                if(herosAttacked!=null && herosAttacked.isAlive()){
+                
+                if(!herosAttacked.isAlive()){
                     herosAttacked.setAction("dead");
                 }else{
                     if(isMonsterTurn()){
@@ -121,7 +118,7 @@ public class Fight extends Actor{
             }
             if(action.equals("dead")){
                 deadMonster(monsterAttacked);
-                 room.setActorsPosition(false);
+                room.setActorsPosition(false);
             }
             if(action.equals("walk")){
                  if(heroesActions==0){
@@ -226,8 +223,10 @@ public class Fight extends Actor{
         for(Monster m:monsters){
             if(monster!=m && m.getOrder()>monster.getOrder()) m.setOrder(m.getOrder()-1);
         }
+        room.addItem(monster);
         room.remove(monster);
         monsters.remove(monster);
+        
     }
 
 

@@ -5,11 +5,7 @@
  */
 package com.mygdx.game.Characters;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.mygdx.game.DungeonGUI.Dungeon;
 import com.mygdx.game.DungeonGUI.MapDungeon;
-import com.mygdx.game.Game;
 import java.util.Random;
 
 /**
@@ -54,7 +50,9 @@ public class Monster extends Character{
         hp-=lost;
         label="-"+lost;
         statesGUI.setHealth(this);
-        if(hp<=0) statesGUI.clear();
+        if(hp<=0){
+            statesGUI.clear();
+        }
         return true;
     }
     

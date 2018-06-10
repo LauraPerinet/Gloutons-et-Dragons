@@ -95,7 +95,7 @@
         "y":3,
         "type":"castle",
         "orientation":"NES"
-        "enter":false
+        "enter":true
     },
     {
         "x":3,
@@ -130,7 +130,7 @@
         "y":4,
         "type":"castle",
         "orientation":"SW"
-        "enter":true
+        "enter":false
     },
     {
         "x":3,

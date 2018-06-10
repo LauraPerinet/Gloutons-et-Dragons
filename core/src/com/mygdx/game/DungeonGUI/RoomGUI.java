@@ -5,7 +5,6 @@
  */
 package com.mygdx.game.DungeonGUI;
 
-import com.mygdx.game.Items.Potion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -16,8 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Characters.Character;
@@ -31,11 +28,9 @@ import com.mygdx.game.CharactersGUI.Notification;
 import com.mygdx.game.Daytime;
 import com.mygdx.game.Fabricator;
 import com.mygdx.game.Fight;
-import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
 
 
@@ -44,7 +39,7 @@ import java.util.Random;
  * @author Laura
  */
 public class RoomGUI extends Group{
-    private Image background, out = new Image(new Texture("room/out.png"));;
+    private Image background, out = new Image(new Texture(Gdx.files.internal("room/out.png")));;
     private Thief thief;
     private Warrior warrior;
     private Mage mage;
@@ -108,7 +103,7 @@ public class RoomGUI extends Group{
     public Group getHeros(){ return heroes;}
     private void createBackground(String background) {
         String time=Daytime.getInstance().getMoment();
-        this.background=new Image(new Texture("room/"+background+time+".jpg"));
+        this.background=new Image(new Texture(Gdx.files.internal("room/"+background+time+".jpg")));
         this.background.setName("background");
         out.setPosition(1820, 70);
         addActor(this.background);
@@ -195,7 +190,8 @@ public class RoomGUI extends Group{
             String thing=thingsToAdd.get(ran);
             if(!isAMonster){
                 Items it=Fabricator.createItem(thing, true);
-                it.setPos();
+                it.addClickToPick();    
+                        it.setPos();
                 addActor(it);
                 
             }else{
@@ -274,20 +270,33 @@ public class RoomGUI extends Group{
             }else{
                 group=heroes;
             }
-            for(Actor a:group.getChildren()){
-                CharactersFullGUI actor=(CharactersFullGUI) a;
-                if(actor.getHeros()==character){
-                    Notification notif=new Notification(actor, Dungeon.getInstance().getSkin(), type);
-                    addActor(notif);
-                    break;
-                }
-            }
+            CharactersFullGUI actor = findActor(character, group);
+            Notification notif=new Notification(actor, Dungeon.getInstance().getSkin(), type);
+            addActor(notif);
+            
         }
         
     }
     
     public void setTitle(String text){
         turn.setText(text);
+    }
+
+    public void addItem(Monster monster) {
+        
+        CharactersFullGUI monsterActor=findActor(monster, monstersGroup);
+        Items it=Fabricator.createFood(monsterActor, true);
+        addActor(it);
+    }
+
+    private CharactersFullGUI findActor(Character character, Group group) {
+        for(Actor a:group.getChildren()){
+                CharactersFullGUI actor=(CharactersFullGUI) a;
+                if(actor.getHeros()==character){
+                    return actor;
+                }
+            }
+        return null;
     }
 
 }

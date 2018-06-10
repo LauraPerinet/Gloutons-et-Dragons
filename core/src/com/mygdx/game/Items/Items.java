@@ -7,12 +7,12 @@ package com.mygdx.game.Items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import java.util.Random;
 
 /**
@@ -20,19 +20,22 @@ import java.util.Random;
  * @author Laura
  */
 public class Items extends Image{
-    protected String name;
+    protected String name, type;
     protected int  minX=0, minY=70, maxX=1920-(int) getWidth(), maxY=800-(int) getHeight(), lock;
     protected float x,y;
     protected boolean fromRoom, draggable=false;
     protected Sound addItemSound;
+    protected TextureAtlas txtAtlas;
+    protected TextureRegion region;
     
     public Items(String item, Boolean fromRoom){
-        
-        super(new Texture("items/"+item+".png"));
+        super();
+        txtAtlas=new TextureAtlas(Gdx.files.internal("items/items.atlas"));
         addItemSound=Gdx.audio.newSound(Gdx.files.internal("sounds/addItem.mp3"));
         setName(item);
+        if(!item.equals("potions")) setImage(item);
         this.fromRoom=fromRoom;
-        if(fromRoom) addClickToPick();
+        
         
     }
     public Items(TextureRegion region){
@@ -40,8 +43,13 @@ public class Items extends Image{
         if(fromRoom) addClickToPick();
         
     }
+    protected void setImage(String r){
 
-    private void addClickToPick() {
+        region = new TextureRegion(txtAtlas.findRegion(r));
+        setDrawable(new TextureRegionDrawable(region));
+        setSize(region.getRegionWidth(), region.getRegionHeight());
+    }
+    public void addClickToPick() {
         
         addListener(new ClickListener(){
             @Override
@@ -49,7 +57,6 @@ public class Items extends Image{
                 Inventory.getInstance().addItem(Items.this);
                 addItemSound.play();
                 Items.this.remove();
-                
             }
         });
     }
@@ -66,6 +73,7 @@ public class Items extends Image{
     public boolean getDraggable(){ return draggable;}
     public void setLock(int lock){ this.lock=lock;}
     public int getLock(){return lock;}
+    public String getType(){ return type;}
     
 
 

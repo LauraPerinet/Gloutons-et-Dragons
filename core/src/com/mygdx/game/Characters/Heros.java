@@ -66,19 +66,33 @@ public class Heros extends Character{
         energy+=dif;
         statesGUI.setEnergy(this);
     }
+    public void setMaxEnergy(){
+        energy=maxEnergy;
+        statesGUI.setEnergy(this);
+    }
+    public void sethalfEnergy(){
+        int half=(maxEnergy-energy)/2;
+        energy+=half;
+        statesGUI.setEnergy(this);
+    }
+    public void setHp(int dif){
+        hp+=dif;
+        if(hp>maxHp) hp=maxHp;
+        statesGUI.setHealth(this);
+    }
     public void drinkPotion(Actor p) {
         Potion potion = (Potion) p;
-        if(potion.getName().equals("healing")){
+        if(potion.getType().equals("healing")){
             int dif=maxHp-hp;
             label="+"+dif;
             hp=maxHp;
             statesGUI.setHealth(this);
         }
-        if(potion.getName().equals("strength")){
+        if(potion.getType().equals("strength")){
             bonusAttack=5;
             label="+5";
         }
-        if(potion.getName().equals("energy")){
+        if(potion.getType().equals("energy")){
             int dif=maxEnergy-energy;
             if(dif>3) dif=3;
             setEnergy(dif);

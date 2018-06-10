@@ -6,8 +6,8 @@
 package com.mygdx.game.Items;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -45,16 +45,26 @@ public class Inventory {
                 } 
             }
 
-            if(item.getDraggable()){
+            if(item.getDraggable() && item.getName().equals("potions")){
                 
                 Potion p=(Potion) item;
                 p.addDragAndDrop();
             }
-            inventoryGUI.addItem(item.getName());
+            if(item.getName().equals("food")){
+                inventoryGUI.addFood(item.getType());
+            }else if(item.getName().equals("potions")){
+                
+                Potion p=(Potion) item;
+                Gdx.app.log(item.getName(), p.getType());
+                 inventoryGUI.addItem(p.getType());
+            }else{
+                
+                inventoryGUI.addItem(item.getName());
+            }
+            
         } 
 
     }
-    
     public void addGold(int value){
         if(items.get("gold")!=null){
             items.replace("gold", items.get("gold")+value);
@@ -67,5 +77,10 @@ public class Inventory {
     public InventoryGUI getImg(){ return inventoryGUI;}
     public void clear(){
         INSTANCE=null;
+    }
+    public ArrayList<Items> getItem(String name){ return inventoryGUI.getItem(name);};
+
+    public void removeItem(String name) {
+        inventoryGUI.removeItems(name);
     }
 }

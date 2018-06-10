@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.mygdx.game.DungeonGUI.Dungeon;
+
 
 /**
  *
@@ -21,15 +21,15 @@ import com.mygdx.game.DungeonGUI.Dungeon;
  */
 public class Daytime extends Group{
     private static Daytime INSTANCE;
-    private int hour=0;
+    private int hour=0, maxHour=2500;
     private Rectangle time;
     private Image astre;
     private Label label;
     private TextureAtlas txtAtlas;
     
     private Daytime(){
-        txtAtlas=new TextureAtlas("items/potions.atlas");
-        astre=new Image(new TextureRegion(txtAtlas.findRegion("healing")));
+        txtAtlas=new TextureAtlas(Gdx.files.internal("items/pictos.atlas"));
+        astre=new Image(new TextureRegion(txtAtlas.findRegion("sun")));
         time=new Rectangle(0, 0, 250, 10, Color.BLUE);
         addActor(time);
         addActor(astre);
@@ -44,20 +44,25 @@ public class Daytime extends Group{
     }
     public String getMoment(){ 
         String moment="Day";
-        if(hour>=750) moment="Night";
-        if(hour>=1000) moment="Lunch";
+        if(hour>=maxHour*0.75) moment="Night";
+        if(hour>=maxHour) moment="Lunch";
         
-        Gdx.app.log("Daytime ", hour+" "+moment);
         return moment;
+    }
+    public void newDay(){
+        hour=0;
+        astre.setX(0);
+        astre.setDrawable(new TextureRegionDrawable(new TextureRegion(txtAtlas.findRegion("sun"))));
     }
     @Override
     public void act(float delta) {
         hour++;
-        if(hour%4==0 && hour<=1000) astre.setX(astre.getX()+1);
-        if(hour==750){
-            astre.setDrawable(new TextureRegionDrawable(new TextureRegion(txtAtlas.findRegion("strength"))));
+        if(hour%10==0 && hour<=maxHour) astre.setX(astre.getX()+1);
+        if(hour==maxHour*0.75){
+            astre.setDrawable(new TextureRegionDrawable(new TextureRegion(txtAtlas.findRegion("moon"))));
         }
     }
+    
     
     
     

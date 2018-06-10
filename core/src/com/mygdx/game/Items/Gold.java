@@ -5,7 +5,6 @@
  */
 package com.mygdx.game.Items;
 
-import com.badlogic.gdx.Gdx;
 import java.util.Random;
 
 /**

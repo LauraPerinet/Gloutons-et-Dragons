@@ -45,6 +45,7 @@ public class Dungeon extends Stage implements InputProcessor{
             if(main.getName().equals("map")){
                 //room = new RoomGUI( roomBackground );
                 main=room;
+                room.enter();
             }else{
                 if(Daytime.getInstance().getMoment().equals("Lunch")){
                     main=new Lunch();
@@ -55,7 +56,7 @@ public class Dungeon extends Stage implements InputProcessor{
             }
             main.setY(menu.getHeight());
             addActor(main);
-            room.enter();
+            
             return true;
         }
     };
@@ -64,6 +65,7 @@ public class Dungeon extends Stage implements InputProcessor{
        
         this.game=game;
         inventory=Inventory.getInstance(game.getSkin());
+        
         createCursors();
         map=MapDungeon.getInstance(game.getSkin());
         menu=new Menu(game.getSkin());
@@ -91,17 +93,18 @@ public class Dungeon extends Stage implements InputProcessor{
     
     public void goTo(RoomGUI room) {
         this.room=room;
-        menu.removeMonsters();;
+        menu.removeMonsters();
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
     public void goTo() {
-        menu.removeMonsters();;
+        menu.removeMonsters();
         main.addAction(Actions.sequence(Actions.fadeOut(1), changeScreenAction, Actions.fadeIn(1)));
     }
 
     public void gameOver() {
         main.clear();
         map.clear();
+        Daytime.getInstance().newDay();
         inventory.clear();
         game.gameOver();
     }
@@ -111,10 +114,12 @@ public class Dungeon extends Stage implements InputProcessor{
     }
 
     private void createCursors() {
+        
         arrow=Gdx.graphics.newCursor(new Pixmap(new FileHandle("arrow.png")), 0, 0);
         AD=Gdx.graphics.newCursor(new Pixmap(new FileHandle("AD.png")), 0, 0);
         AC=Gdx.graphics.newCursor(new Pixmap(new FileHandle("AC.png")), 0, 0);
         Gdx.graphics.setCursor(arrow);
+
     }
     public void setCursor(String cursor){
         if(cursor.equals("AC")){

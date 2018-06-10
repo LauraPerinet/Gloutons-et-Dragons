@@ -5,8 +5,6 @@
  */
 package com.mygdx.game.CharactersGUI;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.mygdx.game.Characters.Character;
 import com.badlogic.gdx.graphics.g2d.Sprite;

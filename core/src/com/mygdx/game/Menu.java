@@ -8,7 +8,6 @@ package com.mygdx.game;
 import com.mygdx.game.CharactersGUI.StateHeros;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -28,7 +27,7 @@ import java.util.ArrayList;
  */
 public class Menu extends Group{
     private InventoryGUI inventory;
-    private Image background=new Image(new Texture("backgroundMenu.png"));
+    private Image background=new Image(new Texture(Gdx.files.internal("backgroundMenu.png")));
     private ArrayList<Heros> heroes;
 
     private Table states,monsters;

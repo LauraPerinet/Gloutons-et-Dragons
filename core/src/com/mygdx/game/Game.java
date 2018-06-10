@@ -31,7 +31,7 @@ public class Game extends ApplicationAdapter {
              actual = new MainMenu(this);
              
              // A commenter plus tard
-             changeStage();
+             //changeStage();
     }
 
     @Override

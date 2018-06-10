@@ -5,9 +5,11 @@
  */
 package com.mygdx.game;
 
+import com.mygdx.game.Items.Food;
 import com.mygdx.game.Characters.Lapinator;
 import com.mygdx.game.Characters.FlyinSnake;
 import com.mygdx.game.Characters.Monster;
+import com.mygdx.game.CharactersGUI.CharactersFullGUI;
 import com.mygdx.game.Items.Gold;
 import com.mygdx.game.Items.Items;
 import com.mygdx.game.Items.Potion;
@@ -19,7 +21,7 @@ import com.mygdx.game.Items.Potion;
 public abstract class Fabricator {
     public static Items createItem(String name, boolean fromRoom){
         Items it=null;
-  
+       
         if(name.equals("gold")){
                 it=new Gold(fromRoom);
         }else if( name.equals("potion")){
@@ -43,5 +45,14 @@ public abstract class Fabricator {
         
         
         return monster;
+    }
+
+    public static Food createFood(CharactersFullGUI monster, boolean b) {
+        Food food=new Food(monster, b);
+        return food;
+    }
+    public static Food createFood(String monster, boolean b) {
+        Food food=new Food(monster, b);
+        return food;
     }
 }

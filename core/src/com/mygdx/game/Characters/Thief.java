@@ -18,7 +18,7 @@ public class Thief extends Heros{
     
     
     public Thief(){
-        spriteSheet=new TextureAtlas("Characters/thief/thief.atlas");
+        spriteSheet=new TextureAtlas(Gdx.files.internal("Characters/thief/thief.atlas"));
         attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/thiefAttack.mp3"));
         deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/thiefDead.mp3"));
         hp=8;
@@ -29,7 +29,7 @@ public class Thief extends Heros{
         order=0;
         initiative=3;
         energy=10;
-        maxEnergy=4;
+        maxEnergy=10;
         maxHp=8;
         attackType="AC";
         mapPt=new HerosMapGUI(1, 15, -10, spriteSheet);

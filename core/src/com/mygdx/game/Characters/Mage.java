@@ -17,7 +17,7 @@ public class Mage extends Heros{
     
     
     public Mage(){
-        spriteSheet=new TextureAtlas("Characters/mage/mage.atlas");
+        spriteSheet=new TextureAtlas(Gdx.files.internal("Characters/mage/mage.atlas"));
         attackSound=Gdx.audio.newSound(Gdx.files.internal("sounds/mageAttack.mp3"));
         deadSound=Gdx.audio.newSound(Gdx.files.internal("sounds/mageDead.mp3"));
         this.name="mage";
@@ -28,7 +28,7 @@ public class Mage extends Heros{
         defense=0;
         xp=1;
         energy=15;
-        maxEnergy=5;
+        maxEnergy=15;
         maxHp=5;
         attackType="AD";
         this.mapPt=new HerosMapGUI(1, -10, -10, spriteSheet);

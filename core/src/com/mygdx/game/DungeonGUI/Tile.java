@@ -6,11 +6,7 @@
 package com.mygdx.game.DungeonGUI;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -31,7 +27,7 @@ public class Tile extends Image {
     public static int hide=0, nextHide=1, next=2, selected=3, visited=4, visitedSelected=5;
     
     public Tile(int x, int y, String type, String orientation ) {
-            sprite=new TextureAtlas("room/"+type+".atlas");;
+            sprite=new TextureAtlas(Gdx.files.internal("room/"+type+".atlas"));;
             TextureRegion region = new TextureRegion(sprite.findRegion(type, 0));
             setDrawable(new TextureRegionDrawable(region));
             setName("tile");
@@ -45,7 +41,6 @@ public class Tile extends Image {
             addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    Gdx.app.log("Tile click", id+" "+state);
                     MapDungeon map=MapDungeon.getInstance();
                      Tile heroesOn = map.getTile();
                     if(canWeGo(heroesOn)) MapDungeon.getInstance().goToRoom((Tile) hit(x, y, true));
@@ -102,9 +97,6 @@ public class Tile extends Image {
         int GO_UP = fromId+1;
         int GO_DOWN = fromId-1;
         String orientation="";
-        Gdx.app.log("from", fromId+"");
-        Gdx.app.log("to", toId+"");
-        Gdx.app.log("go left", GO_LEFT+"");
         
         if(toId == GO_LEFT){
             orientation="E";
@@ -115,7 +107,6 @@ public class Tile extends Image {
         }else if(toId == GO_DOWN ){
              orientation="N";
         }
-         Gdx.app.log("orientation", orientation+"");
         if(!orientation.equals("")) setDrawable(new TextureRegionDrawable(sprite.findRegion(type+orientation, 1)));
     }
 
