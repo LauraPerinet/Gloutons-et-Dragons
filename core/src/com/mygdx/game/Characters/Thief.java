@@ -31,7 +31,7 @@ public class Thief extends Heros{
         energy=10;
         maxEnergy=10;
         maxHp=8;
-        attackType="AC";
+        attackType="AD";
         mapPt=new HerosMapGUI(1, 15, -10, spriteSheet);
         MAX_WALK=19;
         MAX_ATTACK=10;

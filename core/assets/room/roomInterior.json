@@ -2,17 +2,19 @@
     "castle":{
         "monsters":{
             "Lapinator":3,
-            "FlyinSnake":3
+            "FlyinSnake":2
         },
         "items":{
-            "gold":3,
+            "gold":4,
             "potion":3,
             "herb":3
         }
     },
     "cave":{
-       "monsters":{"Lapinator":1},
-        "items":"gold"
+       "monsters":{"Minotaure":1},
+        "items":{
+            "gold":4
+        }
     }
 
 }

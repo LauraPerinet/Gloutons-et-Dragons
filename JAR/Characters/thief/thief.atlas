@@ -1,0 +1,244 @@
+
+thief.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 822
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 2, 620
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 204, 822
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 2, 418
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 10
+attack
+  rotate: false
+  xy: 2, 216
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 0
+attack
+  rotate: false
+  xy: 204, 418
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 406, 620
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 608, 822
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 2, 14
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 4
+attack
+  rotate: false
+  xy: 204, 216
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 406, 418
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 6
+dead
+  rotate: false
+  xy: 406, 822
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+pt
+  rotate: false
+  xy: 2, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+selected
+  rotate: false
+  xy: 204, 620
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 608, 620
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 9
+walk
+  rotate: false
+  xy: 810, 822
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 1
+walk
+  rotate: false
+  xy: 204, 14
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 5
+walk
+  rotate: false
+  xy: 406, 216
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 3
+walk
+  rotate: false
+  xy: 608, 418
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 17
+walk
+  rotate: false
+  xy: 790, 620
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 7
+walk
+  rotate: false
+  xy: 992, 822
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 11
+walk
+  rotate: false
+  xy: 386, 14
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 4
+walk
+  rotate: false
+  xy: 588, 216
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 14
+walk
+  rotate: false
+  xy: 790, 418
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 15
+walk
+  rotate: false
+  xy: 972, 620
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 16
+walk
+  rotate: false
+  xy: 1174, 822
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 0
+walk
+  rotate: false
+  xy: 568, 14
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 18
+walk
+  rotate: false
+  xy: 770, 216
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 19
+walk
+  rotate: false
+  xy: 972, 418
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 2
+walk
+  rotate: false
+  xy: 1154, 620
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 6
+walk
+  rotate: false
+  xy: 1356, 822
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 10
+walk
+  rotate: false
+  xy: 750, 14
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 8
+walk
+  rotate: false
+  xy: 952, 216
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 12
+walk
+  rotate: false
+  xy: 1154, 418
+  size: 180, 200
+  orig: 180, 200
+  offset: 0, 0
+  index: 13

@@ -1,0 +1,291 @@
+
+warrior.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1058
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 2, 536
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 504, 1058
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 1508, 536
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 10
+pt
+  rotate: false
+  xy: 2, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 2, 14
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 9
+walk
+  rotate: false
+  xy: 504, 536
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 1
+walk
+  rotate: false
+  xy: 1006, 1058
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 5
+walk
+  rotate: false
+  xy: 504, 14
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 3
+walk
+  rotate: false
+  xy: 1006, 536
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 14
+walk
+  rotate: false
+  xy: 1508, 1058
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 10
+walk
+  rotate: false
+  xy: 1006, 14
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 17
+walk
+  rotate: false
+  xy: 1508, 14
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 7
+
+warrior2.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 12
+attack
+  rotate: false
+  xy: 2, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 13
+attack
+  rotate: false
+  xy: 2, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 14
+attack
+  rotate: false
+  xy: 2, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 0
+attack
+  rotate: false
+  xy: 504, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 4
+attack
+  rotate: false
+  xy: 1508, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 11
+dead
+  rotate: false
+  xy: 1006, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 2, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 15
+walk
+  rotate: false
+  xy: 504, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 11
+walk
+  rotate: false
+  xy: 1006, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 0
+walk
+  rotate: false
+  xy: 504, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 18
+walk
+  rotate: false
+  xy: 1006, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 19
+walk
+  rotate: false
+  xy: 1508, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 2
+walk
+  rotate: false
+  xy: 1508, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 6
+
+warrior3.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 504, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 1006, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 1508, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 1508, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 6
+selected
+  rotate: false
+  xy: 504, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: -1
+walk
+  rotate: false
+  xy: 2, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 8
+walk
+  rotate: false
+  xy: 2, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 12
+walk
+  rotate: false
+  xy: 504, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 13
+walk
+  rotate: false
+  xy: 1006, 1046
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 20
+walk
+  rotate: false
+  xy: 1006, 2
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 4
+walk
+  rotate: false
+  xy: 1508, 524
+  size: 500, 520
+  orig: 500, 520
+  offset: 0, 0
+  index: 16

@@ -1,0 +1,181 @@
+
+lapinator.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 2, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 7
+attack
+  rotate: false
+  xy: 2, 1036
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 8
+attack
+  rotate: false
+  xy: 204, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 9
+attack
+  rotate: false
+  xy: 2, 584
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 18
+attack
+  rotate: false
+  xy: 204, 1036
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 10
+attack
+  rotate: false
+  xy: 406, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 11
+attack
+  rotate: false
+  xy: 2, 132
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 12
+attack
+  rotate: false
+  xy: 204, 584
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 13
+attack
+  rotate: false
+  xy: 406, 1036
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 14
+attack
+  rotate: false
+  xy: 608, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 15
+attack
+  rotate: false
+  xy: 204, 132
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 16
+attack
+  rotate: false
+  xy: 406, 584
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 17
+attack
+  rotate: false
+  xy: 810, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 19
+attack
+  rotate: false
+  xy: 406, 132
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 23
+attack
+  rotate: false
+  xy: 608, 584
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 20
+attack
+  rotate: false
+  xy: 810, 1036
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 21
+attack
+  rotate: false
+  xy: 1012, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 22
+attack
+  rotate: false
+  xy: 608, 132
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 1
+attack
+  rotate: false
+  xy: 810, 584
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 2
+attack
+  rotate: false
+  xy: 1012, 1036
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 3
+attack
+  rotate: false
+  xy: 1214, 1488
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 4
+attack
+  rotate: false
+  xy: 810, 132
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 5
+attack
+  rotate: false
+  xy: 1012, 584
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 6
+meet
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 0
+walk
+  rotate: false
+  xy: 608, 1036
+  size: 200, 450
+  orig: 200, 450
+  offset: 0, 0
+  index: 0

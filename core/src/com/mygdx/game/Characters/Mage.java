@@ -24,7 +24,7 @@ public class Mage extends Heros{
         this.order=1;
         this.initiative=1;
         hp=5;
-        attack=2;
+        attack=3;
         defense=0;
         xp=1;
         energy=15;
